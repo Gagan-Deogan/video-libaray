@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+@import url("https://bucketcss.netlify.app/css/bucket-minify.css");
+body{
+    --primary-dark: #059669;
+    --primary-default: #25A18A;
+    --primary-light:#34D399;
+
+    --grey-dark:#374151;
+    --grey-default:#6B7280;
+    --grey-light:#D1D5DB;
+    --grey-opac:#d1d5db7e;
+
+
+    --red-dark:#B91C1C;
+    --red-default:#DC2626;
+    --red-light:#EF4444;
+
+    --yellow-dark:#e4b601;
+    --yellow-default:#FACC15;
+    --yellow-light:#FDE047;
+
+    --green-dark:#166534;
+    --green-default:#16A34A;
+    --green-light:#22C55E;
+    
+    --sm-pd: 0.5rem 3vw;
+    
+    --black:#111827;
+    --inner-text:#f7fafc;
+    --background:#E8E9EE;
+    --inner-background: #F7FAFC ;
+    --foreground:#0e182a;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: auto;
+}
+section{
+    width: 100%;
+}
+label span{
+    font-size: 1rem;
+    cursor: pointer;
+}
+.ovr-flw-hide{
+    overflow: hidden;
+}
+.crd-cont > img {
+    /* height: 56vw; */
+}
+.pry-clr{
+    color: var(--primary-dark);
+}
+.dis-grid{
+    display: grid;
+}
+.responsive-img{
+    width: 100%;
+}

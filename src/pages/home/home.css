@@ -1,0 +1,45 @@
+main section{
+    margin-bottom: 2rem;
+}
+
+.hero-wall{
+    height: 15rem;
+    background:  center / cover no-repeat url("../../assests/bg_about.jpg");
+}
+.hero-wall h1{
+    max-width: 15ch;
+}
+
+.videos-container{
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+}
+.over-flow{
+    overflow: scroll;
+}
+.crd-cont{
+    width: auto;
+}
+.crd-cont > img{
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+@media (min-width:600px){
+    .videos-container{
+        grid-template-columns: 1fr 1fr;
+        /* row-gap: 3rem; */
+        /* column-gap: rem; */
+    }
+}
+@media (min-width:1060px){
+    .videos-container{
+        grid-template-columns: 1fr 1fr 1fr;
+        row-gap: 2rem;
+    }
+}
+@media (min-width:1300px){
+    .videos-container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        row-gap: 2rem;
+    }
+}
