@@ -45,9 +45,6 @@ label span{
 .ovr-flw-hide{
     overflow: hidden;
 }
-.crd-cont > img {
-    /* height: 56vw; */
-}
 .pry-clr{
     color: var(--primary-dark);
 }
@@ -56,4 +53,14 @@ label span{
 }
 .responsive-img{
     width: 100%;
+}
+input[type=checkbox]{
+    display: none;
+}
+fieldset{
+    border: none;
+    border-top : 1px solid var(--grey-light);
+}
+.sm-btn-pry{
+    background: transparent;
 }

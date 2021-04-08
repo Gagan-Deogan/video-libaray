@@ -1,10 +1,12 @@
 import React,{ useState, useEffect } from "react";
 import { Card } from "../../components/cards/Card";
 import axios from "axios";
+import { AddPlaylist } from "../../components/add_playlist/AddPlaylist"
 import "./home.css"
 
 export const Home = () =>{
-    const [ videosList , setVideosList ] = useState()
+    const [ videosList , setVideosList ] = useState();
+    const [ showAddPlaylist, setShowAddPlaylist ] = useState( { show:false, selectedVideo:{} } )
     useEffect(() => {
         const cancelToken = axios.CancelToken.source();
         (async()=>{
@@ -17,17 +19,15 @@ export const Home = () =>{
     }, []);
     return(
         <main className="col pad-8">
-            {/* <section className="hero-wall w12 bor-rad-8 col alg-ctr jst-ctr">
-                <h1 className="clr pry-clr txt-ctr bold " >Plants Gonna Make you Happy</h1>
-            </section> */}
             <section>
                 <ul className="dis-grid videos-container">
                     { videosList && videosList.map((video)=>(
-                        <Card video={video}  />
+                        <Card video={video} setShowAddPlaylist={setShowAddPlaylist} key={video.id} />
                     )) }
                 </ul>
             </section>
-        
+            {showAddPlaylist.show && <AddPlaylist showAddPlaylist={showAddPlaylist} setShowAddPlaylist={setShowAddPlaylist} /> }
+            
         </main>
     )
 }

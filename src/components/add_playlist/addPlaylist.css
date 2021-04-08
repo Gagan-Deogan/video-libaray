@@ -1,0 +1,9 @@
+.mod-con{
+    display: flex;
+}
+.mod{
+    background: var(--inner-background);
+}
+.add-playlist-model{
+    max-width: 21rem;
+}

@@ -1,15 +1,6 @@
 main section{
     margin-bottom: 2rem;
 }
-
-.hero-wall{
-    height: 15rem;
-    background:  center / cover no-repeat url("../../assests/bg_about.jpg");
-}
-.hero-wall h1{
-    max-width: 15ch;
-}
-
 .videos-container{
     grid-template-columns: 1fr;
     row-gap: 1rem;

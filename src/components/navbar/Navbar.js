@@ -7,9 +7,11 @@ import playlistIcon from "../../assests/playlist.svg"
 import historyIcon from "../../assests/history.svg"
 import likeIcon from "../../assests/like.svg"
 import closeIcon from "../../assests/close.svg"
-
+import { usePlaylistContext } from "../../context/PlaylistProvider"
+import { NavLink } from "react-router-dom"
 export const Navbar = () =>{
     const [navState, setNavState] = useState(false);
+    const { playlists } = usePlaylistContext();
     return(
         <>
             <nav className="box-shd row alg-ctr pad-8">
@@ -24,26 +26,30 @@ export const Navbar = () =>{
                             <img src={closeIcon} alt=""/>
                         </button>
                     </div>
-                    <button className="link-btn txt-lft jst-str mag-b-16" >
+                    <NavLink to="/" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={homeIcon} alt=""/>
-                        <h4 className="mag-l-16">Home</h4>
-                    </button>
-                    <button className="link-btn txt-lft jst-str mag-b-16" >
-                        <img src={playlistIcon} alt=""/>
-                        <h4 className="mag-l-16">My Playlist</h4>
-                    </button>
-                    <button className="link-btn txt-lft jst-str mag-b-16" >
-                        <img src={saveIcon} alt=""/>
-                        <h4 className="mag-l-16">Saved Videos</h4>
-                    </button>
-                    <button className="link-btn txt-lft jst-str mag-b-16" >
+                        <h4 className="mag-l-16">Explore</h4>
+                    </NavLink>
+                    <NavLink to="/xyz" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={historyIcon} alt=""/>
                         <h4 className="mag-l-16">History</h4>
+                    </NavLink>
+                    <button className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
+                        <img src={saveIcon} alt=""/>
+                        <h4 className="mag-l-16">Saved Videos</h4>
                     </button>
                     <button className="link-btn txt-lft jst-str mag-b-16" >
                         <img src={likeIcon} alt=""/>
                         <h4 className="mag-l-16">Liked Videos</h4>
                     </button>
+                    <fieldset>
+                        {playlists.map((playlist)=>(
+                            <button className="link-btn txt-lft jst-str mag-b-16" >
+                                <img src={playlistIcon} alt=""/>
+                                <h4 className="mag-l-16">{playlist.name}</h4>
+                            </button>
+                        ))}
+                    </fieldset>
                 </div>
             )}
         </>

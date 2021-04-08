@@ -1,0 +1,24 @@
+.crd-cont > img{
+    width: 100%;
+    height: auto;
+}
+.crd-cont:hover{
+    transform: none!important;
+    transition: none;
+}
+.drop-down{
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 5;
+    width: 18rem;
+    text-align: left;
+    background: var(--inner-background);
+    border: 1px solid var(--grey-light);
+    border-radius: .25rem;
+}
+
+.drop-down li{
+    padding: .5rem 1rem;
+}
