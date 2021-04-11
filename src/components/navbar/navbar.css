@@ -5,6 +5,13 @@ nav{
     z-index: 99;
     background: var(--inner-background);
 }
+aside{
+    position: sticky;
+    top: 4rem;
+    z-index: 99;
+    background: var(--inner-background);
+    height: 100vh;
+}
 .mob-nav{
     position: fixed;
     width: 100vw;

@@ -3,10 +3,10 @@ import { Card } from "../../components/cards/Card";
 import axios from "axios";
 import { AddPlaylist } from "../../components/add_playlist/AddPlaylist"
 import "./home.css"
-
+import { useSaveVideoContext } from "../../context/SaveVideosProvider"
 export const Home = () =>{
     const [ videosList , setVideosList ] = useState();
-    const [ showAddPlaylist, setShowAddPlaylist ] = useState( { show:false, selectedVideo:{} } )
+    const [ vidoeToPlaylist, setVideoToPlaylist ] = useState()
     useEffect(() => {
         const cancelToken = axios.CancelToken.source();
         (async()=>{
@@ -17,16 +17,26 @@ export const Home = () =>{
             cancelToken.cancel();
         };
     }, []);
+    const { saveDispatch } = useSaveVideoContext()
+    const handleAddTOSave = ( video ) =>{
+        saveDispatch({ type:"ADD_TO_SAVE" , payload: video })
+    }
     return(
-        <main className="col pad-8">
+        <main className="col pad-16 w10">
             <section>
                 <ul className="dis-grid videos-container">
                     { videosList && videosList.map((video)=>(
-                        <Card video={video} setShowAddPlaylist={setShowAddPlaylist} key={video.id} />
+                        <Card 
+                            video={video} 
+                            setVideoToPlaylist={setVideoToPlaylist} 
+                            cardFor="EXPLORE_PAGE" 
+                            handleAddTOSave={handleAddTOSave}  
+                            key={video.id} 
+                        />
                     )) }
                 </ul>
             </section>
-            {showAddPlaylist.show && <AddPlaylist showAddPlaylist={showAddPlaylist} setShowAddPlaylist={setShowAddPlaylist} /> }
+            {vidoeToPlaylist && <AddPlaylist vidoeToPlaylist={vidoeToPlaylist} setVideoToPlaylist={setVideoToPlaylist}  /> }
             
         </main>
     )

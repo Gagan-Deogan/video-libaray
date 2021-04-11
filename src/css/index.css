@@ -27,7 +27,7 @@ body{
     
     --black:#111827;
     --inner-text:#f7fafc;
-    --background:#E8E9EE;
+    --background:#F4F5F7;
     --inner-background: #F7FAFC ;
     --foreground:#0e182a;
     font-family: 'Lato', sans-serif;
@@ -63,4 +63,13 @@ fieldset{
 }
 .sm-btn-pry{
     background: transparent;
+}
+input{
+    width: 100%;
+    max-width: none!important;
+}
+textarea:focus{
+    outline: none;
+    box-shadow: 0 0 0px .05rem var(--primary-default);
+    border: 1px solid var(--primary-default);
 }

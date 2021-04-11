@@ -31,6 +31,7 @@ main section{
 @media (min-width:1300px){
     .videos-container{
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        row-gap: 2rem;
+        row-gap: 1.5rem;
+        column-gap: 1.2rem;
     }
 }

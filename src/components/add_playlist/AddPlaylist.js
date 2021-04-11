@@ -3,19 +3,18 @@ import "./addPlaylist.css"
 import closeIcon from "../../assests/close.svg"
 import { usePlaylistContext } from "../../context/PlaylistProvider"
 
-export const AddPlaylist= ({ showAddPlaylist , setShowAddPlaylist }) =>{
+export const AddPlaylist= ({ vidoeToPlaylist , setVideoToPlaylist }) =>{
     const [ createPlaylist, SetCreatePlaylist ] = useState(false)
     const [ newPlaylistName, setNewPlaylistName ] = useState();
     const { playlists, playlistDispatch } = usePlaylistContext()
     const getPlaylistsNamesIncludeVideo = () =>{
         try{
             const reducer = ( acc, playlist ) =>{
-                const isAlreadyInclude = playlist.videos.find((video) => video.id === showAddPlaylist.selectedVideo.id ) ;
+                const isAlreadyInclude = playlist.videos.find((video) => video.id === vidoeToPlaylist.id ) ;
                 return !!isAlreadyInclude ? acc.concat([playlist.name]) : acc;
             }
             return playlists.reduce(reducer,[]);
         }catch(err){
-            console.log({playlists})
             return [];
         }
     };
@@ -26,13 +25,12 @@ export const AddPlaylist= ({ showAddPlaylist , setShowAddPlaylist }) =>{
     const isError = getAllPlaylistName().includes(newPlaylistName);
     const handlePlaylist = (playlist) =>{
         if(includedPlaylist.includes(playlist.name)){
-            playlistDispatch({ type:"REMOVE_VIDEO_FROM_PLAYLIST",payload: { video:showAddPlaylist.selectedVideo , playlistId: playlist.id } })
+            playlistDispatch({ type:"REMOVE_VIDEO_FROM_PLAYLIST",payload: { video:vidoeToPlaylist , playlistId: playlist.id } })
         }else{
-            playlistDispatch({ type:"ADD_VIDEO_TO_PLAYLIST",payload:{ video:showAddPlaylist.selectedVideo , playlistId: playlist.id }})
+            playlistDispatch({ type:"ADD_VIDEO_TO_PLAYLIST",payload:{ video:vidoeToPlaylist , playlistId: playlist.id }})
         }
     }
     const handelCreatePlaylist = () =>{
-        console.log({includedPlaylist}, newPlaylistName)
         if(includedPlaylist.includes(newPlaylistName) || !!!newPlaylistName){
             console.log('Error');
         }else{
@@ -47,7 +45,7 @@ export const AddPlaylist= ({ showAddPlaylist , setShowAddPlaylist }) =>{
                     <h3>{createPlaylist ? "Create Playlist": "Save to.." }</h3>
                     <button 
                         className="link-btn" 
-                        onClick={ ()=>{ setShowAddPlaylist( {show:false, selectedVideo:{}} ) } } >
+                        onClick={ ()=>{ setVideoToPlaylist() } } >
                         <img src={closeIcon} alt="cross icon"/>
                     </button>
                 </div>
