@@ -15,11 +15,15 @@ main section{
     object-fit: cover;
     border-radius: 0.5rem;
 }
+.videos-container{
+    grid-template-columns: 1fr;
+    row-gap: 2.4rem;
+    column-gap: 1rem;
+}
 @media (min-width:600px){
     .videos-container{
         grid-template-columns: 1fr 1fr;
-        /* row-gap: 3rem; */
-        /* column-gap: rem; */
+
     }
 }
 @media (min-width:1060px){
@@ -31,7 +35,6 @@ main section{
 @media (min-width:1300px){
     .videos-container{
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        row-gap: 1.5rem;
-        column-gap: 1.2rem;
+        
     }
 }

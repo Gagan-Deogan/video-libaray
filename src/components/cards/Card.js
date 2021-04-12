@@ -26,8 +26,8 @@ export const Card = ({ video, setVideoToPlaylist, cardFor, handleAddTOSave }) =>
                     <h4>{video.snippet.channelTitle.slice(0,1)}</h4>
                 </div>
                 <div className="col crd-title w9 mag-l-8">
-                    <h4 className="bold">{ video.snippet.title.slice(0,65) } { video.snippet.title.length > 75 ? "..." : "" } </h4>
-                    <h6 className="bold gry" >{video.snippet.description.slice(0,40)} { video.snippet.description.length > 40 ? "..." : "" } </h6>
+                    <h6 className="bold">{ video.snippet.title.slice(0,65) } { video.snippet.title.length > 75 ? "..." : "" } </h6>
+                    <h6 className="gry" >{video.snippet.channelTitle} </h6>
                 </div>
                 { cardFor ==="EXPLORE_PAGE" && (
                     <button className="link-btn" 
@@ -38,17 +38,17 @@ export const Card = ({ video, setVideoToPlaylist, cardFor, handleAddTOSave }) =>
                             <ul className="drop-down" >
                                 <li className="row alg-ctr" onClick={ ()=> setVideoToPlaylist(video) } >
                                     <img src={playlistAddIcon} alt=""/>
-                                    <h4 className="bold mag-l-8">
+                                    <h6 className="bold mag-l-8">
                                         Add to Playlist
-                                    </h4>
+                                    </h6>
                                 </li>
                                 <li className="row alg-ctr" 
                                     onClick={()=>callSave(video)} 
                                     >
                                     <img src={saveIcon} alt=""/>
-                                    <h4 className="bold mag-l-8">
+                                    <h6 className="bold mag-l-8">
                                         Save to Watch Later
-                                    </h4>
+                                    </h6>
                                 </li>
                             </ul>
                         ) }

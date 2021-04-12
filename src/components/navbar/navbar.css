@@ -5,19 +5,32 @@ nav{
     z-index: 99;
     background: var(--inner-background);
 }
+
 aside{
-    position: sticky;
-    top: 4rem;
-    z-index: 99;
-    background: var(--inner-background);
-    height: 100vh;
-}
-.mob-nav{
     position: fixed;
-    width: 100vw;
-    height: 100vh;
     top: 0;
     left: 0;
-    background: var(--inner-background);
+    width: 100vw;
+    height: 100vh;
+    background: var(--grey-opac);
     z-index: 9999;
+}
+.links-container{
+    width: 250px;
+    background-color: var(--inner-background);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+@media (min-width:900px) {
+    aside{
+        position: sticky;
+        top: 4rem;
+        bottom: 0;
+        z-index: 99;
+        width: auto;
+        height: auto;
+        height: calc(100vh - 4rem);
+        background: var(--inner-background);
+    }
 }

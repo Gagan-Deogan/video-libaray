@@ -22,7 +22,7 @@ export const Home = () =>{
         saveDispatch({ type:"ADD_TO_SAVE" , payload: video })
     }
     return(
-        <main className="col pad-16 w10">
+        <>
             <section>
                 <ul className="dis-grid videos-container">
                     { videosList && videosList.map((video)=>(
@@ -37,7 +37,6 @@ export const Home = () =>{
                 </ul>
             </section>
             {vidoeToPlaylist && <AddPlaylist vidoeToPlaylist={vidoeToPlaylist} setVideoToPlaylist={setVideoToPlaylist}  /> }
-            
-        </main>
+        </>
     )
 }

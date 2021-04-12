@@ -12,6 +12,11 @@ import { AddPlaylist } from "../../components/add_playlist/AddPlaylist"
 import axios from "axios";
 import { useLikedAndDisLikedVideosContext } from "../../context/LikedAndDislikedVideosProvide"
 import { useSaveVideoContext } from "../../context/SaveVideosProvider"
+const options = {
+    controls:true,
+}
+
+
 export const VideoWatch = () =>{
     const { id } = useParams()
     const [ vidoeToPlaylist, setVideoToPlaylist ] = useState()
@@ -55,15 +60,17 @@ export const VideoWatch = () =>{
         saveDispatch({ type:"ADD_TO_SAVE" , payload: video })
     }
     return(
-        <section className="col pad-8" >
+        <section className="col pad-8 w8" >
             { videoDetails && (
-                <div className="crd-cont bor-rad-8 box-shd">
-                    <div className="video-player bor-rad-8 ovr-flw-hide" >
-                        <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} style={{borderRadius:"8px"}} width="100%" height="100%" />
+                <div className="crd-cont bor-rad-8 video-container ">
+                    <div className="video-player w12 bor-rad-8 ovr-flw-hide" >
+                        <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} {...options} width="100%" height="100%" />
                     </div>
-                    <h2 className="bold mag-t-16 mag-l-8" >{videoDetails.snippet.title}</h2>
-                    <p className="gry mag-l-8 bold" >{videoDetails.statistics.viewCount} views • {ddmmmyyyy(videoDetails.snippet.publishedAt)}</p>
-                    <p className="mag-l-8 bold" >{videoDetails.snippet.description.slice(0,250)}</p>
+                    <h3 className="mag-t-16 mag-l-8" >{videoDetails.snippet.title}</h3>
+                    <h6 className="gry mag-l-8" >{videoDetails.statistics.viewCount} views • {ddmmmyyyy(videoDetails.snippet.publishedAt)}</h6>
+                    <h6 className="mag-l-8" >
+                        {videoDetails.snippet.description.slice(0,250)}
+                    </h6>
                     <div className="row w12 jst-end">
                         <button className="link-btn mag-8" 
                             onClick={()=>setVideoToPlaylist(videoDetails)} 

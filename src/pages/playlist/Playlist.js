@@ -24,16 +24,16 @@ export const Playlist = () =>{
         setEditdescription(false)
     }
     return(
-        <section className="col pad-8" >
-            <div className="crd-cont pad-16 bor-rad-8 box-shd ">
-                <h1 className="bold mag-b-16" >{playlistDetails.name}</h1>
+        <section>
+            <div className="crd-cont pad-16 bor-rad-8">
+                <h2 className="bold mag-b-16" >{playlistDetails.name}</h2>
                 { !editdescription && (
                     <div className="row alg-ctr mag-b-16">
                         { !!playlistDetails.description && (
-                            <h2>{playlistDetails.description}</h2>
+                            <h5>{playlistDetails.description}</h5>
                         )}
                         {  !!!playlistDetails.description && (
-                            <h2 className="gry " >No description</h2>
+                            <h5 className="gry " >No description</h5>
                         )}
                         <button className="link-btn mag-l-8" onClick={ ()=> setEditdescription(true)} > <img src={editIcon} alt=""/> </button>
                     </div>
@@ -54,6 +54,6 @@ export const Playlist = () =>{
                     <Card key={ video.id } video={video} />
                 )) }
             </ul>
-        </section>
+        </section>      
     )
 }

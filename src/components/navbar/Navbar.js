@@ -9,45 +9,69 @@ import likeIcon from "../../assests/like.svg"
 import closeIcon from "../../assests/close.svg"
 import { usePlaylistContext } from "../../context/PlaylistProvider"
 import { NavLink } from "react-router-dom"
-export const Navbar = () =>{
-    const [navState, setNavState] = useState(false);
+export const Navbar = ({ isNavbarOpen, setNavbarToggle }) =>{
+    // const [navState, setNavState] = useState(false);
     const { playlists } = usePlaylistContext();
+
     return(
         <>
-            <nav className="box-shd row alg-ctr pad-8 w12 ">
-                <button className="link-btn" onClick={()=>{setNavState(true)}} >
+            <nav className="row alg-ctr pad-8 w12 ">
+                <button className="link-btn" onClick={()=>{setNavbarToggle(!isNavbarOpen)}} >
                     <img src={menuIcon} alt=""/>
                 </button>
             </nav>
-            <div className="w2">
-                <aside className="col pad-16 w12">
-                    <NavLink to="/" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
-                        <img src={homeIcon} alt=""/>
-                        <h4 className="mag-l-16">Explore</h4>
-                    </NavLink>
-                    <NavLink to="/xyz" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
-                        <img src={historyIcon} alt=""/>
-                        <h4 className="mag-l-16">History</h4>
-                    </NavLink>
-                    <NavLink  to="/savevideos" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
-                        <img src={saveIcon} alt=""/>
-                        <h4 className="mag-l-16">Saved Videos</h4>
-                    </NavLink>
-                    <NavLink to="/likevideos" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
-                        <img src={likeIcon} alt=""/>
-                        <h4 className="mag-l-16">Liked Videos</h4>
-                    </NavLink>
-                    <fieldset className=" col pad-t-8 " >
-                        {playlists.map((playlist)=>(
-                            <NavLink key={ playlist.id } to={`/playlist/${playlist.id}`} onClick={()=>{setNavState(false)}} className="link-btn txt-lft jst-str mag-b-16" >
-                                <img src={playlistIcon} alt=""/>
-                                <h4 className="mag-l-16">{playlist.name}</h4>
-                            </NavLink>
-                        ))}
-                    </fieldset>
+            { isNavbarOpen && (
+                <aside>
+                    <div className="col links-container">
+                        <NavLink 
+                            to="/" 
+                            className="link-btn txt-lft jst-str mag-16 mag-t-8 mag-b-8" 
+                            // onClick={()=>{setNavState(false)}}
+                        >
+                            <img src={homeIcon} alt=""/>
+                            <h5 className="mag-l-16">Explore</h5>
+                        </NavLink>
+                        <NavLink 
+                            to="/xyz" 
+                            className="link-btn txt-lft jst-str mag-16 mag-t-8 mag-b-8" 
+                            // onClick={()=>{setNavState(false)}} 
+                            >
+                            <img src={historyIcon} alt=""/>
+                            <h5 className="mag-l-16">History</h5>
+                        </NavLink>
+                        <NavLink 
+                            to="/savevideos" 
+                            className="link-btn txt-lft jst-str mag-16 mag-t-8 mag-b-8" 
+                            // onClick={()=>{setNavState(false)}}
+                        >
+                            <img src={saveIcon} alt=""/>
+                            <h5 className="mag-l-16">Saved Videos</h5>
+                        </NavLink>
+                        <NavLink 
+                            to="/likevideos" 
+                            className="link-btn txt-lft jst-str mag-16 mag-t-8 mag-b-8" 
+                            // onClick={()=>{setNavState(false)}}
+                        >
+                            <img src={likeIcon} alt=""/>
+                            <h5 className="mag-l-16">Liked Videos</h5>
+                        </NavLink>
+                        <fieldset className=" col pad-t-8 " >
+                            {playlists.map((playlist)=>(
+                                <NavLink 
+                                    key={ playlist.id } 
+                                    to={`/playlist/${playlist.id}`} 
+                                    // onClick={()=>{setNavState(false)}} 
+                                    className="link-btn txt-lft jst-str mag-16 mag-t-8 mag-b-8" 
+                                >
+                                    <img src={playlistIcon} alt=""/>
+                                    <h5 className="mag-l-16">{playlist.name}</h5>
+                                </NavLink>
+                            ))}
+                        </fieldset>
+                    </div>
                 </aside>
-            </div>
-            {navState && (
+            )}
+            {/* {navState && (
                 <div className="mob-nav col pad-16">
                     <div className="row w12 jst-end" >
                         <button className="link-btn" onClick={()=>{setNavState(false)}}  > 
@@ -56,30 +80,30 @@ export const Navbar = () =>{
                     </div>
                     <NavLink to="/" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={homeIcon} alt=""/>
-                        <h4 className="mag-l-16">Explore</h4>
+                        <h5 className="mag-l-16">Explore</h5>
                     </NavLink>
                     <NavLink to="/xyz" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={historyIcon} alt=""/>
-                        <h4 className="mag-l-16">History</h4>
+                        <h5 className="mag-l-16">History</h5>
                     </NavLink>
                     <NavLink  to="/savevideos" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={saveIcon} alt=""/>
-                        <h4 className="mag-l-16">Saved Videos</h4>
+                        <h5 className="mag-l-16">Saved Videos</h5>
                     </NavLink>
                     <NavLink to="/likevideos" className="link-btn txt-lft jst-str mag-b-16" onClick={()=>{setNavState(false)}} >
                         <img src={likeIcon} alt=""/>
-                        <h4 className="mag-l-16">Liked Videos</h4>
+                        <h5 className="mag-l-16">Liked Videos</h5>
                     </NavLink>
                     <fieldset className=" col pad-t-8 " >
                         {playlists.map((playlist)=>(
                             <NavLink key={ playlist.id } to={`/playlist/${playlist.id}`} onClick={()=>{setNavState(false)}} className="link-btn txt-lft jst-str mag-b-16" >
                                 <img src={playlistIcon} alt=""/>
-                                <h4 className="mag-l-16">{playlist.name}</h4>
+                                <h5 className="mag-l-16">{playlist.name}</h5>
                             </NavLink>
                         ))}
                     </fieldset>
                 </div>
-            )}
+            )} */}
         </>
     )
 }

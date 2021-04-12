@@ -6,8 +6,8 @@ export const LikeVideos = () =>{
 
     return(
         <>
-            <section className="col pad-8">
-                <div className="crd-cont pad-16 bor-rad-8 box-shd ">
+            <section>
+                <div className="crd-cont pad-16 bor-rad-8">
                     <h1 className="bold" >Liked Videos</h1>
                 </div>
                 <ul className="dis-grid videos-container mag-t-16">
