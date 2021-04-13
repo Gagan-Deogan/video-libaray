@@ -35,6 +35,12 @@ body{
     color: var(--foreground);
     margin: auto;
 }
+.box-shd{
+    box-shadow: 1px 1px 4px var(--grey-opac)
+}
+.btn-pry-fil{
+    max-width: none;
+}
 section{
     width: 100%;
 }

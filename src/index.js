@@ -2,21 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
-import { PlaylistProvider } from "./context/PlaylistProvider"
-import { SaveVideosProvider } from  "./context/SaveVideosProvider"
-import { LikedAndDisLikedVideosProvider } from "./context/LikedAndDislikedVideosProvide"
+import { PlaylistProvider } from "./Context"
+import { SaveVideosProvider } from  "./Context"
+import { LikedAndDisLikedVideosProvider } from "./Context"
+import { AuthProvider } from "./Context"
 import { BrowserRouter as Router } from "react-router-dom"
 ReactDOM.render(
   <React.StrictMode>
-    <PlaylistProvider>
-      <SaveVideosProvider>
-        <LikedAndDisLikedVideosProvider>
-          <Router>
-            <App />
-          </Router>
-        </LikedAndDisLikedVideosProvider>
-      </SaveVideosProvider>
-    </PlaylistProvider>
+    <Router>
+      <AuthProvider>
+        <PlaylistProvider>
+          <SaveVideosProvider>
+            <LikedAndDisLikedVideosProvider>
+                <App />
+            </LikedAndDisLikedVideosProvider>
+          </SaveVideosProvider>
+        </PlaylistProvider>
+      </AuthProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

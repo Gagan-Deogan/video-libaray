@@ -7,18 +7,22 @@ import playlistIcon from "../../assests/playlist.svg"
 import historyIcon from "../../assests/history.svg"
 import likeIcon from "../../assests/like.svg"
 import closeIcon from "../../assests/close.svg"
-import { usePlaylistContext } from "../../context/PlaylistProvider"
-import { NavLink } from "react-router-dom"
+import { usePlaylistContext } from "../../Context/PlaylistProvider"
+import { NavLink, useNavigate } from "react-router-dom"
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) =>{
     // const [navState, setNavState] = useState(false);
     const { playlists } = usePlaylistContext();
+    const navigate =  useNavigate()
 
     return(
         <>
-            <nav className="row alg-ctr pad-8 w12 ">
+            <nav className="row alg-ctr pad-16 w12 jst-spa-btw">
                 <button className="link-btn" onClick={()=>{setNavbarToggle(!isNavbarOpen)}} >
                     <img src={menuIcon} alt=""/>
                 </button>
+                <div className="row">
+                    <button className="sm-btn-pry" onClick={()=>navigate("/login")} >Login</button>
+                </div>
             </nav>
             { isNavbarOpen && (
                 <aside>

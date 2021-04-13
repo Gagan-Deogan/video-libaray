@@ -1,12 +1,18 @@
 import React,{ useState } from "react"
 import './css/App.css';
-import { Routes , Route } from "react-router-dom"
+import { Routes , Route, Navigate } from "react-router-dom"
 import { Navbar } from "./components/navbar/Navbar"
-import { Home } from "./pages/home/Home"
-import { VideoWatch } from "./pages/video_watch/VideoWatch"
-import { Playlist } from "./pages/playlist/Playlist"
-import { SaveVideos } from "./pages/save_videos/SaveVideos"
-import { LikeVideos } from './pages/like_videos/LikeVideos';
+import { Home } from "./pages/Home"
+import { LikeVideos } from './pages/LikeVideos';
+import { VideoWatch } from "./pages/VideoWatch"
+import { Playlist } from "./pages/Playlist"
+import { SaveVideos } from "./pages/SaveVideos"
+import { Login } from './pages/Login';
+import { useAuthContext } from "./Context" 
+const ProtectedRoute = ({ path , ...props}) =>{
+  const { user } = useAuthContext()
+  return user ? <Route path={path} {...props} /> : <Navigate state = {{ from: path }} replace to="/login" />
+}
 function App() {
   const [ isNavbarOpen, setNavbarToggle ] = useState();
   return (
@@ -17,8 +23,9 @@ function App() {
           <Route path="/" element={ <Home/> } ></Route>
           <Route path="/watch/:id"  element={ <VideoWatch/> } ></Route>
           <Route path="/playlist/:id"  element={ <Playlist/> } ></Route>
-          <Route path="/savevideos"  element={ <SaveVideos/> } ></Route>
+          <ProtectedRoute path="/savevideos"  element={ <SaveVideos/> } />
           <Route path="/likeVideos"  element={ <LikeVideos/> } ></Route>
+          <Route path="/login"  element={ <Login /> } ></Route>
         </Routes>
       </main>
 

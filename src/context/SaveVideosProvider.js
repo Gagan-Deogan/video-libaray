@@ -21,6 +21,6 @@ export const SaveVideosProvider = ({ children }) =>{
         </SaveVideoContext.Provider>
     )
 }
-export const useSaveVideoContext = () =>{
+export const useSaveVideosContext = () =>{
     return useContext(SaveVideoContext)
 }

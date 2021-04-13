@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./addPlaylist.css"
 import closeIcon from "../../assests/close.svg"
-import { usePlaylistContext } from "../../context/PlaylistProvider"
+import { usePlaylistContext } from "../../Context/PlaylistProvider"
 
 export const AddPlaylist= ({ vidoeToPlaylist , setVideoToPlaylist }) =>{
     const [ createPlaylist, SetCreatePlaylist ] = useState(false)

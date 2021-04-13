@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useParams } from "react-router-dom"
-import { usePlaylistContext } from "../../context/PlaylistProvider"
+import { usePlaylistContext } from "../../Context"
 import { Card } from "../../components/cards/Card"
 import editIcon from "../../assests/edit.svg"
 export const Playlist = () =>{

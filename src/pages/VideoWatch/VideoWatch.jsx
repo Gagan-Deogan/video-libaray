@@ -10,8 +10,9 @@ import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { AddPlaylist } from "../../components/add_playlist/AddPlaylist"
 import axios from "axios";
-import { useLikedAndDisLikedVideosContext } from "../../context/LikedAndDislikedVideosProvide"
-import { useSaveVideoContext } from "../../context/SaveVideosProvider"
+import { useLikedAndDisLikedVideosContext } from "../../Context"
+import { useSaveVideosContext } from "../../Context"
+
 const options = {
     controls:true,
 }
@@ -22,7 +23,8 @@ export const VideoWatch = () =>{
     const [ vidoeToPlaylist, setVideoToPlaylist ] = useState()
     const [videoDetails, setVideoDetails] = useState()
     const { likedVideos, disLikedVideos, likeAndDislikeVideosDispatch } = useLikedAndDisLikedVideosContext()
-    const { saveDispatch } = useSaveVideoContext()
+    const { saveDispatch } = useSaveVideosContext()
+
     useEffect(()=>{
         (async()=>{
             const { data:{items} } = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=${id}&key=AIzaSyBsZof6jxUT9CDKHcp4QVQWOcB-95uDKxg`)
@@ -31,9 +33,11 @@ export const VideoWatch = () =>{
             }
         })()
     },[])
+
     const ddmmmyyyy = (date) =>{
         return new Date(date).toLocaleString("en-UG", {day: "numeric", month: "short", year:"numeric" });
     }
+
     const handleLikeToggle = (video,toggle) =>{
         if(toggle){
             likeAndDislikeVideosDispatch({ type:'ADD_TO_LIKE_VIDEOS', payload:video })
@@ -41,8 +45,8 @@ export const VideoWatch = () =>{
         }
         else
             likeAndDislikeVideosDispatch({ type:'REMOVE_FROM_LIKE_VIDEOS', payload:video.id })
-        
     }
+    
     const handleDislikeToggle = (video, toggle )=>{
         if( toggle ){
             likeAndDislikeVideosDispatch({ type:'ADD_TO_DISLIKE_VIDEOS', payload:video })

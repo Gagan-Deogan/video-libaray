@@ -3,7 +3,8 @@ import { Card } from "../../components/cards/Card";
 import axios from "axios";
 import { AddPlaylist } from "../../components/add_playlist/AddPlaylist"
 import "./home.css"
-import { useSaveVideoContext } from "../../context/SaveVideosProvider"
+import { useSaveVideosContext } from "../../Context"
+
 export const Home = () =>{
     const [ videosList , setVideosList ] = useState();
     const [ vidoeToPlaylist, setVideoToPlaylist ] = useState()
@@ -17,7 +18,7 @@ export const Home = () =>{
             cancelToken.cancel();
         };
     }, []);
-    const { saveDispatch } = useSaveVideoContext()
+    const { saveDispatch } = useSaveVideosContext()
     const handleAddTOSave = ( video ) =>{
         saveDispatch({ type:"ADD_TO_SAVE" , payload: video })
     }
