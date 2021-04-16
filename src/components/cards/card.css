@@ -1,8 +1,8 @@
-.crd-cont > img{
+.card > img{
     width: 100%;
     height: auto;
 }
-.crd-cont:hover{
+.card:hover{
     transform: none!important;
     transition: none;
 }

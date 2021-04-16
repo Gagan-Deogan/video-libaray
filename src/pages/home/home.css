@@ -8,10 +8,10 @@ main section{
 .over-flow{
     overflow: scroll;
 }
-.crd-cont{
+.card{
     width: auto;
 }
-.crd-cont > img{
+.card > img{
     object-fit: cover;
     border-radius: 0.5rem;
 }

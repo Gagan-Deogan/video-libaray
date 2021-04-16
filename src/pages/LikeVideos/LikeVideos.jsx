@@ -7,10 +7,10 @@ export const LikeVideos = () =>{
     return(
         <>
             <section>
-                <div className="crd-cont pad-16 bor-rad-8">
+                <div className="card padding-16 bor-rad-8">
                     <h1 className="bold" >Liked Videos</h1>
                 </div>
-                <ul className="dis-grid videos-container mag-t-16">
+                <ul className="dis-grid videos-container margin-t-16">
                     { likedVideos.map((video)=>(
                         <Card key={ video.id } video={video} />
                     )) }

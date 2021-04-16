@@ -1,9 +1,9 @@
-.mod-con{
-    display: flex;
+.model-container {
+  display: flex;
 }
-.mod{
-    background: var(--inner-background);
+.model {
+  background: var(--inner-background);
 }
-.add-playlist-model{
-    max-width: 21rem;
+.add-playlist-model {
+  max-width: 21rem;
 }

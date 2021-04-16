@@ -1,107 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 @import url("https://bucketcss.netlify.app/css/bucket-minify.css");
-body{
-    --primary-dark: #059669;
-    --primary-default: #25A18A;
-    --primary-light:#34D399;
+body {
+  --primary-dark: #059669;
+  --primary-default: #25a18a;
+  --primary-light: #34d399;
 
-    --grey-dark:#374151;
-    --grey-default:#6B7280;
-    --grey-light:#D1D5DB;
-    --grey-opac:#d1d5db7e;
+  --grey-dark: #374151;
+  --grey-default: #6b7280;
+  --grey-light: #d1d5db;
+  --grey-opac: #d1d5db7e;
 
+  --red-dark: #b91c1c;
+  --red-default: #dc2626;
+  --red-light: #ef4444;
 
-    --red-dark:#B91C1C;
-    --red-default:#DC2626;
-    --red-light:#EF4444;
+  --yellow-dark: #e4b601;
+  --yellow-default: #facc15;
+  --yellow-light: #fde047;
 
-    --yellow-dark:#e4b601;
-    --yellow-default:#FACC15;
-    --yellow-light:#FDE047;
+  --green-dark: #166534;
+  --green-default: #16a34a;
+  --green-light: #22c55e;
 
-    --green-dark:#166534;
-    --green-default:#16A34A;
-    --green-light:#22C55E;
-    
-    --sm-pd: 0.5rem 3vw;
-    
-    --black:#111827;
-    --inner-text:#f7fafc;
-    --background:#F4F5F7;
-    --inner-background: #F7FAFC ;
-    --foreground:#0e182a;
-    font-family: 'Lato', sans-serif;
-    background-color: var(--background);
-    color: var(--foreground);
-    margin: auto;
+  --sm-pd: 0.5rem 3vw;
+
+  --black: #111827;
+  --inner-text: #f7fafc;
+  --background: #f9f9f9;
+  --inner-background: #ffffff;
+  --foreground: #0e182a;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: auto;
 }
-.box-shd{
-    box-shadow: 1px 1px 4px var(--grey-opac)
+button,
+.btn-link {
+  font: 600 1rem/1.18em "Inter", sans-serif;
 }
-.btn-pry-fil{
-    max-width: none;
+.box-shd {
+  box-shadow: 1px 1px 4px var(--grey-opac);
 }
-section{
-    width: 100%;
+.btn-pry-fil {
+  max-width: none;
 }
-label span{
-    font-size: 1rem;
-    cursor: pointer;
+.font-xs {
+  font-size: 0.625rem;
 }
-.ovr-flw-hide{
-    overflow: hidden;
+section {
+  width: 100%;
 }
-.pry-clr{
-    color: var(--primary-dark);
+label span {
+  font-size: 1rem;
+  cursor: pointer;
 }
-.dis-grid{
-    display: grid;
+.ovr-flw-hide {
+  overflow: hidden;
 }
-.responsive-img{
-    width: 100%;
+.pry-circle {
+  color: var(--primary-dark);
 }
-input[type=checkbox]{
-    display: none;
+.dis-grid {
+  display: grid;
 }
-fieldset{
-    border: none;
-    border-top : 1px solid var(--grey-light);
+.responsive-img {
+  width: 100%;
 }
-.sm-btn-pry{
-    background: transparent;
+input[type="checkbox"] {
+  display: none;
 }
-input{
-    width: 100%;
-    max-width: none!important;
+fieldset {
+  border: none;
+  border-top: 1px solid var(--grey-light);
 }
-textarea:focus{
-    outline: none;
-    box-shadow: 0 0 0px .05rem var(--primary-default);
-    border: 1px solid var(--primary-default);
+.sm-btn-pry {
+  background: transparent;
 }
-main{
-    grid-area: main;
+input {
+  width: 100%;
+  max-width: none !important;
 }
-nav{
-    grid-area: nav;
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0px 0.05rem var(--primary-default);
+  border: 1px solid var(--primary-default);
 }
-aside{
-    grid-area: aside;
+main {
+  grid-area: main;
 }
-main{
-    grid-area: main;
+nav {
+  grid-area: nav;
 }
-@media (min-width:900px) {
-    .aside-open{
-        grid-template-columns: 250px auto;
-        grid-template-areas: 
-        " nav nav nav nav "
-        " aside main main main ";
-    }
-    .aside-close{
-        grid-template-areas: 
-        " nav nav nav nav "
-        " main main main main ";
-        
-    }
+aside {
+  grid-area: aside;
+}
+main {
+  grid-area: main;
+}
+.body-layout {
+  grid-template-areas:
+    " nav nav nav nav "
+    " main main main main ";
+}
+.aside-shrink {
+  grid-template-columns: auto;
+}
+.aside-expand {
+  grid-template-columns: auto;
+}
+@media (min-width: 700px) {
+  .body-layout {
+    grid-template-areas:
+      " nav nav nav nav "
+      " aside main main main ";
+  }
+  .aside-shrink {
+    grid-template-columns: 5rem auto;
+  }
+  .aside-expand {
+    grid-template-columns: 15rem auto;
+  }
 }
