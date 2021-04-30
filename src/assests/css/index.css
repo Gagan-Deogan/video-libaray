@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 @import url("https://bucketcss.netlify.app/css/bucket-minify.css");
 body {
-  --primary-dark: #059669;
-  --primary-default: #25a18a;
-  --primary-light: #34d399;
+  --primary-dark: #166534;
+  --primary-default: #61973f;
+  --primary-light: #76af53;
 
-  --grey-dark: #374151;
-  --grey-default: #6b7280;
+  --grey-dark: #6b7280;
+  --grey-default: #909090;
   --grey-light: #d1d5db;
   --grey-opac: #d1d5db7e;
 
@@ -85,6 +85,44 @@ textarea:focus {
   box-shadow: 0 0 0px 0.05rem var(--primary-default);
   border: 1px solid var(--primary-default);
 }
+/* bucket changes start */
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.right {
+  top: 0;
+  right: 0;
+}
+a:focus,
+.btn-link:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+input[type="email"] {
+  padding: 0.68rem 1rem;
+  border: 1px solid var(--primary-default);
+  border-radius: 4px;
+  font-family: "Lato", sans-serif;
+  appearance: none;
+  font-size: 1rem;
+  line-height: 1.14em;
+  letter-spacing: 0.05em;
+  color: var(--foreground);
+  background-color: var(--grey-opac);
+}
+.text-error {
+  letter-spacing: 0.3px;
+  color: var(--red-dark);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+/* bucket Changes end */
+
 main {
   grid-area: main;
 }

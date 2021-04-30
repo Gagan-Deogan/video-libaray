@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./addPlaylist.css";
-import closeIcon from "../../assests/close.svg";
+import { CloseIcon } from "../../assests/icons";
 import { usePlaylistContext } from "../../Context/PlaylistProvider";
 
-export const AddPlaylist = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
+export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
   const [createPlaylist, SetCreatePlaylist] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState();
   const { playlists, playlistDispatch } = usePlaylistContext();
@@ -56,7 +56,7 @@ export const AddPlaylist = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
             onClick={() => {
               setVideoToPlaylist();
             }}>
-            <img src={closeIcon} alt="cross icon" />
+            <CloseIcon />
           </button>
         </div>
         <fieldset className="column margin-t-8 padding-t-8 padding-b-16">

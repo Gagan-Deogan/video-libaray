@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePlaylistContext } from "../../Context";
-import { Card } from "../../components/cards/Card";
-import editIcon from "../../assests/edit.svg";
+import { Card } from "../../Components/Card";
+import { EditIcon } from "../../assests/icons";
 export const Playlist = () => {
   const { id } = useParams();
   const { playlists, playlistDispatch } = usePlaylistContext();
@@ -41,7 +41,7 @@ export const Playlist = () => {
               className="btn-link margin-l-8"
               onClick={() => setEditdescription(true)}>
               {" "}
-              <img src={editIcon} alt="" />{" "}
+              <EditIcon />{" "}
             </button>
           </div>
         )}

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./css/App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Navbar } from "./components/navbar/Navbar";
+import { Navbar } from "./Components/Navbar";
 import { Home } from "./pages/Home";
 import { LikeVideos } from "./pages/LikeVideos";
 import { VideoWatch } from "./pages/VideoWatch";
 import { Playlist } from "./pages/Playlist";
 import { SaveVideos } from "./pages/SaveVideos";
 import { Login } from "./pages/Login";
-import { useAuthContext } from "./Context";
+import { useAuthContext } from "./Context/AuthContext/";
 const ProtectedRoute = ({ path, ...props }) => {
   const { user } = useAuthContext();
   return user ? (
@@ -19,16 +18,6 @@ const ProtectedRoute = ({ path, ...props }) => {
 };
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
-  const [windowWidth, setWindowWidth] = useState(0);
-  useEffect(() => {
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-  const updateDimensions = () => {
-    const width = window.innerWidth;
-    setWindowWidth(width);
-  };
   return (
     <div
       className={` dis-grid body-layout  ${

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
 import "./watch.css";
-import saveIcon from "../../assests/save.svg";
-import addPlaylistIcon from "../../assests/playlistadd.svg";
-import likeIcon from "../../assests/like.svg";
-import dislikeIcon from "../../assests/dislike.svg";
-import activeLikeIcon from "../../assests/active_like.svg";
-import activeDislikeIcon from "../../assests/active_dislike.svg";
+import { useState, useEffect } from "react";
+import {
+  SaveIcon,
+  PlaylistAddIcon,
+  LikeIcon,
+  DislikeIcon,
+} from "../../assests/icons/";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
-import { AddPlaylist } from "../../components/add_playlist/AddPlaylist";
-import axios from "axios";
+import { AddToPlaylistModel } from "../../Components/AddToPlaylistModel";
+import { useRequest } from "../../utils";
 import { useLikedAndDisLikedVideosContext } from "../../Context";
 import { useSaveVideosContext } from "../../Context";
 
@@ -19,6 +19,7 @@ const options = {
 
 export const VideoWatch = () => {
   const { id } = useParams();
+  const { request } = useRequest();
   const [vidoeToPlaylist, setVideoToPlaylist] = useState();
   const [videoDetails, setVideoDetails] = useState();
   const {
@@ -30,11 +31,7 @@ export const VideoWatch = () => {
 
   useEffect(() => {
     (async () => {
-      const {
-        data: { items },
-      } = await axios.get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=${id}&key=AIzaSyBsZof6jxUT9CDKHcp4QVQWOcB-95uDKxg`
-      );
+      const { items } = await request({ endpoint: id, method: "GET" });
       if (items) {
         setVideoDetails(items[0]);
       }
@@ -50,6 +47,7 @@ export const VideoWatch = () => {
   };
 
   const handleLikeToggle = (video, toggle) => {
+    console.log(video, toggle);
     if (toggle) {
       likeAndDislikeVideosDispatch({
         type: "ADD_TO_LIKE_VIDEOS",
@@ -116,50 +114,28 @@ export const VideoWatch = () => {
             <button
               className="btn-link margin-8"
               onClick={() => setVideoToPlaylist(videoDetails)}>
-              {" "}
-              <img src={addPlaylistIcon} alt="" />{" "}
+              <PlaylistAddIcon />
             </button>
             <button
               className="btn-link margin-8"
               onClick={() => handleAddTOSave(videoDetails)}>
-              {" "}
-              <img src={saveIcon} alt="" />{" "}
+              <SaveIcon />
             </button>
-            {!isLiked ? (
-              <button
-                className="btn-link margin-8"
-                onClick={() => handleLikeToggle(videoDetails, true)}>
-                {" "}
-                <img src={likeIcon} alt="" />{" "}
-              </button>
-            ) : (
-              <button
-                className="btn-link margin-8"
-                onClick={() => handleLikeToggle(videoDetails, false)}>
-                {" "}
-                <img src={activeLikeIcon} alt="" />{" "}
-              </button>
-            )}
-            {!isDisLiked ? (
-              <button
-                className="btn-link margin-8"
-                onClick={(e) => handleDislikeToggle(videoDetails, true)}>
-                {" "}
-                <img src={dislikeIcon} alt="" />{" "}
-              </button>
-            ) : (
-              <button
-                className="btn-link margin-8"
-                onClick={(e) => handleDislikeToggle(videoDetails, false)}>
-                {" "}
-                <img src={activeDislikeIcon} alt="" />{" "}
-              </button>
-            )}
+            <button
+              className="btn-link margin-8"
+              onClick={() => handleLikeToggle(videoDetails, !isLiked)}>
+              <LikeIcon isActive={isLiked} />
+            </button>
+            <button
+              className="btn-link margin-8"
+              onClick={(e) => handleDislikeToggle(videoDetails, !isDisLiked)}>
+              <DislikeIcon isActive={isDisLiked} />
+            </button>
           </div>
         </div>
       )}
       {vidoeToPlaylist && (
-        <AddPlaylist
+        <AddToPlaylistModel
           vidoeToPlaylist={vidoeToPlaylist}
           setVideoToPlaylist={setVideoToPlaylist}
         />

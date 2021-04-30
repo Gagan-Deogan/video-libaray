@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
 import "./navbar.css";
-import menuIcon from "../../assests/menu.svg";
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { usePlaylistContext } from "../../Context/PlaylistProvider";
+import { Model } from "../Model";
+import { Hidden } from "../Hidden";
 import {
   HomeIcon,
   PlaylistIcon,
   HistoryIcon,
   SaveIcon,
   LikeIcon,
-} from "../../assests";
-import { usePlaylistContext } from "../../Context/PlaylistProvider";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+  HamBurger,
+  Logo,
+} from "../../assests/icons";
 
 const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
   return (
@@ -51,28 +54,32 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   };
   const { playlists } = usePlaylistContext();
   const navigate = useNavigate();
-  const handleClose = () => {
-    setNavbarToggle();
-  };
   return (
     <>
       <nav className="row align-center padding-16 w12 justify-between">
-        <button
-          className="btn-link"
-          onClick={() => {
-            setNavbarToggle(!isNavbarOpen);
-          }}>
-          <img src={menuIcon} alt="" />
-        </button>
         <div className="row">
-          <button className="sm-btn-pry" onClick={() => navigate("/login")}>
+          <button
+            className="btn-link margin-r-16"
+            onClick={() => {
+              setNavbarToggle(!isNavbarOpen);
+            }}>
+            <HamBurger />
+          </button>
+          <NavLink to="/">
+            <Logo />
+          </NavLink>
+        </div>
+        <div className="row">
+          <button className="sm-btn-pry-fil" onClick={() => navigate("/login")}>
             Login
           </button>
         </div>
       </nav>
-      {isNavbarOpen && windowWidth < 700 && (
-        <div className="model-container dis pos-f" onClick={handleClose}></div>
-      )}
+      <Hidden hideAt="sm-up">
+        <Model
+          isOpenModel={isNavbarOpen}
+          setIsOpenModel={setNavbarToggle}></Model>
+      </Hidden>
       <aside className={isNavbarOpen ? "expand " : ""}>
         <NavOption
           isNavbarOpen={isNavbarOpen}
