@@ -10,15 +10,9 @@ export const useRequest = () => {
     try {
       switch (method) {
         case "GET": {
-          const res = await instance.get(
-            "videos?part=snippet&part=statistics&id=" +
-              endpoint +
-              REACT_APP_API_KEY,
-            body,
-            {
-              cancelToken: cancelToken,
-            }
-          );
+          const res = await instance.get(endpoint + REACT_APP_API_KEY, body, {
+            cancelToken: cancelToken,
+          });
           return res.data;
         }
         case "POST": {

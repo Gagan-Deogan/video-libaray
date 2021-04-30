@@ -45,7 +45,6 @@ export const PlaylistIcon = ({ isActive }) => {
 };
 
 export const HistoryIcon = ({ isActive }) => {
-  console.log(isActive);
   return (
     <svg
       id="history_black_24dp"

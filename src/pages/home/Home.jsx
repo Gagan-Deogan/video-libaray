@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "../../Components/Card";
-import axios from "axios";
+import { useRequest } from "../../utils/request";
 import { AddToPlaylistModel } from "../../Components/AddToPlaylistModel/";
 import "./home.css";
 import { useSaveVideosContext } from "../../Context";
 
 export const Home = () => {
+  const { request, getCancelToken } = useRequest();
   const [videosList, setVideosList] = useState();
   const [vidoeToPlaylist, setVideoToPlaylist] = useState();
   useEffect(() => {
-    const cancelToken = axios.CancelToken.source();
+    const cancelToken = getCancelToken();
     (async () => {
-      const {
-        data: { items },
-      } = await axios.get(
-        "https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&maxResults=50&key=AIzaSyBsZof6jxUT9CDKHcp4QVQWOcB-95uDKxg"
-      );
-      setVideosList(items);
+      const { items } = await request({
+        method: "GET",
+        endpoint:
+          "/videos?part=snippet&part=statistics&chart=mostPopular&maxResults=50",
+      });
+      if (items.length) {
+        setVideosList(items);
+      }
     })();
     return () => {
       cancelToken.cancel();

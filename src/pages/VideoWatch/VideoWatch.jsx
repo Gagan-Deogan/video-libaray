@@ -31,7 +31,10 @@ export const VideoWatch = () => {
 
   useEffect(() => {
     (async () => {
-      const { items } = await request({ endpoint: id, method: "GET" });
+      const { items } = await request({
+        endpoint: "videos?part=snippet&part=statistics&id=" + id,
+        method: "GET",
+      });
       if (items) {
         setVideoDetails(items[0]);
       }
@@ -47,7 +50,6 @@ export const VideoWatch = () => {
   };
 
   const handleLikeToggle = (video, toggle) => {
-    console.log(video, toggle);
     if (toggle) {
       likeAndDislikeVideosDispatch({
         type: "ADD_TO_LIKE_VIDEOS",
