@@ -9,22 +9,25 @@ import { SnakbarContextProvider } from "./Context/SnakbarContext";
 import { LoaderContextProvider } from "./Context/LoaderContext";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from "./Context/ThemePovider";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <SnakbarContextProvider>
-          <PlaylistProvider>
-            <SaveVideosProvider>
-              <LoaderContextProvider>
-                <LikedAndDisLikedVideosProvider>
-                  <App />
-                </LikedAndDisLikedVideosProvider>
-              </LoaderContextProvider>
-            </SaveVideosProvider>
-          </PlaylistProvider>
-        </SnakbarContextProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <SnakbarContextProvider>
+            <PlaylistProvider>
+              <SaveVideosProvider>
+                <LoaderContextProvider>
+                  <LikedAndDisLikedVideosProvider>
+                    <App />
+                  </LikedAndDisLikedVideosProvider>
+                </LoaderContextProvider>
+              </SaveVideosProvider>
+            </PlaylistProvider>
+          </SnakbarContextProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

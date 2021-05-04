@@ -34,6 +34,19 @@ body {
   color: var(--foreground);
   margin: auto;
 }
+body.dark-theme {
+  --primary-dark: #166534;
+  --primary-default: #61973f;
+  --primary-light: #76af53;
+  --grey-opac: #3330309a;
+
+  --inner-text: #f7fafc;
+  --foreground: #f7fafc;
+  --black: #000000;
+  --background: #000000;
+  --inner-background: #191919;
+}
+
 button,
 .btn-link {
   font: 600 1rem/1.18em "Inter", sans-serif;

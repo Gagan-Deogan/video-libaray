@@ -1,6 +1,7 @@
 import "./navbar.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { usePlaylistContext } from "../../Context/PlaylistProvider/PlaylistProvider";
+import { useTheme } from "../../Context/ThemePovider";
 import { Model } from "../Model";
 import { Hidden } from "../Hidden";
 import {
@@ -11,6 +12,7 @@ import {
   LikeIcon,
   HamBurger,
   Logo,
+  Moon,
 } from "../../assests/icons";
 
 const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
@@ -42,6 +44,7 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   const location = useLocation();
   const { playlists } = usePlaylistContext();
+  const { toggleTheme } = useTheme();
   const navigate = useNavigate();
   return (
     <>
@@ -59,6 +62,9 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           </NavLink>
         </div>
         <div className="row">
+          <button className="btn-link margin-r-16" onClick={toggleTheme}>
+            <Moon />{" "}
+          </button>
           <button className="sm-btn-pry-fil" onClick={() => navigate("/login")}>
             Login
           </button>
@@ -74,10 +80,6 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           <div className="padding-l-16 padding-b-16">
             <Logo />
           </div>
-          {/* <NavLink to="/">
-              <Logo />
-            </NavLink> */}
-          {/* </div> */}
         </Hidden>
         <NavOption
           isNavbarOpen={isNavbarOpen}
