@@ -13,11 +13,11 @@ export const Hidden = ({ children, hideAt }) => {
   };
   switch (hideAt) {
     case "sm-down":
-      return <>{windowWidth <= 600 ? "" : children}</>;
+      return <>{windowWidth <= 700 ? "" : children}</>;
     case "md-down":
       return <>{windowWidth <= 900 ? "" : children}</>;
     case "sm-up":
-      return <>{windowWidth > 600 ? "" : children}</>;
+      return <>{windowWidth > 699 ? "" : children}</>;
     case "md-up":
       return <>{windowWidth > 900 ? "" : children}</>;
     default:

@@ -10,7 +10,7 @@ export const HomeIcon = ({ isActive }) => {
         id="Path_19"
         data-name="Path 19"
         d="M10,20V14h4v6h5V12h3L12,3,2,12H5v8Z"
-        fill={isActive ? "#61973f" : "#6b7280"}
+        fill={isActive ? "#61973f" : "#606060"}
       />
     </svg>
   );
@@ -37,7 +37,7 @@ export const PlaylistIcon = ({ isActive }) => {
           id="Path_20"
           data-name="Path 20"
           d="M15,6H3V8H15Zm0,4H3v2H15ZM3,16h8V14H3ZM17,6v8.18A3,3,0,1,0,19,17V8h3V6Z"
-          fill={isActive ? "#61973f" : "#6b7280"}
+          fill={isActive ? "#61973f" : "#606060"}
         />
       </g>
     </svg>
@@ -56,7 +56,7 @@ export const HistoryIcon = ({ isActive }) => {
         id="Path_17"
         data-name="Path 17"
         d="M13,3a9,9,0,0,0-9,9H1l3.89,3.89.07.14L9,12H6a7.034,7.034,0,1,1,2.06,4.94L6.64,18.36A9,9,0,1,0,13,3ZM12,8v5l4.28,2.54L17,14.33l-3.5-2.08V8Z"
-        fill={isActive ? "#61973f" : "#6b7280"}
+        fill={isActive ? "#61973f" : "#606060"}
       />
     </svg>
   );
@@ -74,7 +74,7 @@ export const SaveIcon = ({ isActive }) => {
         id="Path_15"
         data-name="Path 15"
         d="M17,3H7A2.006,2.006,0,0,0,5,5V21l7-3,7,3V5A2.006,2.006,0,0,0,17,3Z"
-        fill={isActive ? "#61973f" : "#6b7280"}
+        fill={isActive ? "#61973f" : "#606060"}
       />
     </svg>
   );
@@ -91,7 +91,7 @@ export const LikeIcon = ({ isActive }) => {
         id="Path_22"
         data-name="Path 22"
         d="M1,21H5V9H1ZM23,10a2.006,2.006,0,0,0-2-2H14.69l.95-4.57.03-.32a1.505,1.505,0,0,0-.44-1.06L14.17,1,7.59,7.59A1.955,1.955,0,0,0,7,9V19a2.006,2.006,0,0,0,2,2h9a1.987,1.987,0,0,0,1.84-1.22l3.02-7.05A1.976,1.976,0,0,0,23,12Z"
-        fill={isActive ? "#61973f" : "#6b7280"}
+        fill={isActive ? "#61973f" : "#606060"}
       />
     </svg>
   );
@@ -109,7 +109,7 @@ export const DislikeIcon = ({ isActive }) => {
         id="Path_25"
         data-name="Path 25"
         d="M15,3H6A1.987,1.987,0,0,0,4.16,4.22L1.14,11.27A1.976,1.976,0,0,0,1,12v2a2.006,2.006,0,0,0,2,2H9.31l-.95,4.57-.03.32a1.505,1.505,0,0,0,.44,1.06L9.83,23l6.59-6.59A1.987,1.987,0,0,0,17,15V5A2.006,2.006,0,0,0,15,3Zm4,0V15h4V3Z"
-        fill={isActive ? "#61973f" : "#6b7280"}
+        fill={isActive ? "#61973f" : "#606060"}
       />
     </svg>
   );
@@ -122,10 +122,10 @@ export const CloseIcon = () => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="#272727"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="feather feather-x">
+      strokeWidth="2"
+      strokeLinecap="round"
+      stroke-Linejoin="round"
+      className="feather feather-x">
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
@@ -143,7 +143,7 @@ export const ThreeDotsIcon = () => {
         id="Path_27"
         data-name="Path 27"
         d="M12,8a2,2,0,1,0-2-2A2.006,2.006,0,0,0,12,8Zm0,2a2,2,0,1,0,2,2A2.006,2.006,0,0,0,12,10Zm0,6a2,2,0,1,0,2,2A2.006,2.006,0,0,0,12,16Z"
-        fill="#6b7280"
+        fill="#606060"
       />
     </svg>
   );
@@ -169,7 +169,7 @@ export const PlaylistAddIcon = () => {
           id="Path_23"
           data-name="Path 23"
           d="M14,10H3v2H14Zm0-4H3V8H14Zm4,8V10H16v4H12v2h4v4h2V16h4V14ZM3,16h7V14H3Z"
-          fill="#6b7280"
+          fill="#606060"
         />
       </g>
     </svg>
@@ -188,10 +188,10 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 12)"
           fill="none"
-          stroke="#6b7280"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          stroke="#606060"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         />
         <line
           id="Line_2"
@@ -199,10 +199,10 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 6)"
           fill="none"
-          stroke="#6b7280"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          stroke="#606060"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         />
         <line
           id="Line_3"
@@ -210,10 +210,10 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 18)"
           fill="none"
-          stroke="#6b7280"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          stroke="#606060"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         />
       </g>
     </svg>
@@ -231,7 +231,7 @@ export const EditIcon = () => {
         id="Path_29"
         data-name="Path 29"
         d="M14.06,9.02l.92.92L5.92,19H5v-.92l9.06-9.06M17.66,3a1,1,0,0,0-.7.29L15.13,5.12l3.75,3.75,1.83-1.83a1,1,0,0,0,0-1.41L18.37,3.29A.982.982,0,0,0,17.66,3Zm-3.6,3.19L3,17.25V21H6.75L17.81,9.94,14.06,6.19Z"
-        fill="#6b7280"
+        fill="#606060"
       />
     </svg>
   );
@@ -340,7 +340,7 @@ export const VisibleIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       style={{ height: "auto", width: "24px" }}
-      fill="#6b7280">
+      fill="#606060">
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z" />
     </svg>
@@ -352,12 +352,28 @@ export const VisibleOffIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       style={{ height: "auto", width: "24px" }}
-      fill="#6b7280">
+      fill="#606060">
       <path
         d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
         fill="none"
       />
       <path d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z" />
+    </svg>
+  );
+};
+export const CheckIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ height: "auto", width: "24px" }}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#fff"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-check">
+      <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
   );
 };

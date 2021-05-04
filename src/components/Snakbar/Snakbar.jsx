@@ -1,6 +1,6 @@
 import "./snakbar.css";
 import { useEffect } from "react";
-import { CloseIcon, CheckIcon } from "../../assests/icons";
+import { CheckIcon } from "../../assests/icons";
 import { useSnakbarContext } from "../../Context/SnakbarContext";
 export const Snakbar = () => {
   const { snakbarStatus, snakbarDispatch } = useSnakbarContext();
@@ -32,9 +32,6 @@ export const Snakbar = () => {
     <div className={snakbarType}>
       <CheckIcon />
       <h5>{snakbarStatus["msg"]}</h5>
-      <button className="btn-link">
-        <CloseIcon />
-      </button>
     </div>
   );
 };

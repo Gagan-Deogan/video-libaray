@@ -1,7 +1,6 @@
 import "./navbar.css";
-import React, { useState, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { usePlaylistContext } from "../../Context/PlaylistProvider";
+import { usePlaylistContext } from "../../Context/PlaylistProvider/PlaylistProvider";
 import { Model } from "../Model";
 import { Hidden } from "../Hidden";
 import {
@@ -42,16 +41,6 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
 
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   const location = useLocation();
-  const [windowWidth, setWindowWidth] = useState(0);
-  useEffect(() => {
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-  const updateDimensions = () => {
-    const width = window.innerWidth;
-    setWindowWidth(width);
-  };
   const { playlists } = usePlaylistContext();
   const navigate = useNavigate();
   return (
@@ -81,6 +70,15 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           setIsOpenModel={setNavbarToggle}></Model>
       </Hidden>
       <aside className={isNavbarOpen ? "expand " : ""}>
+        <Hidden hideAt="sm-up">
+          <div className="padding-l-16 padding-b-16">
+            <Logo />
+          </div>
+          {/* <NavLink to="/">
+              <Logo />
+            </NavLink> */}
+          {/* </div> */}
+        </Hidden>
         <NavOption
           isNavbarOpen={isNavbarOpen}
           name="Explore"

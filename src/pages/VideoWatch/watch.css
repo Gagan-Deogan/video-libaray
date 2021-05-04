@@ -1,17 +1,8 @@
-/* .video-player{
-    height: 56.25vw;
-} */
 iframe {
   position: absolute;
   top: 0;
 }
 .video-player {
   position: relative;
-  padding-bottom: 56.25%;
-}
-@media (min-width: 600px) {
-  .video-player {
-    position: relative;
-    padding-bottom: 56.25%;
-  }
+  padding-bottom: 54.25%;
 }

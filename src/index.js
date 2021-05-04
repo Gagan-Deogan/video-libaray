@@ -1,23 +1,29 @@
+import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./assests/css/index.css";
+import { AuthProvider } from "./Context/AuthContext";
+import { PlaylistProvider } from "./Context/PlaylistProvider";
+import { SaveVideosProvider } from "./Context/SaveVideosProvider";
+import { LikedAndDisLikedVideosProvider } from "./Context/LikedAndDislikeVideosProvider";
+import { SnakbarContextProvider } from "./Context/SnakbarContext";
+import { LoaderContextProvider } from "./Context/LoaderContext";
 import App from "./App";
-import { PlaylistProvider } from "./Context";
-import { SaveVideosProvider } from "./Context";
-import { LikedAndDisLikedVideosProvider } from "./Context";
-import { AuthProvider } from "./Context/AuthContext/";
 import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <PlaylistProvider>
-          <SaveVideosProvider>
-            <LikedAndDisLikedVideosProvider>
-              <App />
-            </LikedAndDisLikedVideosProvider>
-          </SaveVideosProvider>
-        </PlaylistProvider>
+        <SnakbarContextProvider>
+          <PlaylistProvider>
+            <SaveVideosProvider>
+              <LoaderContextProvider>
+                <LikedAndDisLikedVideosProvider>
+                  <App />
+                </LikedAndDisLikedVideosProvider>
+              </LoaderContextProvider>
+            </SaveVideosProvider>
+          </PlaylistProvider>
+        </SnakbarContextProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "./Context/AuthContext";
+import { useSnakbarContext } from "./Context/SnakbarContext";
 import { Navbar } from "./Components/Navbar";
+import { Snakbar } from "./Components/Snakbar";
 import { Home } from "./pages/Home";
 import { LikeVideos } from "./pages/LikeVideos";
 import { VideoWatch } from "./pages/VideoWatch";
 import { Playlist } from "./pages/Playlist";
 import { SaveVideos } from "./pages/SaveVideos";
 import { Login } from "./pages/Login";
-import { useAuthContext } from "./Context/AuthContext/";
 const ProtectedRoute = ({ path, ...props }) => {
   const { user } = useAuthContext();
   return user ? (
@@ -18,6 +20,7 @@ const ProtectedRoute = ({ path, ...props }) => {
 };
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
+  const { snakbarStatus } = useSnakbarContext();
   return (
     <div
       className={` dis-grid body-layout  ${
@@ -29,11 +32,12 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/watch/:id" element={<VideoWatch />}></Route>
           <Route path="/playlist/:id" element={<Playlist />}></Route>
-          <ProtectedRoute path="/savedvideos" element={<SaveVideos />} />
+          <Route path="/savedvideos" element={<SaveVideos />} />
           <Route path="/likedVideos" element={<LikeVideos />}></Route>
           <Route path="/login" element={<Login />}></Route>
         </Routes>
       </main>
+      {snakbarStatus["isShow"] === true && <Snakbar></Snakbar>}
     </div>
   );
 }

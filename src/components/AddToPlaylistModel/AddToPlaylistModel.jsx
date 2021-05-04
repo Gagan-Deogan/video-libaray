@@ -4,53 +4,43 @@ import { CloseIcon } from "../../assests/icons";
 import { usePlaylistContext } from "../../Context/PlaylistProvider";
 
 export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
-  const [createPlaylist, SetCreatePlaylist] = useState(false);
+  const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState();
-  const { playlists, playlistDispatch } = usePlaylistContext();
-  const getPlaylistsNamesIncludeVideo = () => {
-    try {
-      const reducer = (acc, playlist) => {
-        const isAlreadyInclude = playlist.videos.find(
-          (video) => video.id === vidoeToPlaylist.id
-        );
-        return !!isAlreadyInclude ? acc.concat([playlist.name]) : acc;
-      };
-      return playlists.reduce(reducer, []);
-    } catch (err) {
-      return [];
-    }
-  };
-  const includedPlaylist = getPlaylistsNamesIncludeVideo();
+  const {
+    playlists,
+    playlistDispatch,
+    handelCreatePlaylist,
+    getPlaylistsNamesIncludeThisVideo,
+    AddVideoToPlaylist,
+    RemoveFromPlaylist,
+  } = usePlaylistContext();
+
+  const playlistsIncludeThisVideo = getPlaylistsNamesIncludeThisVideo({
+    playlists,
+    vidoeToPlaylist,
+  });
   const getAllPlaylistName = () => {
     return playlists.map((playlist) => playlist.name);
   };
   const isError = getAllPlaylistName().includes(newPlaylistName);
-  const handlePlaylist = (playlist) => {
-    if (includedPlaylist.includes(playlist.name)) {
-      playlistDispatch({
-        type: "REMOVE_VIDEO_FROM_PLAYLIST",
-        payload: { video: vidoeToPlaylist, playlistId: playlist.id },
-      });
+  const handleAddOrRemoveFromPlaylist = ({
+    playlistsIncludeThisVideo,
+    vidoeToPlaylist,
+    playlist,
+  }) => {
+    // console.log(playlistsIncludeThisVideo);
+    if (!playlistsIncludeThisVideo.includes(playlist.name)) {
+      AddVideoToPlaylist({ vidoeToPlaylist, playlistId: playlist.id });
     } else {
-      playlistDispatch({
-        type: "ADD_VIDEO_TO_PLAYLIST",
-        payload: { video: vidoeToPlaylist, playlistId: playlist.id },
-      });
+      RemoveFromPlaylist({ vidoeToPlaylist, playlistId: playlist.id });
     }
   };
-  const handelCreatePlaylist = () => {
-    if (includedPlaylist.includes(newPlaylistName) || !!!newPlaylistName) {
-      console.log("Error");
-    } else {
-      playlistDispatch({ type: "CREATE_PLAYLIST", payload: newPlaylistName });
-      SetCreatePlaylist(false);
-    }
-  };
+
   return (
     <div className="model-container pos-f justify-center align-center box-shd ">
       <div className="model sm-w9 md-w5 w3 bor-rad-4 box-shd add-playlist-model">
         <div className="row justify-between align-center">
-          <h3>{createPlaylist ? "Create Playlist" : "Save to.."}</h3>
+          <h3>{showCreatePlaylist ? "Create Playlist" : "Save to.."}</h3>
           <button
             className="btn-link"
             onClick={() => {
@@ -60,40 +50,46 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
           </button>
         </div>
         <fieldset className="column margin-t-8 padding-t-8 padding-b-16">
-          {createPlaylist && (
-            <>
-              <input
-                type="text"
-                placeholder="Name"
-                name="new Playlist"
-                className={isError ? "err-text-area margin-t-8" : "margin-t-8"}
-                value={newPlaylistName}
-                onChange={(e) => setNewPlaylistName(e.target.value)}></input>
-              <div className={isError ? "err-text" : "text-help"}>
-                {isError && "This Name already Exits"}
-                {!isError && "Enter Name of new Playlist"}
-              </div>
-            </>
-          )}
-          {!createPlaylist &&
+          {!showCreatePlaylist &&
             playlists.map((playlist) => (
               <label className="row margin-t-8 align-center" key={playlist.id}>
                 <input
                   type="checkbox"
-                  onChange={() => handlePlaylist(playlist)}
-                  checked={includedPlaylist.includes(playlist.name)}
+                  onChange={() =>
+                    handleAddOrRemoveFromPlaylist({
+                      playlistsIncludeThisVideo,
+                      vidoeToPlaylist,
+                      playlist,
+                    })
+                  }
+                  checked={playlistsIncludeThisVideo.includes(playlist.name)}
                 />
                 <div className="check margin-r-16"></div>
                 <p>{playlist.name}</p>
               </label>
             ))}
+          {showCreatePlaylist && (
+            <>
+              <input
+                type="text"
+                placeholder="Name"
+                name="new Playlist"
+                className={isError ? "text-err-area margin-t-8" : "margin-t-8"}
+                value={newPlaylistName}
+                onChange={(e) => setNewPlaylistName(e.target.value)}></input>
+              <div className={isError ? "text-err" : "text-help"}>
+                {isError && "This Name already Exists"}
+                {!isError && "Enter Name of new Playlist"}
+              </div>
+            </>
+          )}
         </fieldset>
         <fieldset className="padding-8 row justify-end">
-          {createPlaylist && (
+          {showCreatePlaylist && (
             <>
               <button
                 className="sm-btn-pry margin-r-16"
-                onClick={() => SetCreatePlaylist(false)}>
+                onClick={() => setShowCreatePlaylist(false)}>
                 Cancel
               </button>
               <button
@@ -102,16 +98,23 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
                     ? "sm-btn-pry-fil btn-dis"
                     : "sm-btn-pry-fil"
                 }
-                onClick={() => handelCreatePlaylist()}
+                onClick={() =>
+                  handelCreatePlaylist({
+                    newPlaylistName,
+                    playlistsIncludeThisVideo,
+                    setShowCreatePlaylist,
+                    setNewPlaylistName,
+                  })
+                }
                 disabled={!!!newPlaylistName || isError}>
                 Create
               </button>
             </>
           )}
-          {!createPlaylist && (
+          {!showCreatePlaylist && (
             <button
               className="sm-btn-pry"
-              onClick={() => SetCreatePlaylist(true)}>
+              onClick={() => setShowCreatePlaylist(true)}>
               Create Playlist
             </button>
           )}
