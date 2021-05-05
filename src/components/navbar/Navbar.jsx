@@ -13,6 +13,7 @@ import {
   HamBurger,
   Logo,
   Moon,
+  Sun,
 } from "../../assests/icons";
 
 const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
@@ -44,7 +45,7 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon, isActive }) => {
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   const location = useLocation();
   const { playlists } = usePlaylistContext();
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   return (
     <>
@@ -63,7 +64,8 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
         </div>
         <div className="row">
           <button className="btn-link margin-r-16" onClick={toggleTheme}>
-            <Moon />{" "}
+            {theme !== "DARK" && <Moon />}
+            {theme === "DARK" && <Sun />}
           </button>
           <button className="sm-btn-pry-fil" onClick={() => navigate("/login")}>
             Login
@@ -86,12 +88,6 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           name="Explore"
           navTo="/"
           icon={<HomeIcon isActive={location.pathname === "/"} />}
-        />
-        <NavOption
-          isNavbarOpen={isNavbarOpen}
-          name="History"
-          navTo="/history"
-          icon={<HistoryIcon isActive={location.pathname === "/history"} />}
         />
         <NavOption
           isNavbarOpen={isNavbarOpen}

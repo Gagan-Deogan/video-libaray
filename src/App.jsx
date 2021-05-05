@@ -9,6 +9,7 @@ import { LikeVideos } from "./pages/LikeVideos";
 import { VideoWatch } from "./pages/VideoWatch";
 import { Playlist } from "./pages/Playlist";
 import { SaveVideos } from "./pages/SaveVideos";
+import { PageNotFound } from "./pages/PageNotFound";
 import { Login } from "./pages/Login";
 const ProtectedRoute = ({ path, ...props }) => {
   const { user } = useAuthContext();
@@ -30,11 +31,12 @@ function App() {
       <main className="column padding-16 w12">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/watch/:id" element={<VideoWatch />}></Route>
-          <Route path="/playlist/:id" element={<Playlist />}></Route>
+          <Route path="/watch/:videoId" element={<VideoWatch />} />
+          <Route path="/playlist/:id" element={<Playlist />} />
           <Route path="/savedvideos" element={<SaveVideos />} />
-          <Route path="/likedVideos" element={<LikeVideos />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/likedVideos" element={<LikeVideos />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </main>
       {snakbarStatus["isShow"] === true && <Snakbar></Snakbar>}

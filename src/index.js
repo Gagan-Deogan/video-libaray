@@ -10,6 +10,7 @@ import { LoaderContextProvider } from "./Context/LoaderContext";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "./Context/ThemePovider";
+import { NotesProvider } from "./Context/NotesProvider";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -19,9 +20,11 @@ ReactDOM.render(
             <PlaylistProvider>
               <SaveVideosProvider>
                 <LoaderContextProvider>
-                  <LikedAndDisLikedVideosProvider>
-                    <App />
-                  </LikedAndDisLikedVideosProvider>
+                  <NotesProvider>
+                    <LikedAndDisLikedVideosProvider>
+                      <App />
+                    </LikedAndDisLikedVideosProvider>
+                  </NotesProvider>
                 </LoaderContextProvider>
               </SaveVideosProvider>
             </PlaylistProvider>

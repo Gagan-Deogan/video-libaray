@@ -18,12 +18,6 @@ body {
   --yellow-default: #facc15;
   --yellow-light: #fde047;
 
-  --green-dark: #166534;
-  --green-default: #16a34a;
-  --green-light: #22c55e;
-
-  --sm-pd: 0.5rem 3vw;
-
   --black: #111827;
   --inner-text: #f7fafc;
   --background: #f9f9f9;
@@ -42,11 +36,64 @@ body.dark-theme {
 
   --inner-text: #f7fafc;
   --foreground: #f7fafc;
-  --black: #000000;
-  --background: #000000;
-  --inner-background: #191919;
+  --black: #181818;
+  --background: #181818;
+  --inner-background: #202020;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    --primary-dark: #166534;
+    --primary-default: #61973f;
+    --primary-light: #76af53;
+    --grey-opac: #3330309a;
+
+    --inner-text: #f7fafc;
+    --foreground: #f7fafc;
+    --black: #181818;
+    --background: #181818;
+    --inner-background: #202020;
+  }
+
+  body.light-theme {
+    --primary-dark: #166534;
+    --primary-default: #61973f;
+    --primary-light: #76af53;
+    --grey-opac: #3330309a;
+
+    --black: #111827;
+    --inner-text: #f7fafc;
+    --background: #f9f9f9;
+    --inner-background: #ffffff;
+    --foreground: #0e182a;
+  }
 }
 
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.8rem;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--grey-dark);
+  border: 3px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey-default);
+}
+div::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.8rem;
+}
+div::-webkit-scrollbar-thumb {
+  background-color: var(--grey-dark);
+  border: 3px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey-default);
+}
 button,
 .btn-link {
   font: 600 1rem/1.18em "Inter", sans-serif;
@@ -105,6 +152,9 @@ textarea:focus {
 .position-absolute {
   position: absolute;
 }
+.text-primary {
+  color: var(--primary-default);
+}
 .right {
   top: 0;
   right: 0;
@@ -114,6 +164,61 @@ a:focus,
   border: none;
   outline: none;
   box-shadow: none;
+}
+a:focus-visible,
+.btn-link:focus-visible {
+  box-shadow: 0 0 1px 0.09rem var(--primary-default);
+}
+.badge {
+  top: 0;
+}
+.primary-color {
+  color: var(--primary-default);
+}
+.card > img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: auto;
+}
+.text-end {
+  text-align: end;
+}
+.model-container {
+  display: block;
+}
+.btn-link:hover {
+  color: var(--primary-dark);
+}
+@media (max-width: 600px) {
+  .sm-column {
+    flex-direction: column;
+  }
+}
+.btn-pry-fil {
+  width: auto;
+  max-width: none;
+  min-width: none;
+}
+.btn-pry {
+  width: auto;
+  max-width: none;
+  min-width: none;
+}
+.sm-btn-pry-fil-err {
+  background: var(--red-dark);
+}
+.btn-err {
+  background: var(--red-dark);
+}
+.btn-err:active {
+  background-color: var(--red-light);
+}
+.border-bottom {
+  border-bottom: 1px solid var(--grey-light);
+}
+.card > .card-title > button {
+  height: 2rem;
+  margin-top: 1.25rem;
 }
 input[type="email"] {
   padding: 0.68rem 1rem;
@@ -133,6 +238,31 @@ input[type="email"] {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.card-ratg {
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  background: var(--yellow-default);
+}
+.card-badge {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1em;
+  color: var(--inner-text);
+  border-radius: 1.25rem;
+  background: var(--red-default);
+}
+.background-red {
+  background: var(--red-dark);
+}
+.bottom-sheet {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: var(--inner-background);
+  border-top: 1px solid var(--grey-light);
 }
 /* bucket Changes end */
 

@@ -16,7 +16,7 @@ export const Card = ({
   };
   return (
     <>
-      <li className="column card pos-r  hov-box-shd bor-rad-8 bor-sol">
+      <li className="column card pos-r hov-box-shd bor-rad-8">
         <img
           src={video.snippet.thumbnails.high.url}
           className="w12 bor-rad-8"

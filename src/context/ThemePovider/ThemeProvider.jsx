@@ -18,15 +18,19 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     if (prefersDarkScheme.matches) {
       document.body.classList.toggle("light-theme");
+      setTheme(() =>
+        document.body.classList.contains("light-theme") ? "LIGHT" : "DARK"
+      );
     } else {
       document.body.classList.toggle("dark-theme");
+      setTheme(() =>
+        document.body.classList.contains("dark-theme") ? "DARK" : "LIGHT"
+      );
     }
-    setTheme(() =>
-      document.body.classList.contains("dark-theme") ? "DARK" : "LIGHT"
-    );
   };
 
   useEffect(() => {
+    console.log(theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
