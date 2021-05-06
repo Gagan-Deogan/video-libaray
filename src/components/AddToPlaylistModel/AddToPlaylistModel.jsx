@@ -28,7 +28,6 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
     vidoeToPlaylist,
     playlist,
   }) => {
-    // console.log(playlistsIncludeThisVideo);
     if (!playlistsIncludeThisVideo.includes(playlist.name)) {
       AddVideoToPlaylist({ vidoeToPlaylist, playlistId: playlist.id });
     } else {
@@ -40,7 +39,7 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
     <div className="model-container pos-f justify-center align-center box-shd ">
       <div className="model sm-w9 md-w5 w3 bor-rad-4 box-shd add-playlist-model">
         <div className="row justify-between align-center">
-          <h3>{showCreatePlaylist ? "Create Playlist" : "Save to.."}</h3>
+          <h3>{showCreatePlaylist ? "Create Playlist" : "Save to .."}</h3>
           <button
             className="btn-link"
             onClick={() => {

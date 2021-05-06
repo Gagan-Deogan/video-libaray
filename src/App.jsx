@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuthContext } from "./Context/AuthContext";
 import { useSnakbarContext } from "./Context/SnakbarContext";
 import { Navbar } from "./Components/Navbar";
 import { Snakbar } from "./Components/Snakbar";
@@ -10,15 +9,6 @@ import { VideoWatch } from "./pages/VideoWatch";
 import { Playlist } from "./pages/Playlist";
 import { SaveVideos } from "./pages/SaveVideos";
 import { PageNotFound } from "./pages/PageNotFound";
-import { Login } from "./pages/Login";
-const ProtectedRoute = ({ path, ...props }) => {
-  const { user } = useAuthContext();
-  return user ? (
-    <Route path={path} {...props} />
-  ) : (
-    <Navigate state={{ from: path }} replace to="/login" />
-  );
-};
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
   const { snakbarStatus } = useSnakbarContext();
@@ -35,7 +25,6 @@ function App() {
           <Route path="/playlist/:id" element={<Playlist />} />
           <Route path="/savedvideos" element={<SaveVideos />} />
           <Route path="/likedVideos" element={<LikeVideos />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </main>

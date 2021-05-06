@@ -23,7 +23,6 @@ export const NotesProvider = ({ children }) => {
     );
   };
   const AddNotes = ({ videoId, newNote }) => {
-    console.log(videoId);
     if (findNotesByVideoId({ videoId })) {
       setVideosNotes((prev) =>
         prev.map((videoNotes) =>
@@ -35,7 +34,6 @@ export const NotesProvider = ({ children }) => {
             : videoNotes
         )
       );
-      console.log("this doe");
     } else {
       setVideosNotes((prev) =>
         prev.concat([{ videoId, notes: [{ id: uuidv4(), ...newNote }] }])

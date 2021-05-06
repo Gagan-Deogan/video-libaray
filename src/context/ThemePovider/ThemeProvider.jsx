@@ -30,7 +30,6 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 

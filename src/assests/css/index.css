@@ -264,6 +264,9 @@ input[type="email"] {
   background-color: var(--inner-background);
   border-top: 1px solid var(--grey-light);
 }
+.btn-link:hover {
+  color: inherit;
+}
 /* bucket Changes end */
 
 main {

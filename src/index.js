@@ -1,7 +1,6 @@
 import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { AuthProvider } from "./Context/AuthContext";
 import { PlaylistProvider } from "./Context/PlaylistProvider";
 import { SaveVideosProvider } from "./Context/SaveVideosProvider";
 import { LikedAndDisLikedVideosProvider } from "./Context/LikedAndDislikeVideosProvider";
@@ -15,21 +14,19 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ThemeProvider>
-        <AuthProvider>
-          <SnakbarContextProvider>
-            <PlaylistProvider>
-              <SaveVideosProvider>
-                <LoaderContextProvider>
-                  <NotesProvider>
-                    <LikedAndDisLikedVideosProvider>
-                      <App />
-                    </LikedAndDisLikedVideosProvider>
-                  </NotesProvider>
-                </LoaderContextProvider>
-              </SaveVideosProvider>
-            </PlaylistProvider>
-          </SnakbarContextProvider>
-        </AuthProvider>
+        <SnakbarContextProvider>
+          <PlaylistProvider>
+            <SaveVideosProvider>
+              <LoaderContextProvider>
+                <NotesProvider>
+                  <LikedAndDisLikedVideosProvider>
+                    <App />
+                  </LikedAndDisLikedVideosProvider>
+                </NotesProvider>
+              </LoaderContextProvider>
+            </SaveVideosProvider>
+          </PlaylistProvider>
+        </SnakbarContextProvider>
       </ThemeProvider>
     </Router>
   </React.StrictMode>,
