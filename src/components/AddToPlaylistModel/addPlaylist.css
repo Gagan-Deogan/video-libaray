@@ -1,0 +1,9 @@
+.model-container {
+  display: flex;
+}
+.model {
+  background: var(--inner-background);
+}
+.add-playlist-model {
+  max-width: 21rem;
+}
