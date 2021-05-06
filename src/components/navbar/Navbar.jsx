@@ -1,7 +1,7 @@
 import "./navbar.css";
 import { NavLink, useLocation } from "react-router-dom";
-import { usePlaylistContext } from "../../Context/PlaylistProvider/PlaylistProvider";
-import { useTheme } from "../../Context/ThemePovider";
+import { usePlaylistContext } from "../../Context/PlaylistContext";
+import { useTheme } from "../../Context/ThemeContext";
 import { Model } from "../Model";
 import { Hidden } from "../Hidden";
 import {

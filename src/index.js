@@ -1,15 +1,15 @@
 import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { PlaylistProvider } from "./Context/PlaylistProvider";
-import { SaveVideosProvider } from "./Context/SaveVideosProvider";
-import { LikedAndDisLikedVideosProvider } from "./Context/LikedAndDislikeVideosProvider";
+import { PlaylistProvider } from "./Context/PlaylistContext";
+import { SaveVideosProvider } from "./Context/SaveVideosContext";
+import { LikedAndDisLikedVideosProvider } from "./Context/LikedAndDislikeVideosContext";
 import { SnakbarContextProvider } from "./Context/SnakbarContext";
 import { LoaderContextProvider } from "./Context/LoaderContext";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "./Context/ThemePovider";
-import { NotesProvider } from "./Context/NotesProvider";
+import { ThemeProvider } from "./Context/ThemeContext";
+import { NotesProvider } from "./Context/NotesContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>

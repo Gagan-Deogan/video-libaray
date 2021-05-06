@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useSnakbarContext } from "./Context/SnakbarContext";
 import { Navbar } from "./Components/Navbar";
 import { Snakbar } from "./Components/Snakbar";

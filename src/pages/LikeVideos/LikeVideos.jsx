@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "../../Components/Card";
-import { useLikedAndDisLikedVideosContext } from "../../Context/LikedAndDislikeVideosProvider";
+import { useLikedAndDisLikedVideosContext } from "../../Context/LikedAndDislikeVideosContext";
 export const LikeVideos = () => {
   const { likedVideos } = useLikedAndDisLikedVideosContext();
 

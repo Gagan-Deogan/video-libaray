@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "./addPlaylist.css";
 import { CloseIcon } from "../../assests/icons";
-import { usePlaylistContext } from "../../Context/PlaylistProvider";
+import { usePlaylistContext } from "../../Context/PlaylistContext";
 
 export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState();
   const {
     playlists,
-    playlistDispatch,
     handelCreatePlaylist,
     getPlaylistsNamesIncludeThisVideo,
     AddVideoToPlaylist,

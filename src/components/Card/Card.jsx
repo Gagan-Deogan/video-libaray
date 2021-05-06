@@ -6,12 +6,12 @@ export const Card = ({
   video,
   setVideoToPlaylist,
   cardFor,
-  handleAddTOSave,
+  handleSaveVideoToggle,
 }) => {
   const navigate = useNavigate();
   const [expandDropDown, setExpandDropDown] = useState(false);
   const callSave = (video) => {
-    handleAddTOSave(video);
+    handleSaveVideoToggle({ videoDetails: video });
     setExpandDropDown(false);
   };
   const handleVideoWatch = () => {

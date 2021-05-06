@@ -1,7 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNotesContext } from "../../Context/NotesProvider";
+import { useNotesContext } from "../../Context/NotesContext";
 import { Note } from "../Note";
 export const NotesBox = ({ videoPlayed }) => {
   const { videoId } = useParams();

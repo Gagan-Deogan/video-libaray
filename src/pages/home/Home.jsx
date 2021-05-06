@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSaveVideosContext } from "../../Context/SaveVideosProvider";
+import { useSaveVideosContext } from "../../Context/SaveVideosContext";
 import { useStatus } from "../../Context/LoaderContext";
 import { Card } from "../../Components/Card";
 import { Loader } from "../../Components/Loader";
@@ -9,9 +9,11 @@ import "./home.css";
 
 export const Home = () => {
   const { request, getCancelToken } = useRequest();
+  const { handleSaveVideoToggle } = useSaveVideosContext();
   const { status, setStatus } = useStatus();
   const [videosList, setVideosList] = useState();
   const [vidoeToPlaylist, setVideoToPlaylist] = useState();
+
   useEffect(() => {
     const cancelToken = getCancelToken();
     setStatus("PENDING");
@@ -30,10 +32,7 @@ export const Home = () => {
       cancelToken.cancel();
     };
   }, []);
-  const { saveDispatch } = useSaveVideosContext();
-  const handleAddTOSave = (video) => {
-    saveDispatch({ type: "ADD_TO_SAVE", payload: video });
-  };
+
   return (
     <>
       {status !== "IDLE" && <Loader />}
@@ -46,7 +45,7 @@ export const Home = () => {
                   video={video}
                   setVideoToPlaylist={setVideoToPlaylist}
                   cardFor="EXPLORE_PAGE"
-                  handleAddTOSave={handleAddTOSave}
+                  handleSaveVideoToggle={handleSaveVideoToggle}
                   key={video.id}
                 />
               ))}

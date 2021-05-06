@@ -19,14 +19,14 @@ export const NotesProvider = ({ children }) => {
   const [videosNotes, setVideosNotes] = useState(initial);
   const findNotesByVideoId = ({ videoId }) => {
     return (
-      videosNotes.find((videoNotes) => videoNotes.videoId == videoId) || null
+      videosNotes.find((videoNotes) => videoNotes.videoId === videoId) || null
     );
   };
   const AddNotes = ({ videoId, newNote }) => {
     if (findNotesByVideoId({ videoId })) {
       setVideosNotes((prev) =>
         prev.map((videoNotes) =>
-          videoNotes.videoId == videoId
+          videoNotes.videoId === videoId
             ? {
                 ...videoNotes,
                 notes: videoNotes.notes.concat([{ id: uuidv4(), ...newNote }]),
