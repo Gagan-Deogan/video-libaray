@@ -3,12 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import { useSnakbarContext } from "./Context/SnakbarContext";
 import { Navbar } from "./Components/Navbar";
 import { Snakbar } from "./Components/Snakbar";
-import { Home } from "./pages/Home";
-import { LikeVideos } from "./pages/LikeVideos";
-import { VideoWatch } from "./pages/VideoWatch";
-import { Playlist } from "./pages/Playlist";
-import { SaveVideos } from "./pages/SaveVideos";
-import { PageNotFound } from "./pages/PageNotFound";
+import { Home } from "./Pages/Home";
+import { LikeVideos } from "./Pages/LikeVideos";
+import { VideoWatch } from "./Pages/VideoWatch";
+import { Playlist } from "./Pages/Playlist";
+import { SaveVideos } from "./Pages/SaveVideos";
+import { PageNotFound } from "./Pages/PageNotFound";
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
   const { snakbarStatus } = useSnakbarContext();
