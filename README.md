@@ -1,10 +1,10 @@
-# Greenify Plat
+# Greenify Play
 
 Github Repository [https://github.com/GagandeepSingh0115/video-libaray].
 
 Live Demo [https://greenifyplay.netlify.app/]
 
-> Features of **GupShupp**
+> Features of **Greenify Play**
 
 - Video Listing Page
 - Video watching Page
