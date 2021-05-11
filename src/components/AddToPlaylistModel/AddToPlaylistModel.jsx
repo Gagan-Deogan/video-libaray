@@ -28,9 +28,9 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
     playlist,
   }) => {
     if (!playlistsIncludeThisVideo.includes(playlist.name)) {
-      AddVideoToPlaylist({ vidoeToPlaylist, playlistId: playlist.id });
+      AddVideoToPlaylist({ vidoeToPlaylist, playlistId: playlist._id });
     } else {
-      RemoveFromPlaylist({ vidoeToPlaylist, playlistId: playlist.id });
+      RemoveFromPlaylist({ vidoeToPlaylist, playlistId: playlist._id });
     }
   };
 
@@ -50,7 +50,7 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
         <fieldset className="column margin-t-8 padding-t-8 padding-b-16">
           {!showCreatePlaylist &&
             playlists.map((playlist) => (
-              <label className="row margin-t-8 align-center" key={playlist.id}>
+              <label className="row margin-t-8 align-center" key={playlist._id}>
                 <input
                   type="checkbox"
                   onChange={() =>

@@ -11,7 +11,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         likedVideos: state.likedVideos.filter(
-          (video) => video.id !== action.payload
+          (video) => video._id !== action.payload
         ),
       };
     case "ADD_TO_DISLIKE_VIDEOS":
@@ -23,7 +23,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         disLikedVideos: state.disLikedVideos.filter(
-          (video) => video.id !== action.payload
+          (video) => video._id !== action.payload
         ),
       };
     default:

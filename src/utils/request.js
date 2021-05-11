@@ -1,7 +1,7 @@
 import axios from "axios";
 const { REACT_APP_API_KEY } = process.env;
 const instance = axios.create({
-  baseURL: "https://www.googleapis.com/youtube/v3",
+  baseURL: "https://GreenifyPlay.gagandeogan.repl.co",
   headers: { "content-type": "application/json" },
 });
 export const useRequest = () => {
@@ -10,7 +10,7 @@ export const useRequest = () => {
     try {
       switch (method) {
         case "GET": {
-          const res = await instance.get(endpoint + REACT_APP_API_KEY, body, {
+          const res = await instance.get(endpoint, body, {
             cancelToken: cancelToken,
           });
           return res.data;

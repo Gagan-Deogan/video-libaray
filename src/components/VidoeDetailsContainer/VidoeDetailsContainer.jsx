@@ -11,11 +11,16 @@ import {
   DislikeIcon,
 } from "../../assests/icons/";
 
-export const VidoeDetailsContainer = ({
-  videoId,
-  videoDetails,
-  setVideoPlayed,
-}) => {
+export const VidoeDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
+  const {
+    videoId,
+    title,
+    description,
+    likes,
+    dislikes,
+    publishedAt,
+    views,
+  } = videoDetails;
   const {
     likedVideos,
     disLikedVideos,
@@ -24,11 +29,11 @@ export const VidoeDetailsContainer = ({
   } = useLikedAndDisLikedVideosContext();
   const { handleSaveVideoToggle } = useSaveVideosContext();
   const [vidoeToPlaylist, setVideoToPlaylist] = useState();
-  const isInList = (videosList, videoId) => {
-    return !!videosList.find((video) => video.id === videoId);
+  const isInList = (videosList, id) => {
+    return !!videosList.find((video) => video._id === id);
   };
-  const isLiked = isInList(likedVideos, videoDetails?.id);
-  const isDisLiked = isInList(disLikedVideos, videoDetails?.id);
+  const isLiked = isInList(likedVideos, videoDetails?._id);
+  const isDisLiked = isInList(disLikedVideos, videoDetails?._id);
   return (
     <>
       <div className="card bor-rad-8 video-container ">
@@ -43,12 +48,11 @@ export const VidoeDetailsContainer = ({
             }}
           />
         </div>
-        <h3 className="margin-t-16 margin-l-8">{videoDetails.snippet.title}</h3>
+        <h3 className="margin-t-16 margin-l-8">{title}</h3>
         <div className="row w12">
           <div className="row w6 justify-start align-center">
             <h6 className="gry margin-l-8">
-              {videoDetails.statistics.viewCount} views •{" "}
-              {ddmmmyyyy(videoDetails.snippet.publishedAt)}
+              {views} views • {publishedAt}
             </h6>
           </div>
           <div className="row w6 justify-end">
@@ -68,6 +72,7 @@ export const VidoeDetailsContainer = ({
                 handleLikeToggle({ videoDetails, toggleType: !isLiked })
               }>
               <LikeIcon isActive={isLiked} />
+              <h6 className="text-grey bold margin-l-4 ">{likes}</h6>
             </button>
             <button
               className="btn-link margin-8"
@@ -78,12 +83,11 @@ export const VidoeDetailsContainer = ({
                 })
               }>
               <DislikeIcon isActive={isDisLiked} />
+              <h6 className="text-grey bold margin-l-4 ">{dislikes}</h6>
             </button>
           </div>
         </div>
-        <h6 className="padding-8 padding-b-16 ">
-          {videoDetails.snippet.description.slice(0, 250)}
-        </h6>
+        <h6 className="padding-8 padding-b-16">{description}</h6>
       </div>
       {vidoeToPlaylist && (
         <AddToPlaylistModel

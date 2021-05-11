@@ -15,29 +15,29 @@ export const Card = ({
     setExpandDropDown(false);
   };
   const handleVideoWatch = () => {
-    navigate(`/watch/${video.id}`);
+    navigate(`/watch/${video._id}`);
   };
+  const { thumbnails, title, description } = video;
   return (
     <>
       <li className="column card pos-r hov-box-shd bor-rad-8">
         <img
-          src={video.snippet.thumbnails.high.url}
+          src={thumbnails}
           className="w12 bor-rad-8 cursor-pointer"
-          alt=""
+          alt={title}
           onClick={handleVideoWatch}
         />
         <div className="row padding-8 padding-t-16 align-start">
-          <div className="avatar-circle">
-            <h4>{video.snippet.channelTitle.slice(0, 1)}</h4>
-          </div>
           <div
-            className="column crd-title w9 margin-l-8 cursor-pointer"
+            className="column crd-title w11 margin-l-8 cursor-pointer"
             onClick={handleVideoWatch}>
             <h6 className="bold">
-              {video.snippet.title.slice(0, 65)}{" "}
-              {video.snippet.title.length > 75 ? "..." : ""}{" "}
+              {title.slice(0, 65)}
+              {title.length > 75 ? "..." : ""}
             </h6>
-            <h6 className="gry">{video.snippet.channelTitle} </h6>
+            <h6 className="text-grey">
+              {description.slice(0, 65)} {description.length > 75 ? "..." : ""}
+            </h6>
           </div>
           {cardFor === "EXPLORE_PAGE" && (
             <button

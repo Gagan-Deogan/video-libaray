@@ -18,13 +18,12 @@ export const Home = () => {
     const cancelToken = getCancelToken();
     setStatus("PENDING");
     (async () => {
-      const { items } = await request({
+      const { success, data } = await request({
         method: "GET",
-        endpoint:
-          "/videos?part=snippet&part=statistics&chart=mostPopular&maxResults=50",
+        endpoint: "/videos",
       });
-      if (items.length) {
-        setVideosList(items);
+      if (success) {
+        setVideosList(data);
         setStatus("IDLE");
       }
     })();
@@ -32,7 +31,6 @@ export const Home = () => {
       cancelToken.cancel();
     };
   }, []);
-
   return (
     <>
       {status !== "IDLE" && <Loader />}

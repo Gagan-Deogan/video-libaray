@@ -7,7 +7,7 @@ export const Playlist = () => {
   const { id } = useParams();
   const { playlists, playlistDispatch } = usePlaylistContext();
   const getPlaylistDetails = (playlists, id) => {
-    return playlists.find((playlist) => playlist.id === id);
+    return playlists.find((playlist) => playlist._id === id);
   };
   const playlistDetails = getPlaylistDetails(playlists, id);
   const [editdescription, setEditdescription] = useState(false);

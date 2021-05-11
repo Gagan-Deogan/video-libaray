@@ -6,6 +6,7 @@ const PlaylistContext = createContext();
 export const PlaylistProvider = ({ children }) => {
   const [playlists, playlistDispatch] = useReducer(reducer, initialPlaylist);
   const { snakbarDispatch } = useSnakbarContext();
+
   const handelCreatePlaylist = ({
     newPlaylistName,
     playlistsIncludeThisVideo,
@@ -35,7 +36,7 @@ export const PlaylistProvider = ({ children }) => {
     try {
       const reducer = (acc, playlist) => {
         const isAlreadyInclude = playlist.videos.find(
-          (video) => video.id === vidoeToPlaylist.id
+          (video) => video._id === vidoeToPlaylist._id
         );
         return !!isAlreadyInclude ? acc.concat([playlist.name]) : acc;
       };
@@ -44,6 +45,7 @@ export const PlaylistProvider = ({ children }) => {
       return [];
     }
   };
+
   const AddVideoToPlaylist = ({ vidoeToPlaylist, playlistId }) => {
     playlistDispatch({
       type: "ADD_VIDEO_TO_PLAYLIST",
@@ -51,6 +53,7 @@ export const PlaylistProvider = ({ children }) => {
     });
     snakbarDispatch({ type: "SUCCESS", payload: "Video Added Succesfully" });
   };
+
   const RemoveFromPlaylist = ({ vidoeToPlaylist, playlistId }) => {
     playlistDispatch({
       type: "REMOVE_VIDEO_FROM_PLAYLIST",
@@ -58,6 +61,7 @@ export const PlaylistProvider = ({ children }) => {
     });
     snakbarDispatch({ type: "SUCCESS", payload: "Video Remove Succesfully" });
   };
+
   return (
     <PlaylistContext.Provider
       value={{

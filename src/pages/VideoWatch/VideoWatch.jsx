@@ -17,13 +17,13 @@ export const VideoWatch = () => {
   useEffect(() => {
     setStatus("PENDING");
     (async () => {
-      const { items } = await request({
-        endpoint: "videos?part=snippet&part=statistics&id=" + videoId,
+      const { success, data } = await request({
+        endpoint: `videos/${videoId}`,
         method: "GET",
       });
-      if (items) {
+      if (success) {
         setStatus("IDLE");
-        setVideoDetails(items[0]);
+        setVideoDetails(data);
       }
     })();
   }, []);
@@ -35,7 +35,6 @@ export const VideoWatch = () => {
           <section className="padding-8 w8 sm-w12">
             {videoDetails && (
               <VidoeDetailsContainer
-                videoId={videoId}
                 videoDetails={videoDetails}
                 setVideoPlayed={setVideoPlayed}
               />

@@ -18,7 +18,7 @@ export const LikedAndDisLikedVideosProvider = ({ children }) => {
       });
       likeAndDislikeVideosDispatch({
         type: "REMOVE_FROM_DISLIKE_VIDEOS",
-        payload: videoDetails.id,
+        payload: videoDetails._id,
       });
       snakbarDispatch({
         type: "SUCCESS",
@@ -27,7 +27,7 @@ export const LikedAndDisLikedVideosProvider = ({ children }) => {
     } else {
       likeAndDislikeVideosDispatch({
         type: "REMOVE_FROM_LIKE_VIDEOS",
-        payload: videoDetails.id,
+        payload: videoDetails._id,
       });
       snakbarDispatch({
         type: "SUCCESS",
@@ -44,7 +44,7 @@ export const LikedAndDisLikedVideosProvider = ({ children }) => {
       });
       likeAndDislikeVideosDispatch({
         type: "REMOVE_FROM_LIKE_VIDEOS",
-        payload: videoDetails.id,
+        payload: videoDetails._id,
       });
       snakbarDispatch({
         type: "SUCCESS",
@@ -53,7 +53,7 @@ export const LikedAndDisLikedVideosProvider = ({ children }) => {
     } else {
       likeAndDislikeVideosDispatch({
         type: "REMOVE_FROM_DISLIKE_VIDEOS",
-        payload: videoDetails.id,
+        payload: videoDetails._id,
       });
       snakbarDispatch({
         type: "SUCCESS",

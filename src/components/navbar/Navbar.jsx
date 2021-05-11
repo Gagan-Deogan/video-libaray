@@ -99,13 +99,13 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
         <fieldset className=" column padding-t-8">
           {playlists.map((playlist) => (
             <NavOption
-              key={playlist.id}
+              key={playlist._id}
               isNavbarOpen={isNavbarOpen}
               name={playlist.name}
-              navTo={`/playlist/${playlist.id}`}
+              navTo={`/playlist/${playlist._id}`}
               icon={
                 <PlaylistIcon
-                  isActive={location.pathname === `/playlist/${playlist.id}`}
+                  isActive={location.pathname === `/playlist/${playlist._id}`}
                 />
               }
             />
