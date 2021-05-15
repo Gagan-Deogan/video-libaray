@@ -12,7 +12,7 @@ export const Home = () => {
   const { handleSaveVideoToggle } = useSaveVideosContext();
   const { status, setStatus } = useStatus();
   const [videosList, setVideosList] = useState();
-  const [vidoeToPlaylist, setVideoToPlaylist] = useState();
+  const [videoToPlaylist, setVideoToPlaylist] = useState();
 
   useEffect(() => {
     const cancelToken = getCancelToken();
@@ -44,13 +44,13 @@ export const Home = () => {
                   setVideoToPlaylist={setVideoToPlaylist}
                   cardFor="EXPLORE_PAGE"
                   handleSaveVideoToggle={handleSaveVideoToggle}
-                  key={video.id}
+                  key={video._id}
                 />
               ))}
           </ul>
-          {vidoeToPlaylist && (
+          {videoToPlaylist && (
             <AddToPlaylistModel
-              vidoeToPlaylist={vidoeToPlaylist}
+              videoToPlaylist={videoToPlaylist}
               setVideoToPlaylist={setVideoToPlaylist}
             />
           )}

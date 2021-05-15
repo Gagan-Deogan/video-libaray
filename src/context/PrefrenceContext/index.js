@@ -1,4 +1,4 @@
 export {
   LikedAndDisLikedVideosProvider,
   useLikedAndDisLikedVideosContext,
-} from "./LikedAndDislikeVideosContext";
+} from "./PrefrenceContext";

@@ -1,9 +1,11 @@
 import "./navbar.css";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../Context/AuthContext";
 import { usePlaylistContext } from "../../Context/PlaylistContext";
 import { useTheme } from "../../Context/ThemeContext";
 import { Model } from "../Model";
 import { Hidden } from "../Hidden";
+import { Avatar } from "../Avatar";
 import {
   HomeIcon,
   PlaylistIcon,
@@ -43,8 +45,10 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
 
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { playlists } = usePlaylistContext();
   const { theme, toggleTheme } = useTheme();
+  const { user } = useAuthContext();
   return (
     <>
       <nav className="row align-center padding-16 w12 justify-between">
@@ -60,11 +64,19 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
             <Logo />
           </NavLink>
         </div>
-        <div className="row">
+        <div className="row align-center">
           <button className="btn-link margin-r-16" onClick={toggleTheme}>
             {theme !== "DARK" && <Moon />}
             {theme === "DARK" && <Sun />}
           </button>
+          {!user && (
+            <button
+              className="sm-btn-pry-fil margin-r-16"
+              onClick={() => navigate("/login")}>
+              Login
+            </button>
+          )}
+          {user && <Avatar image={user.image} name={user.name} />}
         </div>
       </nav>
       <Hidden hideAt="sm-up">

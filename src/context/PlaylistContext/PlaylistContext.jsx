@@ -1,13 +1,17 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { useSnakbarContext } from "../SnakbarContext";
+import { useAuthContext } from "../AuthContext";
 import { reducer, initialPlaylist } from "./reducer";
+import { useRequest } from "../../utils";
 const PlaylistContext = createContext();
 
 export const PlaylistProvider = ({ children }) => {
   const [playlists, playlistDispatch] = useReducer(reducer, initialPlaylist);
   const { snakbarDispatch } = useSnakbarContext();
+  const { user } = useAuthContext();
+  const { request } = useRequest();
 
-  const handelCreatePlaylist = ({
+  const handelCreatePlaylist = async ({
     newPlaylistName,
     playlistsIncludeThisVideo,
     setShowCreatePlaylist,
@@ -19,24 +23,44 @@ export const PlaylistProvider = ({ children }) => {
     ) {
       return null;
     } else {
-      playlistDispatch({ type: "CREATE_PLAYLIST", payload: newPlaylistName });
-      setShowCreatePlaylist(false);
-      setNewPlaylistName("");
-      snakbarDispatch({
-        type: "SUCCESS",
-        payload: "Playlist Created Successfully",
-      });
+      if (user) {
+        const { success, data } = await request({
+          method: "POST",
+          endpoint: `/playlists/create/${user._id}`,
+          body: { name: newPlaylistName },
+        });
+        if (success) {
+          playlistDispatch({
+            type: "SET_USER_PLAYLIST",
+            payload: data,
+          });
+          snakbarDispatch({
+            type: "SUCCESS",
+            payload: "Playlist updated Succesfully",
+          });
+          setShowCreatePlaylist(false);
+          setNewPlaylistName("");
+        }
+      } else {
+        playlistDispatch({ type: "CREATE_PLAYLIST", payload: newPlaylistName });
+        setShowCreatePlaylist(false);
+        setNewPlaylistName("");
+        snakbarDispatch({
+          type: "SUCCESS",
+          payload: "Playlist Created Successfully",
+        });
+      }
     }
   };
 
   const getPlaylistsNamesIncludeThisVideo = ({
     playlists,
-    vidoeToPlaylist,
+    videoToPlaylist,
   }) => {
     try {
       const reducer = (acc, playlist) => {
         const isAlreadyInclude = playlist.videos.find(
-          (video) => video._id === vidoeToPlaylist._id
+          (video) => video._id === videoToPlaylist._id
         );
         return !!isAlreadyInclude ? acc.concat([playlist.name]) : acc;
       };
@@ -46,21 +70,82 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
-  const AddVideoToPlaylist = ({ vidoeToPlaylist, playlistId }) => {
-    playlistDispatch({
-      type: "ADD_VIDEO_TO_PLAYLIST",
-      payload: { video: vidoeToPlaylist, playlistId },
-    });
-    snakbarDispatch({ type: "SUCCESS", payload: "Video Added Succesfully" });
+  const ToogleVideoFromPlaylist = async ({ video, playlistId }) => {
+    if (user) {
+      const { success, data } = await request({
+        method: "POST",
+        endpoint: `playlists/${user._id}/${playlistId}/${video._id}`,
+      });
+      if (success) {
+        playlistDispatch({
+          type: "SET_USER_PLAYLIST",
+          payload: data,
+        });
+        snakbarDispatch({
+          type: "SUCCESS",
+          payload: "Playlist updated Succesfully",
+        });
+      }
+    } else {
+      playlistDispatch({
+        type: "TOOGLE_VIDEO_FROM_PLAYLIST",
+        payload: { video, playlistId },
+      });
+      snakbarDispatch({
+        type: "SUCCESS",
+        payload: "Playlist updated Succesfully",
+      });
+    }
   };
 
-  const RemoveFromPlaylist = ({ vidoeToPlaylist, playlistId }) => {
+  const setPlaylists = ({ playlists }) => {
     playlistDispatch({
-      type: "REMOVE_VIDEO_FROM_PLAYLIST",
-      payload: { video: vidoeToPlaylist, playlistId },
+      type: "SET_USER_PLAYLIST",
+      payload: playlists,
     });
-    snakbarDispatch({ type: "SUCCESS", payload: "Video Remove Succesfully" });
   };
+
+  const RemovePlaylist = async ({ playlistId }) => {
+    if (user) {
+      const { success, data } = await request({
+        method: "DELETE",
+        endpoint: `playlists/${user._id}/${playlistId}`,
+      });
+      if (success) {
+        playlistDispatch({
+          type: "REMOVE_PLAYLIST",
+          payload: playlistId,
+        });
+        snakbarDispatch({
+          type: "SUCCESS",
+          payload: data,
+        });
+      }
+    } else {
+      playlistDispatch({
+        type: "REMOVE_PLAYLIST",
+        payload: playlistId,
+      });
+      snakbarDispatch({
+        type: "SUCCESS",
+        payload: "Playlist Removed Successfully",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const { success, data } = await request({
+          method: "GET",
+          endpoint: `/playlists/${user._id}`,
+        });
+        if (success) {
+          setPlaylists({ playlists: data });
+        }
+      })();
+    }
+  }, [user]);
 
   return (
     <PlaylistContext.Provider
@@ -69,8 +154,8 @@ export const PlaylistProvider = ({ children }) => {
         playlistDispatch,
         handelCreatePlaylist,
         getPlaylistsNamesIncludeThisVideo,
-        AddVideoToPlaylist,
-        RemoveFromPlaylist,
+        ToogleVideoFromPlaylist,
+        RemovePlaylist,
       }}>
       {children}
     </PlaylistContext.Provider>

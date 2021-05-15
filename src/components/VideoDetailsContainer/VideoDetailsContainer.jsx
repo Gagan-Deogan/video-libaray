@@ -1,19 +1,19 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { useLikedAndDisLikedVideosContext } from "../../Context/LikedAndDislikeVideosContext";
+import { useLikedAndDisLikedVideosContext } from "../../Context/PrefrenceContext";
 import { AddToPlaylistModel } from "../AddToPlaylistModel";
 import { useSaveVideosContext } from "../../Context/SaveVideosContext";
-import { ddmmmyyyy, hhmmss } from "../../utils";
+import { hhmmss } from "../../utils";
 import {
   SaveIcon,
   PlaylistAddIcon,
   LikeIcon,
   DislikeIcon,
-} from "../../assests/icons/";
+} from "../../assests/icons";
 
-export const VidoeDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
+export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
   const {
-    videoId,
+    ytId,
     title,
     description,
     likes,
@@ -28,7 +28,7 @@ export const VidoeDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
     handleDislikeToggle,
   } = useLikedAndDisLikedVideosContext();
   const { handleSaveVideoToggle } = useSaveVideosContext();
-  const [vidoeToPlaylist, setVideoToPlaylist] = useState();
+  const [videoToPlaylist, setVideoToPlaylist] = useState();
   const isInList = (videosList, id) => {
     return !!videosList.find((video) => video._id === id);
   };
@@ -39,7 +39,7 @@ export const VidoeDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
       <div className="card bor-rad-8 video-container ">
         <div className="video-player w12 bor-rad-8 ovr-flw-hide">
           <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${videoId}`}
+            url={`https://www.youtube.com/watch?v=${ytId}`}
             controls={true}
             width="100%"
             height="100%"
@@ -89,9 +89,9 @@ export const VidoeDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
         </div>
         <h6 className="padding-8 padding-b-16">{description}</h6>
       </div>
-      {vidoeToPlaylist && (
+      {videoToPlaylist && (
         <AddToPlaylistModel
-          vidoeToPlaylist={vidoeToPlaylist}
+          videoToPlaylist={videoToPlaylist}
           setVideoToPlaylist={setVideoToPlaylist}
         />
       )}

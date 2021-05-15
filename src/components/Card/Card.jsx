@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import "./card.css";
 import { ThreeDotsIcon, SaveIcon, PlaylistAddIcon } from "../../assests/icons";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../Context/AuthContext";
 export const Card = ({
   video,
   setVideoToPlaylist,
   cardFor,
   handleSaveVideoToggle,
 }) => {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const [expandDropDown, setExpandDropDown] = useState(false);
   const callSave = (video) => {

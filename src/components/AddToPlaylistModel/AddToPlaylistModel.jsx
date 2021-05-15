@@ -1,38 +1,27 @@
 import React, { useState } from "react";
 import "./addPlaylist.css";
-import { CloseIcon } from "../../assests/icons";
+import { CloseIcon, DeleteIcon } from "../../assests/icons";
 import { usePlaylistContext } from "../../Context/PlaylistContext";
 
-export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
+export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
-  const [newPlaylistName, setNewPlaylistName] = useState();
+  const [newPlaylistName, setNewPlaylistName] = useState("");
   const {
     playlists,
     handelCreatePlaylist,
     getPlaylistsNamesIncludeThisVideo,
-    AddVideoToPlaylist,
-    RemoveFromPlaylist,
+    ToogleVideoFromPlaylist,
+    RemovePlaylist,
   } = usePlaylistContext();
 
   const playlistsIncludeThisVideo = getPlaylistsNamesIncludeThisVideo({
     playlists,
-    vidoeToPlaylist,
+    videoToPlaylist,
   });
   const getAllPlaylistName = () => {
     return playlists.map((playlist) => playlist.name);
   };
   const isError = getAllPlaylistName().includes(newPlaylistName);
-  const handleAddOrRemoveFromPlaylist = ({
-    playlistsIncludeThisVideo,
-    vidoeToPlaylist,
-    playlist,
-  }) => {
-    if (!playlistsIncludeThisVideo.includes(playlist.name)) {
-      AddVideoToPlaylist({ vidoeToPlaylist, playlistId: playlist._id });
-    } else {
-      RemoveFromPlaylist({ vidoeToPlaylist, playlistId: playlist._id });
-    }
-  };
 
   return (
     <div className="model-container pos-f justify-center align-center box-shd ">
@@ -50,21 +39,34 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
         <fieldset className="column margin-t-8 padding-t-8 padding-b-16">
           {!showCreatePlaylist &&
             playlists.map((playlist) => (
-              <label className="row margin-t-8 align-center" key={playlist._id}>
-                <input
-                  type="checkbox"
-                  onChange={() =>
-                    handleAddOrRemoveFromPlaylist({
-                      playlistsIncludeThisVideo,
-                      vidoeToPlaylist,
-                      playlist,
-                    })
-                  }
-                  checked={playlistsIncludeThisVideo.includes(playlist.name)}
-                />
-                <div className="check margin-r-16"></div>
-                <p>{playlist.name}</p>
-              </label>
+              <div className="row justify-between align-center">
+                <label
+                  className="row margin-t-8 align-center"
+                  key={playlist._id}>
+                  <input
+                    type="checkbox"
+                    onChange={() =>
+                      ToogleVideoFromPlaylist({
+                        video: videoToPlaylist,
+                        playlistId: playlist._id,
+                      })
+                    }
+                    checked={playlistsIncludeThisVideo.includes(playlist.name)}
+                  />
+                  <div className="check margin-r-16"></div>
+                  <p>{playlist.name}</p>
+                </label>
+                {playlist.name !== "My Playlist" && (
+                  <button
+                    className="btn-link"
+                    onClick={() => {
+                      RemovePlaylist({ playlistId: playlist._id });
+                    }}>
+                    {" "}
+                    <DeleteIcon />{" "}
+                  </button>
+                )}
+              </div>
             ))}
           {showCreatePlaylist && (
             <>
@@ -75,9 +77,8 @@ export const AddToPlaylistModel = ({ vidoeToPlaylist, setVideoToPlaylist }) => {
                 className={isError ? "text-err-area margin-t-8" : "margin-t-8"}
                 value={newPlaylistName}
                 onChange={(e) => setNewPlaylistName(e.target.value)}></input>
-              <div className={isError ? "text-err" : "text-help"}>
+              <div className={isError && "text-err"}>
                 {isError && "This Name already Exists"}
-                {!isError && "Enter Name of new Playlist"}
               </div>
             </>
           )}

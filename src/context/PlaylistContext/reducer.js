@@ -5,28 +5,45 @@ export const initialPlaylist = [
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "ADD_VIDEO_TO_PLAYLIST":
-      return state.map((playlist) =>
-        playlist._id === action.payload.playlistId
-          ? {
-              ...playlist,
-              videos: playlist.videos.concat(action.payload.video),
-            }
-          : playlist
+    case "SET_USER_PLAYLIST":
+      return action.payload;
+    case "TOOGLE_VIDEO_FROM_PLAYLIST":
+      const playlist = state.find(
+        (playlist) => playlist._id === action.payload.playlistId
       );
-    case "REMOVE_VIDEO_FROM_PLAYLIST":
-      return state.map((playlist) =>
-        playlist._id === action.payload.playlistId
-          ? {
-              ...playlist,
-              videos: playlist.videos.filter(
-                (video) => video._id !== action.payload.video._id
-              ),
-            }
-          : playlist
-      );
+      if (!!playlist) {
+        const isVideoPresent = playlist.videos.find(
+          (video) => video._id === action.payload.video._id
+        );
+        if (!isVideoPresent) {
+          return state.map((playlist) =>
+            playlist._id === action.payload.playlistId
+              ? {
+                  ...playlist,
+                  videos: playlist.videos.concat(action.payload.video),
+                }
+              : playlist
+          );
+        } else {
+          return state.map((playlist) =>
+            playlist._id === action.payload.playlistId
+              ? {
+                  ...playlist,
+                  videos: playlist.videos.filter(
+                    (video) => video._id !== action.payload.video._id
+                  ),
+                }
+              : playlist
+          );
+        }
+      }
+      return state;
+    case "REMOVE_PLAYLIST":
+      return state.filter((playlist) => playlist._id !== action.payload);
     case "CREATE_PLAYLIST":
-      return state.concat([{ name: action.payload, id: uuidv4(), videos: [] }]);
+      return state.concat([
+        { name: action.payload, _id: uuidv4(), videos: [] },
+      ]);
     case "EDIT_DESCRIPTION":
       return state.map((playlist) =>
         playlist._id === action.payload.playlistId

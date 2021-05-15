@@ -1,12 +1,13 @@
 import axios from "axios";
 const { REACT_APP_API_KEY } = process.env;
 const instance = axios.create({
-  baseURL: "https://GreenifyPlay.gagandeogan.repl.co",
+  baseURL: REACT_APP_API_KEY,
   headers: { "content-type": "application/json" },
 });
 export const useRequest = () => {
   const getCancelToken = () => axios.CancelToken.source();
   const request = async ({ method, endpoint, body = {}, cancelToken }) => {
+    console.log(method);
     try {
       switch (method) {
         case "GET": {

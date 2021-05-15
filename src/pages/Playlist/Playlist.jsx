@@ -72,7 +72,7 @@ export const Playlist = () => {
       </div>
       <ul className="dis-grid videos-container margin-t-16">
         {playlistDetails.videos.map((video) => (
-          <Card key={video.id} video={video} />
+          <Card key={video._id} video={video} />
         ))}
       </ul>
     </section>

@@ -5,7 +5,7 @@ import { useStatus } from "../../Context/LoaderContext";
 import { NotesBox } from "../../Components/NotesBox";
 import { Loader } from "../../Components/Loader";
 import { useRequest } from "../../utils";
-import { VidoeDetailsContainer } from "../../Components/VidoeDetailsContainer";
+import { VideoDetailsContainer } from "../../Components/VideoDetailsContainer";
 
 export const VideoWatch = () => {
   const { videoId } = useParams();
@@ -34,7 +34,7 @@ export const VideoWatch = () => {
         <div className="row sm-warp">
           <section className="padding-8 w8 sm-w12">
             {videoDetails && (
-              <VidoeDetailsContainer
+              <VideoDetailsContainer
                 videoDetails={videoDetails}
                 setVideoPlayed={setVideoPlayed}
               />
