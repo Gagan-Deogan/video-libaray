@@ -1,31 +1,39 @@
-export const initial = { likedVideos: [], disLikedVideos: [] };
+export const initial = [];
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "ADD_TO_LIKE_VIDEOS":
-      return {
-        ...state,
-        likedVideos: state.likedVideos.concat([action.payload]),
-      };
-    case "REMOVE_FROM_LIKE_VIDEOS":
-      return {
-        ...state,
-        likedVideos: state.likedVideos.filter(
-          (video) => video._id !== action.payload
-        ),
-      };
-    case "ADD_TO_DISLIKE_VIDEOS":
-      return {
-        ...state,
-        disLikedVideos: state.disLikedVideos.concat([action.payload]),
-      };
-    case "REMOVE_FROM_DISLIKE_VIDEOS":
-      return {
-        ...state,
-        disLikedVideos: state.disLikedVideos.filter(
-          (video) => video._id !== action.payload
-        ),
-      };
+    case "LIKE": {
+      const selectedPrefrence = state.find(
+        (prefrence) => prefrence.video._id === action.payload.video._id
+      );
+      if (!!selectedPrefrence) {
+        return state.map((prefrence) =>
+          prefrence.video._id === selectedPrefrence.video._id
+            ? { ...prefrence, feels: "LIKE" }
+            : prefrence
+        );
+      } else {
+        return state.concat({ video: action.payload.video, feels: "LIKE" });
+      }
+    }
+    case "DISLIKE": {
+      const selectedPrefrence = state.find(
+        (prefrence) => prefrence.video._id === action.payload.video._id
+      );
+      if (!!selectedPrefrence) {
+        return state.map((prefrence) =>
+          prefrence.video._id === selectedPrefrence.video._id
+            ? { ...prefrence, feels: "DISLIKE" }
+            : prefrence
+        );
+      } else {
+        return state.concat({ video: action.payload.video, feels: "DISLIKE" });
+      }
+    }
+    case "REMOVE":
+      return state.filter(
+        (prefrence) => prefrence.video._id !== action.payload.video._id
+      );
     default:
       return state;
   }

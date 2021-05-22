@@ -3,7 +3,7 @@ import ReactPlayer from "react-player/youtube";
 import { useLikedAndDisLikedVideosContext } from "../../Context/PrefrenceContext";
 import { AddToPlaylistModel } from "../AddToPlaylistModel";
 import { useSaveVideosContext } from "../../Context/SaveVideosContext";
-import { hhmmss } from "../../utils";
+import { hhmmss, getUserfeels } from "../../utils";
 import {
   SaveIcon,
   PlaylistAddIcon,
@@ -22,18 +22,15 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
     views,
   } = videoDetails;
   const {
-    likedVideos,
-    disLikedVideos,
-    handleLikeToggle,
-    handleDislikeToggle,
+    prefrenceVideos,
+    hnadleVideoPrefenceToogle,
   } = useLikedAndDisLikedVideosContext();
   const { handleSaveVideoToggle } = useSaveVideosContext();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
-  const isInList = (videosList, id) => {
-    return !!videosList.find((video) => video._id === id);
-  };
-  const isLiked = isInList(likedVideos, videoDetails?._id);
-  const isDisLiked = isInList(disLikedVideos, videoDetails?._id);
+  const prefrence = getUserfeels({
+    prefrenceVideos,
+    videoId: videoDetails._id,
+  });
   return (
     <>
       <div className="card bor-rad-8 video-container ">
@@ -69,20 +66,23 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
             <button
               className="btn-link margin-8"
               onClick={() =>
-                handleLikeToggle({ videoDetails, toggleType: !isLiked })
+                hnadleVideoPrefenceToogle({
+                  video: videoDetails,
+                  toogleType: prefrence === "LIKE" ? "REMOVE" : "LIKE",
+                })
               }>
-              <LikeIcon isActive={isLiked} />
+              <LikeIcon isActive={prefrence === "LIKE"} />
               <h6 className="text-grey bold margin-l-4 ">{likes}</h6>
             </button>
             <button
               className="btn-link margin-8"
               onClick={(e) =>
-                handleDislikeToggle({
-                  videoDetails,
-                  toggleType: !isDisLiked,
+                hnadleVideoPrefenceToogle({
+                  video: videoDetails,
+                  toogleType: prefrence === "DISLIKE" ? "REMOVE" : "DISLIKE",
                 })
               }>
-              <DislikeIcon isActive={isDisLiked} />
+              <DislikeIcon isActive={prefrence === "DISLIKE"} />
               <h6 className="text-grey bold margin-l-4 ">{dislikes}</h6>
             </button>
           </div>
