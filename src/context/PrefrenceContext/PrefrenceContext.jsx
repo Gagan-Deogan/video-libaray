@@ -3,44 +3,47 @@ import { useSnakbarContext } from "../SnakbarContext";
 import { reducer, initial } from "./reducer";
 import { useAuthContext } from "../AuthContext";
 import { useRequest } from "../../utils";
-const LikedAndDisLikedVideos = createContext();
+const PrefrencedVideosContext = createContext();
 
-export const LikedAndDisLikedVideosProvider = ({ children }) => {
+export const PrefrencedVideosProvider = ({ children }) => {
   const { user } = useAuthContext();
   const { request } = useRequest();
-  const { snakbarDispatch } = useSnakbarContext();
-  const [prefrenceVideos, likeAndDislikeVideosDispatch] = useReducer(
+  const [prefrenceVideos, prefrenceVideosDispatch] = useReducer(
     reducer,
     initial
   );
 
-  const hnadleVideoPrefenceToogle = async ({ video, toogleType }) => {
+  const handleVideoPrefenceToogle = async ({ video, toogleType }) => {
     if (user) {
-      const { success, data } = await request({
-        method: "POST",
-        endpoint: `prefrences/${user.prefrence._id}/${video._id}`,
-        body: {
-          feels: toogleType,
-        },
-      });
-      if (success) {
-        likeAndDislikeVideosDispatch({ type: toogleType, payload: { video } });
+      try {
+        const { success, data } = await request({
+          method: "POST",
+          endpoint: `prefrences/${user.prefrence._id}/${video._id}`,
+          body: {
+            feels: toogleType,
+          },
+        });
+        if (success) {
+          prefrenceVideosDispatch({ type: toogleType, payload: { video } });
+        }
+      } catch (err) {
+        console.log(err);
       }
     } else {
-      likeAndDislikeVideosDispatch({ type: toogleType, payload: { video } });
+      prefrenceVideosDispatch({ type: toogleType, payload: { video } });
     }
   };
 
   return (
-    <LikedAndDisLikedVideos.Provider
+    <PrefrencedVideosContext.Provider
       value={{
         prefrenceVideos,
-        hnadleVideoPrefenceToogle,
+        handleVideoPrefenceToogle,
       }}>
       {children}
-    </LikedAndDisLikedVideos.Provider>
+    </PrefrencedVideosContext.Provider>
   );
 };
-export const useLikedAndDisLikedVideosContext = () => {
-  return useContext(LikedAndDisLikedVideos);
+export const usePrefrencedVideos = () => {
+  return useContext(PrefrencedVideosContext);
 };

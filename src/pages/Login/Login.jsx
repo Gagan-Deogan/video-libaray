@@ -5,7 +5,6 @@ import { useAuthContext } from "../../Context/AuthContext";
 import { LogoIcon, VisibleIcon, VisibleOffIcon } from "../../assests/icons";
 
 const getFeatureName = (route) => {
-  console.log(route);
   switch (route) {
     case "/likedVideos":
       return "like Videos";
@@ -27,7 +26,6 @@ export const Login = () => {
     handleLogin(email, password, setLoginError);
   };
   const feature = state ? getFeatureName(state.from) : "";
-  console.log(feature);
   return (
     <section className="column justify-center align-center">
       <div className="card column login-container w12 align-center  margin-t-32 padding-64 padding-t-32 bor-rad-8 box-shd">

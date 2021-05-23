@@ -1,9 +1,8 @@
 import React from "react";
 import { Card } from "../../Components/Card";
-import { useLikedAndDisLikedVideosContext } from "../../Context/PrefrenceContext";
+import { usePrefrencedVideos } from "../../Context/PrefrenceContext";
 export const LikeVideos = () => {
-  const { likedVideos } = useLikedAndDisLikedVideosContext();
-
+  const { prefrenceVideos } = usePrefrencedVideos();
   return (
     <>
       <section>
@@ -11,9 +10,12 @@ export const LikeVideos = () => {
           <h1 className="bold">Liked Videos</h1>
         </div>
         <ul className="dis-grid videos-container margin-t-16">
-          {likedVideos.map((video) => (
-            <Card key={video.id} video={video} />
-          ))}
+          {prefrenceVideos.map(
+            (prefrence) =>
+              prefrence.feels === "LIKE" && (
+                <Card key={prefrence.video._Id} video={prefrence.video} />
+              )
+          )}
         </ul>
       </section>
     </>

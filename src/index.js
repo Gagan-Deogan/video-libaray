@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { PlaylistProvider } from "./Context/PlaylistContext";
 import { SaveVideosProvider } from "./Context/SaveVideosContext";
-import { LikedAndDisLikedVideosProvider } from "./Context/PrefrenceContext";
+import { PrefrencedVideosProvider } from "./Context/PrefrenceContext";
 import { SnakbarContextProvider } from "./Context/SnakbarContext";
 import { LoaderContextProvider } from "./Context/LoaderContext";
 import { AuthProvider } from "./Context/AuthContext";
@@ -21,9 +21,9 @@ ReactDOM.render(
               <SaveVideosProvider>
                 <LoaderContextProvider>
                   <NotesProvider>
-                    <LikedAndDisLikedVideosProvider>
+                    <PrefrencedVideosProvider>
                       <App />
-                    </LikedAndDisLikedVideosProvider>
+                    </PrefrencedVideosProvider>
                   </NotesProvider>
                 </LoaderContextProvider>
               </SaveVideosProvider>

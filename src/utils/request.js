@@ -7,7 +7,6 @@ const instance = axios.create({
 export const useRequest = () => {
   const getCancelToken = () => axios.CancelToken.source();
   const request = async ({ method, endpoint, body = {}, cancelToken }) => {
-    console.log(method);
     try {
       switch (method) {
         case "GET": {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { useLikedAndDisLikedVideosContext } from "../../Context/PrefrenceContext";
+import { usePrefrencedVideos } from "../../Context/PrefrenceContext";
 import { AddToPlaylistModel } from "../AddToPlaylistModel";
 import { useSaveVideosContext } from "../../Context/SaveVideosContext";
 import { hhmmss, getUserfeels } from "../../utils";
@@ -21,10 +21,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
     publishedAt,
     views,
   } = videoDetails;
-  const {
-    prefrenceVideos,
-    hnadleVideoPrefenceToogle,
-  } = useLikedAndDisLikedVideosContext();
+  const { prefrenceVideos, handleVideoPrefenceToogle } = usePrefrencedVideos();
   const { handleSaveVideoToggle } = useSaveVideosContext();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
   const prefrence = getUserfeels({
@@ -66,7 +63,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
             <button
               className="btn-link margin-8"
               onClick={() =>
-                hnadleVideoPrefenceToogle({
+                handleVideoPrefenceToogle({
                   video: videoDetails,
                   toogleType: prefrence === "LIKE" ? "REMOVE" : "LIKE",
                 })
@@ -77,7 +74,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
             <button
               className="btn-link margin-8"
               onClick={(e) =>
-                hnadleVideoPrefenceToogle({
+                handleVideoPrefenceToogle({
                   video: videoDetails,
                   toogleType: prefrence === "DISLIKE" ? "REMOVE" : "DISLIKE",
                 })
