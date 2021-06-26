@@ -1,11 +1,11 @@
 import "./index.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNotesContext } from "../../Context/NotesContext";
+import { useNotes } from "context/NotesProvider";
 import { Note } from "../Note";
 export const NotesBox = ({ videoPlayed }) => {
   const { videoId } = useParams();
-  const { findNotesByVideoId, AddNotes } = useNotesContext();
+  const { findNotesByVideoId, AddNotes } = useNotes();
   const [note, setNote] = useState("");
   const VideoNotes = findNotesByVideoId({ videoId });
   const handleSubmit = (e) => {

@@ -1,8 +1,8 @@
 import "./navbar.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/AuthContext";
-import { usePlaylistContext } from "../../Context/PlaylistContext";
-import { useTheme } from "../../Context/ThemeContext";
+import { useAuth } from "context/AuthProvider";
+import { usePlaylist } from "context/PlaylistProvider";
+import { useTheme } from "context/ThemeProvider";
 import { Model } from "../Model";
 import { Hidden } from "../Hidden";
 import { Avatar } from "../Avatar";
@@ -15,7 +15,7 @@ import {
   Logo,
   Moon,
   Sun,
-} from "../../assests/icons";
+} from "assests/icons";
 
 const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
   return (
@@ -46,9 +46,9 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { playlists } = usePlaylistContext();
+  const { playlists } = usePlaylist();
   const { theme, toggleTheme } = useTheme();
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   return (
     <>
       <nav className="row align-center padding-16 w12 justify-between">

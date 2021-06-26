@@ -1,11 +1,11 @@
 import "./watch.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useStatus } from "../../Context/LoaderContext";
-import { NotesBox } from "../../Components/NotesBox";
-import { Loader } from "../../Components/Loader";
-import { useRequest } from "../../utils";
-import { VideoDetailsContainer } from "../../Components/VideoDetailsContainer";
+import { useStatus } from "context/LoaderProvider";
+import { NotesBox } from "components/NotesBox";
+import { Loader } from "components/Loader";
+import { useRequest } from "utils";
+import { VideoDetailsContainer } from "components/VideoDetailsContainer";
 
 export const VideoWatch = () => {
   const { videoId } = useParams();

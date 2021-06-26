@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./addPlaylist.css";
-import { CloseIcon, DeleteIcon } from "../../assests/icons";
-import { usePlaylistContext } from "../../Context/PlaylistContext";
+import { CloseIcon, DeleteIcon } from "assests/icons";
+import { usePlaylist } from "context/PlaylistProvider";
 
 export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
@@ -12,7 +12,7 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
     getPlaylistsNamesIncludeThisVideo,
     ToogleVideoFromPlaylist,
     RemovePlaylist,
-  } = usePlaylistContext();
+  } = usePlaylist();
 
   const playlistsIncludeThisVideo = getPlaylistsNamesIncludeThisVideo({
     playlists,
@@ -24,7 +24,7 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
   const isError = getAllPlaylistName().includes(newPlaylistName);
 
   return (
-    <div className="model-container pos-f justify-center align-center box-shd ">
+    <div className="model-container position-fixed justify-center align-center box-shd ">
       <div className="model sm-w9 md-w5 w3 bor-rad-4 box-shd add-playlist-model">
         <div className="row justify-between align-center">
           <h3>{showCreatePlaylist ? "Create Playlist" : "Save to .."}</h3>

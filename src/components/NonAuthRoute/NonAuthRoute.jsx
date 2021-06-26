@@ -1,6 +1,6 @@
 import { Route, Navigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/AuthContext";
+import { useAuth } from "context/AuthProvider";
 export const NonAuthRoute = ({ path, ...props }) => {
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   return user ? <Navigate replace to="/" /> : <Route path={path} {...props} />;
 };

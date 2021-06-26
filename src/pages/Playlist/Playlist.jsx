@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { usePlaylistContext } from "../../Context/PlaylistContext";
-import { Card } from "../../Components/Card";
-import { EditIcon } from "../../assests/icons";
+import { usePlaylist } from "context/PlaylistProvider";
+import { Card } from "components/Card";
+import { EditIcon } from "assests/icons";
 export const Playlist = () => {
   const { id } = useParams();
-  const { playlists, playlistDispatch } = usePlaylistContext();
+  const { playlists, playlistDispatch } = usePlaylist();
   const getPlaylistDetails = (playlists, id) => {
     return playlists.find((playlist) => playlist._id === id);
   };

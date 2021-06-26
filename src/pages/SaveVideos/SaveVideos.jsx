@@ -1,6 +1,6 @@
 import React from "react";
-import { Card } from "../../Components/Card";
-import { useSaveVideosContext } from "../../Context/SaveVideosContext";
+import { Card } from "components/Card";
+import { useSaveVideosContext } from "context/SaveVideosProvider";
 export const SaveVideos = () => {
   const { saveVideos } = useSaveVideosContext();
   return (

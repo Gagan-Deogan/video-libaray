@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import { useSnakbarContext } from "../SnakbarContext";
-import { useAuthContext } from "../AuthContext";
+import { useSnakbarContext } from "../SnakbarProvider";
+import { useAuth } from "../AuthProvider";
 import { reducer, initialPlaylist } from "./reducer";
-import { useRequest } from "../../utils";
+import { useRequest } from "utils";
 const PlaylistContext = createContext();
 
 export const PlaylistProvider = ({ children }) => {
   const [playlists, playlistDispatch] = useReducer(reducer, initialPlaylist);
   const { snakbarDispatch } = useSnakbarContext();
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   const { request } = useRequest();
 
   const handelCreatePlaylist = async ({
@@ -161,6 +161,6 @@ export const PlaylistProvider = ({ children }) => {
     </PlaylistContext.Provider>
   );
 };
-export const usePlaylistContext = () => {
+export const usePlaylist = () => {
   return useContext(PlaylistContext);
 };

@@ -1,12 +1,11 @@
 import React, { useContext, createContext, useReducer } from "react";
-import { useSnakbarContext } from "../SnakbarContext";
 import { reducer, initial } from "./reducer";
-import { useAuthContext } from "../AuthContext";
-import { useRequest } from "../../utils";
+import { useAuth } from "../AuthProvider";
+import { useRequest } from "utils";
 const PrefrencedVideosContext = createContext();
 
 export const PrefrencedVideosProvider = ({ children }) => {
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   const { request } = useRequest();
   const [prefrenceVideos, prefrenceVideosDispatch] = useReducer(
     reducer,
@@ -44,6 +43,6 @@ export const PrefrencedVideosProvider = ({ children }) => {
     </PrefrencedVideosContext.Provider>
   );
 };
-export const usePrefrencedVideos = () => {
+export const usePrefrenced = () => {
   return useContext(PrefrencedVideosContext);
 };

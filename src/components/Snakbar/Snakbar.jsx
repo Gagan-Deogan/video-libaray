@@ -1,7 +1,7 @@
 import "./snakbar.css";
 import { useEffect } from "react";
-import { CheckIcon } from "../../assests/icons";
-import { useSnakbarContext } from "../../Context/SnakbarContext";
+import { CheckIcon } from "assests/icons";
+import { useSnakbarContext } from "context/SnakbarProvider";
 export const Snakbar = () => {
   const { snakbarStatus, snakbarDispatch } = useSnakbarContext();
   useEffect(() => {

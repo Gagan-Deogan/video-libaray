@@ -1,4 +1,4 @@
-import { uuidv4 } from "../../utils";
+import { uuidv4 } from "utils";
 export const initialPlaylist = [
   { _id: uuidv4(), name: "My playlist", description: "", videos: [] },
 ];

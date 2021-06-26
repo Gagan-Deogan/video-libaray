@@ -1,5 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import { uuidv4 } from "../../utils";
+import { uuidv4 } from "utils";
 const NotesContext = createContext();
 
 const initial = [
@@ -46,6 +46,6 @@ export const NotesProvider = ({ children }) => {
     </NotesContext.Provider>
   );
 };
-export const useNotesContext = () => {
+export const useNotes = () => {
   return useContext(NotesContext);
 };

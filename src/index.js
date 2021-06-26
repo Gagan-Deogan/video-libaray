@@ -1,16 +1,16 @@
 import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { PlaylistProvider } from "./Context/PlaylistContext";
-import { SaveVideosProvider } from "./Context/SaveVideosContext";
-import { PrefrencedVideosProvider } from "./Context/PrefrenceContext";
-import { SnakbarContextProvider } from "./Context/SnakbarContext";
-import { LoaderContextProvider } from "./Context/LoaderContext";
-import { AuthProvider } from "./Context/AuthContext";
+import { PlaylistProvider } from "context/PlaylistProvider";
+import { SaveVideosProvider } from "context/SaveVideosProvider";
+import { PrefrencedVideosProvider } from "context/PrefrenceProvider";
+import { SnakbarContextProvider } from "context/SnakbarProvider";
+import { LoaderContextProvider } from "context/LoaderProvider";
+import { AuthProvider } from "context/AuthProvider";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "./Context/ThemeContext";
-import { NotesProvider } from "./Context/NotesContext";
+import { ThemeProvider } from "context/ThemeProvider";
+import { NotesProvider } from "context/NotesProvider";
 ReactDOM.render(
   <React.StrictMode>
     <Router>

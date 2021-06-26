@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSaveVideosContext } from "../../Context/SaveVideosContext";
-import { useStatus } from "../../Context/LoaderContext";
-import { Card } from "../../Components/Card";
-import { Loader } from "../../Components/Loader";
-import { AddToPlaylistModel } from "../../Components/AddToPlaylistModel";
-import { useRequest } from "../../utils";
+import { useSaveVideosContext } from "context/SaveVideosProvider";
+import { useStatus } from "context/LoaderProvider";
+import { Card } from "components/Card";
+import { Loader } from "components/Loader";
+import { AddToPlaylistModel } from "components/AddToPlaylistModel";
+import { useRequest } from "utils";
 import "./home.css";
 
 export const Home = () => {

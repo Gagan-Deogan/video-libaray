@@ -1,15 +1,15 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { usePrefrencedVideos } from "../../Context/PrefrenceContext";
+import { usePrefrenced } from "context/PrefrenceProvider";
 import { AddToPlaylistModel } from "../AddToPlaylistModel";
-import { useSaveVideosContext } from "../../Context/SaveVideosContext";
-import { hhmmss, getUserfeels } from "../../utils";
+import { useSaveVideosContext } from "context/SaveVideosProvider";
+import { hhmmss, getUserfeels } from "utils";
 import {
   SaveIcon,
   PlaylistAddIcon,
   LikeIcon,
   DislikeIcon,
-} from "../../assests/icons";
+} from "assests/icons";
 
 export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
   const {
@@ -21,7 +21,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
     publishedAt,
     views,
   } = videoDetails;
-  const { prefrenceVideos, handleVideoPrefenceToogle } = usePrefrencedVideos();
+  const { prefrenceVideos, handleVideoPrefenceToogle } = usePrefrenced();
   const { handleSaveVideoToggle } = useSaveVideosContext();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
   const prefrence = getUserfeels({

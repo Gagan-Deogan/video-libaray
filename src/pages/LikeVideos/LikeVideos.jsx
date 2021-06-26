@@ -1,8 +1,8 @@
 import React from "react";
-import { Card } from "../../Components/Card";
-import { usePrefrencedVideos } from "../../Context/PrefrenceContext";
+import { Card } from "components/Card";
+import { usePrefrenced } from "context/PrefrenceProvider";
 export const LikeVideos = () => {
-  const { prefrenceVideos } = usePrefrencedVideos();
+  const { prefrenceVideos } = usePrefrenced();
   return (
     <>
       <section>

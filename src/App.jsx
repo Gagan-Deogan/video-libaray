@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useSnakbarContext } from "./Context/SnakbarContext";
-import { Navbar } from "./Components/Navbar";
-import { Snakbar } from "./Components/Snakbar";
-import { Navigation } from "./Components/Navigation";
+import { useSnakbarContext } from "./context/SnakbarProvider";
+import { Navbar } from "./components/Navbar";
+import { Snakbar } from "./components/Snakbar";
+import { Navigation } from "./components/Navigation";
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
   const { snakbarStatus } = useSnakbarContext();

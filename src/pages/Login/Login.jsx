@@ -1,8 +1,8 @@
 import "./login.css";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useAuthContext } from "../../Context/AuthContext";
-import { LogoIcon, VisibleIcon, VisibleOffIcon } from "../../assests/icons";
+import { useAuth } from "context/AuthProvider";
+import { LogoIcon, VisibleIcon, VisibleOffIcon } from "assests/icons";
 
 const getFeatureName = (route) => {
   switch (route) {
@@ -20,7 +20,7 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState();
   const [loginError, setLoginError] = useState();
-  const { handleLogin } = useAuthContext();
+  const { handleLogin } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(email, password, setLoginError);

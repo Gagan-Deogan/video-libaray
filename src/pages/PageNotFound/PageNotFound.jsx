@@ -1,6 +1,6 @@
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import { NotFound } from "../../assests/icons";
+import { NotFound } from "assests/icons";
 export const PageNotFound = () => {
   const navigate = useNavigate();
   return (
