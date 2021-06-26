@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "components/Card";
+import { Card } from "common-components/Card";
 import { usePrefrenced } from "context/PrefrenceProvider";
 export const LikeVideos = () => {
   const { prefrenceVideos } = usePrefrenced();

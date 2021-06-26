@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePlaylist } from "context/PlaylistProvider";
-import { Card } from "components/Card";
+import { Card } from "common-components/Card";
 import { EditIcon } from "assests/icons";
 export const Playlist = () => {
   const { id } = useParams();
@@ -27,7 +27,7 @@ export const Playlist = () => {
   };
   return (
     <section>
-      <div className="card padding-16 bor-rad-8">
+      {/* <div className="card padding-16 bor-rad-8">
         <h2 className="bold margin-b-16">{playlistDetails.name}</h2>
         {!editdescription && (
           <div className="row align-center margin-b-16">
@@ -74,7 +74,7 @@ export const Playlist = () => {
         {playlistDetails.videos.map((video) => (
           <Card key={video._id} video={video} />
         ))}
-      </ul>
+      </ul> */}
     </section>
   );
 };

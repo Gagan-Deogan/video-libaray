@@ -16,7 +16,7 @@ import {
   Moon,
   Sun,
 } from "assests/icons";
-
+import useDefaultImage from "assests/images/dp.png";
 const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
   return (
     <NavLink
@@ -76,7 +76,7 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
               Login
             </button>
           )}
-          {user && <Avatar image={user.image} name={user.name} />}
+          {user && <Avatar image={useDefaultImage} name={user.name} />}
         </div>
       </nav>
       <Hidden hideAt="sm-up">

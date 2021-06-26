@@ -105,7 +105,7 @@ button,
   max-width: none;
 }
 .font-xs {
-  font-size: 0.625rem;
+  font-size: 0.75rem;
 }
 section {
   width: 100%;
@@ -304,4 +304,7 @@ main {
   .aside-expand {
     grid-template-columns: 15rem auto;
   }
+}
+.container {
+  background-color: var(--inner-background);
 }

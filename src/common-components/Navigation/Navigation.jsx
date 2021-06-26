@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { ProtectedRoute } from "../ProtectedRoute";
-import { NonAuthRoute } from "../NonAuthRoute";
+import { BetterRoute } from "common-components/BetterRoute";
+import { Signup } from "pages/Signup";
 import { Home } from "pages/Home";
 import { LikeVideos } from "pages/LikeVideos";
 import { VideoWatch } from "pages/VideoWatch";
@@ -13,10 +13,23 @@ export const Navigation = () => {
     <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="/watch/:videoId" element={<VideoWatch />} />
-      <Route path="/playlist/:id" element={<Playlist />} />
-      <Route path="/savedvideos" element={<SaveVideos />} />
-      <ProtectedRoute path="/likedVideos" element={<LikeVideos />} />
-      <NonAuthRoute path="/login" element={<Login />} />
+      <BetterRoute
+        type="PROTECTED"
+        path="/playlist/:id"
+        element={<Playlist />}
+      />
+      <BetterRoute
+        type="PROTECTED"
+        path="/savedvideos"
+        element={<SaveVideos />}
+      />
+      <BetterRoute
+        type="PROTECTED"
+        path="/likedVideos"
+        element={<LikeVideos />}
+      />
+      <BetterRoute type="PUBLIC-ONLY" path="/login" element={<Login />} />
+      <BetterRoute type="PUBLIC-ONLY" path="/signup" element={<Signup />} />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );

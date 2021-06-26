@@ -1,52 +1,59 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRequest } from "utils";
+import { Loader } from "common-components/Loader";
+import { setupAxiosDefaultHeaders } from "utils";
+import { getUserDetails } from "./auth.service";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState();
-  const { request } = useRequest();
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage?.getItem("token") || null);
+  const [loading, setLoading] = useState(token ? true : false);
+
+  setupAxiosDefaultHeaders(token);
+
+  const logoutUser = () => {
+    localStorage?.removeItem("token");
+    setUser(null);
+    setToken(null);
+    navigate("/");
+  };
+
+  const loginUser = ({ user, token }) => {
+    if (user && token) {
+      setUser(user);
+      setToken(token);
+      localStorage.setItem("token", token);
+      navigate("/home");
+    }
+  };
 
   useEffect(() => {
-    const isAlreadyLoggedIn = JSON.parse(localStorage.getItem("user"));
-    if (!!isAlreadyLoggedIn) {
-      setUser(isAlreadyLoggedIn);
-    }
+    (async () => {
+      if (token) {
+        const res = await getUserDetails();
+        setLoading(false);
+        if ("data" in res) {
+          setUser(res.data);
+        } else {
+          logoutUser();
+        }
+      }
+    })();
   }, []);
 
-  const handleLogin = async (email, password, setLoginError) => {
-    try {
-      const { success, data } = await request({
-        method: "POST",
-        endpoint: "/users/login",
-        body: {
-          email,
-          password,
-        },
-      });
-      if (success) {
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/");
-      } else {
-        setLoginError(true);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser();
-  };
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <AuthContext.Provider
       value={{
         user,
-        handleLogin,
-        handleLogout,
+        token,
+        logoutUser,
+        loginUser,
       }}>
       {children}
     </AuthContext.Provider>

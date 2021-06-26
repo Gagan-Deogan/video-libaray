@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import { useSnakbarContext } from "../SnakbarProvider";
+import { useSnakbar } from "../SnakbarProvider";
 import { useAuth } from "../AuthProvider";
 import { reducer, initialPlaylist } from "./reducer";
 import { useRequest } from "utils";
@@ -7,7 +7,7 @@ const PlaylistContext = createContext();
 
 export const PlaylistProvider = ({ children }) => {
   const [playlists, playlistDispatch] = useReducer(reducer, initialPlaylist);
-  const { snakbarDispatch } = useSnakbarContext();
+  const { snakbarDispatch } = useSnakbar();
   const { user } = useAuth();
   const { request } = useRequest();
 
@@ -134,17 +134,17 @@ export const PlaylistProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (user) {
-      (async () => {
-        const { success, data } = await request({
-          method: "GET",
-          endpoint: `/playlists/${user._id}`,
-        });
-        if (success) {
-          setPlaylists({ playlists: data });
-        }
-      })();
-    }
+    // if (user) {
+    //   (async () => {
+    //     const { success, data } = await request({
+    //       method: "GET",
+    //       endpoint: `/playlists/${user._id}`,
+    //     });
+    //     if (success) {
+    //       setPlaylists({ playlists: data });
+    //     }
+    //   })();
+    // }
   }, [user]);
 
   return (

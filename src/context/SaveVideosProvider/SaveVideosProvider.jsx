@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { useSnakbarContext } from "../SnakbarProvider";
+import { useSnakbar } from "../SnakbarProvider";
 import { reducer, initial } from "./reducer";
 const SaveVideoContext = createContext();
 
 export const SaveVideosProvider = ({ children }) => {
   const [saveVideos, saveDispatch] = useReducer(reducer, initial);
-  const { snakbarDispatch } = useSnakbarContext();
+  const { snakbarDispatch } = useSnakbar();
 
   const handleSaveVideoToggle = ({ videoDetails }) => {
     if (!!!saveVideos.find((video) => video._id === videoDetails._id)) {

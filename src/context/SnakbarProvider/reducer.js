@@ -1,15 +1,23 @@
+export const initialState = {
+  isShow: false,
+  type: "SUCCESS",
+  message: "",
+};
+
 export const reducer = (state, action) => {
+  console.log("Hi form snakbar", action);
   switch (action.type) {
-    case "INITAIL":
-      return { isShow: false, alertType: "" };
-    case "DEFAULT":
-      return { isShow: true, alertType: "DEFAULT", msg: action.payload };
-    case "ERROR":
-      return { isShow: true, alertType: "ERROR", msg: action.payload };
-    case "WARNING":
-      return { isShow: true, alertType: "WARNING", msg: action.payload };
-    case "SUCCESS":
-      return { isShow: true, alertType: "SUCCESS", msg: action.payload };
+    case "SHOW_SNAKBAR":
+      return {
+        isShow: true,
+        type: action.payload.type,
+        message: action.payload.message,
+      };
+    case "HIDE_SNAKBAR":
+      return {
+        ...state,
+        isShow: false,
+      };
     default:
       return state;
   }

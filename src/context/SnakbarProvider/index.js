@@ -1,1 +1,1 @@
-export { SnakbarContextProvider, useSnakbarContext } from "./SnakbarProvider";
+export { SnakbarContextProvider, useSnakbar } from "./SnakbarProvider";

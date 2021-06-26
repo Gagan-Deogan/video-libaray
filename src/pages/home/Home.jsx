@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSaveVideosContext } from "context/SaveVideosProvider";
 import { useStatus } from "context/LoaderProvider";
-import { Card } from "components/Card";
-import { Loader } from "components/Loader";
-import { AddToPlaylistModel } from "components/AddToPlaylistModel";
+import { Card } from "common-components/Card";
+import { Loader } from "common-components/Loader";
+import { AddToPlaylistModel } from "common-components/AddToPlaylistModel";
 import { useRequest } from "utils";
 import "./home.css";
 
