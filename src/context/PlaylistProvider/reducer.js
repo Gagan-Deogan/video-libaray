@@ -5,14 +5,14 @@ export const initialPlaylist = [
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "SET_USER_PLAYLIST":
+    case "LOAD_USER_PLAYLIST":
       return action.payload;
     case "TOOGLE_VIDEO_FROM_PLAYLIST":
-      const playlist = state.find(
+      const selectedPlaylist = state.find(
         (playlist) => playlist._id === action.payload.playlistId
       );
-      if (!!playlist) {
-        const isVideoPresent = playlist.videos.find(
+      if (!!selectedPlaylist) {
+        const isVideoPresent = selectedPlaylist.videos.find(
           (video) => video._id === action.payload.video._id
         );
         if (!isVideoPresent) {
@@ -41,9 +41,7 @@ export const reducer = (state, action) => {
     case "REMOVE_PLAYLIST":
       return state.filter((playlist) => playlist._id !== action.payload);
     case "CREATE_PLAYLIST":
-      return state.concat([
-        { name: action.payload, _id: uuidv4(), videos: [] },
-      ]);
+      return state.concat([action.payload]);
     case "EDIT_DESCRIPTION":
       return state.map((playlist) =>
         playlist._id === action.payload.playlistId

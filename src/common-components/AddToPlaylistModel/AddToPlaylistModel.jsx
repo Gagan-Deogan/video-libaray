@@ -2,26 +2,64 @@ import React, { useState } from "react";
 import "./addPlaylist.css";
 import { CloseIcon, DeleteIcon } from "assests/icons";
 import { usePlaylist } from "context/PlaylistProvider";
+import { getAllPlaylistNameAndIsVideoAlreadyIncluded } from "utils";
+import {
+  updatePlaylist,
+  createNewPlaylist,
+  removePlaylist,
+} from "./addToPlaylistModel.services";
 
 export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
   const {
     playlists,
-    handelCreatePlaylist,
-    getPlaylistsNamesIncludeThisVideo,
-    ToogleVideoFromPlaylist,
-    RemovePlaylist,
+    playlistDispatch,
+    // RemovePlaylist,
   } = usePlaylist();
 
-  const playlistsIncludeThisVideo = getPlaylistsNamesIncludeThisVideo({
+  const playlistsNamesWithIsAlreadyInclude = getAllPlaylistNameAndIsVideoAlreadyIncluded(
     playlists,
-    videoToPlaylist,
-  });
-  const getAllPlaylistName = () => {
-    return playlists.map((playlist) => playlist.name);
+    videoToPlaylist
+  );
+  const isError = !!playlists.find(
+    (playlist) => playlist.name === newPlaylistName
+  );
+
+  const ToogleVideoFromPlaylist = async (playlistId, videoToPlaylist) => {
+    playlistDispatch({
+      type: "TOOGLE_VIDEO_FROM_PLAYLIST",
+      payload: { playlistId, video: videoToPlaylist },
+    });
+    const res = await updatePlaylist(playlistId, videoToPlaylist._id);
+    if (!("data" in res)) {
+      playlistDispatch({
+        type: "TOOGLE_VIDEO_FROM_PLAYLIST",
+        payload: { playlistId, video: videoToPlaylist },
+      });
+    }
   };
-  const isError = getAllPlaylistName().includes(newPlaylistName);
+
+  const handleCreatePlaylist = async () => {
+    const res = await createNewPlaylist(newPlaylistName);
+    if ("data" in res) {
+      playlistDispatch({
+        type: "CREATE_PLAYLIST",
+        payload: res.data,
+      });
+      setShowCreatePlaylist(false);
+    }
+  };
+
+  const handleRemovePlaylist = async (playlistId) => {
+    const res = await removePlaylist(playlistId);
+    if ("data" in res) {
+      playlistDispatch({
+        type: "REMOVE_PLAYLIST",
+        payload: playlistId,
+      });
+    }
+  };
 
   return (
     <div className="model-container position-fixed justify-center align-center box-shd ">
@@ -38,7 +76,7 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
         </div>
         <fieldset className="column margin-t-8 padding-t-8 padding-b-16">
           {!showCreatePlaylist &&
-            playlists.map((playlist) => (
+            playlistsNamesWithIsAlreadyInclude.map((playlist) => (
               <div className="row justify-between align-center">
                 <label
                   className="row margin-t-8 align-center"
@@ -46,12 +84,9 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
                   <input
                     type="checkbox"
                     onChange={() =>
-                      ToogleVideoFromPlaylist({
-                        video: videoToPlaylist,
-                        playlistId: playlist._id,
-                      })
+                      ToogleVideoFromPlaylist(playlist._id, videoToPlaylist)
                     }
-                    checked={playlistsIncludeThisVideo.includes(playlist.name)}
+                    checked={playlist.isAlreadyIncluded}
                   />
                   <div className="check margin-r-16"></div>
                   <p>{playlist.name}</p>
@@ -60,7 +95,7 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
                   <button
                     className="btn-link"
                     onClick={() => {
-                      RemovePlaylist({ playlistId: playlist._id });
+                      handleRemovePlaylist(playlist._id);
                     }}>
                     {" "}
                     <DeleteIcon />{" "}
@@ -97,15 +132,8 @@ export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
                     ? "sm-btn-pry-fil btn-dis"
                     : "sm-btn-pry-fil"
                 }
-                onClick={() =>
-                  handelCreatePlaylist({
-                    newPlaylistName,
-                    playlistsIncludeThisVideo,
-                    setShowCreatePlaylist,
-                    setNewPlaylistName,
-                  })
-                }
-                disabled={!!!newPlaylistName || isError}>
+                onClick={handleCreatePlaylist}
+                disabled={!newPlaylistName || isError}>
                 Create
               </button>
             </>

@@ -21,17 +21,12 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
   return (
     <NavLink
       to={navTo}
-      end={navTo}
       className={
         "btn-link " +
         (isNavbarOpen
           ? "justify-start margin-l-16 margin-r-16 margin-b-16"
           : " column justify-center algin-center")
-      }
-      activeStyle={{
-        color: "var(--primary-default)",
-        background: "var(--grey-opac)",
-      }}>
+      }>
       {icon}
       <h6
         className={
@@ -41,6 +36,11 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
       </h6>
     </NavLink>
   );
+};
+
+const optionsIcons = {
+  "Saved Videos": <SaveIcon />,
+  "Liked Videos": <LikeIcon />,
 };
 
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
@@ -94,9 +94,9 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           isNavbarOpen={isNavbarOpen}
           name="Explore"
           navTo="/"
-          icon={<HomeIcon isActive={location.pathname === "/"} />}
+          icon={<HomeIcon />}
         />
-        <NavOption
+        {/* <NavOption
           isNavbarOpen={isNavbarOpen}
           name="Saved Videos"
           navTo="/savedvideos"
@@ -107,22 +107,21 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
           name="Liked Videos"
           navTo="/likedvideos"
           icon={<LikeIcon isActive={location.pathname === "/likedvideos"} />}
-        />
-        <fieldset className=" column padding-t-8">
-          {playlists.map((playlist) => (
-            <NavOption
-              key={playlist._id}
-              isNavbarOpen={isNavbarOpen}
-              name={playlist.name}
-              navTo={`/playlist/${playlist._id}`}
-              icon={
-                <PlaylistIcon
-                  isActive={location.pathname === `/playlist/${playlist._id}`}
-                />
-              }
-            />
-          ))}
-        </fieldset>
+        /> */}
+        {playlists.map((playlist) => (
+          <NavOption
+            key={playlist._id}
+            isNavbarOpen={isNavbarOpen}
+            name={playlist.name}
+            navTo={`/playlist/${playlist.name}`}
+            icon={
+              optionsIcons[playlist.name] ?? <PlaylistIcon />
+              // <PlaylistIcon
+              //   isActive={location.pathname === `/playlist/${playlist._id}`}
+              // />
+            }
+          />
+        ))}
       </aside>
     </>
   );

@@ -15,7 +15,7 @@ export const Navigation = () => {
       <Route path="/watch/:videoId" element={<VideoWatch />} />
       <BetterRoute
         type="PROTECTED"
-        path="/playlist/:id"
+        path="/playlist/:playlistName"
         element={<Playlist />}
       />
       <BetterRoute
