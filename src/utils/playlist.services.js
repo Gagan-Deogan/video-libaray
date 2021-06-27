@@ -29,3 +29,15 @@ export const removePlaylist = async (playlistId) => {
     return catchAxiosErr(err);
   }
 };
+
+export const addNoteToPlaylist = async (videoId, text, time) => {
+  try {
+    const res = await axios.post(`/playlists/add-note/${videoId}`, {
+      text,
+      time,
+    });
+    return res.data;
+  } catch (err) {
+    return catchAxiosErr(err);
+  }
+};

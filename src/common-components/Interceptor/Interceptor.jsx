@@ -35,7 +35,6 @@ export const Interceptor = () => {
           if (status === 422) {
             return Promise.reject(error);
           }
-          console.log(snakbarDispatch);
           snakbarDispatch({
             type: "SHOW_SNAKBAR",
             payload: {

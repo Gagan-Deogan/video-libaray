@@ -6,4 +6,17 @@ export { getUserfeels } from "./getUserfeels";
 export { checkPasswordStrength } from "./checkPasswordStrength";
 export { catchAxiosErr } from "./catchAxiosError";
 export { setupAxiosDefaultHeaders } from "./setupAxiosDefaultHeaders";
-export { getAllPlaylistNameAndIsVideoAlreadyIncluded } from "./playlists.utils";
+export {
+  getAllPlaylistNameAndIsVideoAlreadyIncluded,
+  getPlaylistIdByName,
+  selectPlaylistandFindVideoPresent,
+  checkVideoPresentInPlaylist,
+  getPlaylistById,
+  getVideoNotesByVideoId,
+} from "./playlists.utils";
+export {
+  updatePlaylist,
+  createNewPlaylist,
+  removePlaylist,
+  addNoteToPlaylist,
+} from "./playlist.services";

@@ -3,20 +3,12 @@ import "./addPlaylist.css";
 import { CloseIcon, DeleteIcon } from "assests/icons";
 import { usePlaylist } from "context/PlaylistProvider";
 import { getAllPlaylistNameAndIsVideoAlreadyIncluded } from "utils";
-import {
-  updatePlaylist,
-  createNewPlaylist,
-  removePlaylist,
-} from "./addToPlaylistModel.services";
+import { updatePlaylist, createNewPlaylist, removePlaylist } from "utils";
 
 export const AddToPlaylistModel = ({ videoToPlaylist, setVideoToPlaylist }) => {
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
-  const {
-    playlists,
-    playlistDispatch,
-    // RemovePlaylist,
-  } = usePlaylist();
+  const { playlists, playlistDispatch } = usePlaylist();
 
   const playlistsNamesWithIsAlreadyInclude = getAllPlaylistNameAndIsVideoAlreadyIncluded(
     playlists,

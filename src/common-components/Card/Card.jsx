@@ -2,20 +2,9 @@ import React, { useState } from "react";
 import "./card.css";
 import { ThreeDotsIcon, SaveIcon, PlaylistAddIcon } from "assests/icons";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "context/AuthProvider";
-export const Card = ({
-  video,
-  setVideoToPlaylist,
-  cardFor,
-  handleSaveVideoToggle,
-}) => {
-  const { user } = useAuth();
+export const Card = ({ video, setVideoToPlaylist, cardFor }) => {
   const navigate = useNavigate();
   const [expandDropDown, setExpandDropDown] = useState(false);
-  const callSave = (video) => {
-    handleSaveVideoToggle({ videoDetails: video });
-    setExpandDropDown(false);
-  };
   const handleVideoWatch = () => {
     navigate(`/watch/${video._id}`);
   };
@@ -56,7 +45,8 @@ export const Card = ({
                   </li>
                   <li
                     className="row align-center"
-                    onClick={() => callSave(video)}>
+                    // onClick={() => callSave(video)}
+                  >
                     <SaveIcon />
                     <h6 className="bold margin-l-8">Save to Watch Later</h6>
                   </li>

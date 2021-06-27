@@ -32,15 +32,17 @@ export const VideoWatch = () => {
       {status !== "IDLE" && <Loader />}
       {status === "IDLE" && (
         <div className="row sm-warp">
-          <section className="padding-8 w8 sm-w12">
-            {videoDetails && (
-              <VideoDetailsContainer
-                videoDetails={videoDetails}
-                setVideoPlayed={setVideoPlayed}
-              />
-            )}
-          </section>
-          <NotesBox videoPlayed={videoPlayed} />
+          {videoDetails && (
+            <>
+              <section className="padding-8 w8 sm-w12">
+                <VideoDetailsContainer
+                  videoDetails={videoDetails}
+                  setVideoPlayed={setVideoPlayed}
+                />
+              </section>
+              <NotesBox videoPlayed={videoPlayed} videoDetails={videoDetails} />
+            </>
+          )}
         </div>
       )}
     </>

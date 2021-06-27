@@ -1,30 +1,48 @@
 import "./index.css";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNotes } from "context/NotesProvider";
+import { usePlaylist } from "context/PlaylistProvider";
 import { Note } from "../Note";
-export const NotesBox = ({ videoPlayed }) => {
-  const { videoId } = useParams();
-  const { findNotesByVideoId, AddNotes } = useNotes();
+import {
+  addNoteToPlaylist,
+  getPlaylistById,
+  getVideoNotesByVideoId,
+} from "utils";
+
+export const NotesBox = ({ videoPlayed, videoDetails }) => {
+  const { _id, thumbnail, description, title } = videoDetails;
+  const { playlists, notesVidoesPlaylistId, playlistDispatch } = usePlaylist();
+  const notesPlaylist = getPlaylistById(playlists, notesVidoesPlaylistId);
+  const videoNotes = getVideoNotesByVideoId(notesPlaylist, _id);
   const [note, setNote] = useState("");
-  const VideoNotes = findNotesByVideoId({ videoId });
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (note.length) {
-      AddNotes({ videoId, newNote: { text: note, time: videoPlayed } });
-      setNote("");
+      const res = await addNoteToPlaylist(_id, note, videoPlayed);
+      if ("data" in res) {
+        playlistDispatch({
+          type: "ADD_NOTE",
+          payload: {
+            video: { _id, thumbnail, description, title },
+            note: res.data,
+          },
+        });
+      }
     }
   };
+
   return (
     <section className="w4 padding-8 sm-w12 ">
       <div className="card bor-rad-8 padding-8 notes-container column bor-sol">
         <h3 className="margin-b-8">Take Notes</h3>
         <div className="notes-box padding-8 bor-rad-4 bor-sol">
-          {VideoNotes?.notes.map((note) => (
-            <Note note={note} key={note.id}></Note>
+          {videoNotes?.map((note) => (
+            <Note note={note} key={note._id}></Note>
           ))}
         </div>
-        <form action="#" className="row margin-t-8" onSubmit={handleSubmit}>
+        <form
+          action="#"
+          className="row margin-t-8"
+          onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
             value={note}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSaveVideosContext } from "context/SaveVideosProvider";
 import { useStatus } from "context/LoaderProvider";
 import { Card } from "common-components/Card";
 import { Loader } from "common-components/Loader";
@@ -9,7 +8,6 @@ import "./home.css";
 
 export const Home = () => {
   const { request, getCancelToken } = useRequest();
-  const { handleSaveVideoToggle } = useSaveVideosContext();
   const { status, setStatus } = useStatus();
   const [videosList, setVideosList] = useState();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
@@ -43,7 +41,6 @@ export const Home = () => {
                   video={video}
                   setVideoToPlaylist={setVideoToPlaylist}
                   cardFor="EXPLORE_PAGE"
-                  handleSaveVideoToggle={handleSaveVideoToggle}
                   key={video._id}
                 />
               ))}

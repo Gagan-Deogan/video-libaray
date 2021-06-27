@@ -1,33 +1,62 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { usePrefrenced } from "context/PrefrenceProvider";
 import { AddToPlaylistModel } from "../AddToPlaylistModel";
-import { useSaveVideosContext } from "context/SaveVideosProvider";
-import { hhmmss, getUserfeels } from "utils";
 import {
-  SaveIcon,
-  PlaylistAddIcon,
-  LikeIcon,
-  DislikeIcon,
-} from "assests/icons";
+  hhmmss,
+  updatePlaylist,
+  selectPlaylistandFindVideoPresent,
+} from "utils";
+import { SaveIcon, PlaylistAddIcon, LikeIcon } from "assests/icons";
+import { usePlaylist } from "context/PlaylistProvider";
 
 export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
   const {
+    _id,
     ytId,
     title,
     description,
-    likes,
-    dislikes,
     publishedAt,
     views,
+    thumbnails,
   } = videoDetails;
-  const { prefrenceVideos, handleVideoPrefenceToogle } = usePrefrenced();
-  const { handleSaveVideoToggle } = useSaveVideosContext();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
-  const prefrence = getUserfeels({
-    prefrenceVideos,
-    videoId: videoDetails._id,
-  });
+  const {
+    playlists,
+    savedVideosPlaylistId,
+    likeVideosPlaylistId,
+    playlistDispatch,
+  } = usePlaylist();
+
+  const isAlreadySaved = selectPlaylistandFindVideoPresent(
+    playlists,
+    savedVideosPlaylistId,
+    _id
+  );
+  const isAlreadyLiked = selectPlaylistandFindVideoPresent(
+    playlists,
+    likeVideosPlaylistId,
+    _id
+  );
+  const handleToogleVideoFromPlaylist = async (playlistId) => {
+    playlistDispatch({
+      type: "TOOGLE_VIDEO_FROM_PLAYLIST",
+      payload: {
+        playlistId,
+        video: { _id, ytId, title, description, thumbnails },
+      },
+    });
+    const res = await updatePlaylist(playlistId, videoDetails._id);
+    if (!("data" in res)) {
+      playlistDispatch({
+        type: "TOOGLE_VIDEO_FROM_PLAYLIST",
+        payload: {
+          playlistId,
+          video: { ytId, title, description, thumbnails },
+        },
+      });
+    }
+  };
+
   return (
     <>
       <div className="card bor-rad-8 video-container ">
@@ -56,31 +85,22 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
               <PlaylistAddIcon />
             </button>
             <button
-              className="btn-link margin-8"
-              onClick={() => handleSaveVideoToggle({ videoDetails })}>
+              className={`btn-link margin-8 ${
+                isAlreadySaved && "text-primary"
+              }`}
+              onClick={() =>
+                handleToogleVideoFromPlaylist(savedVideosPlaylistId)
+              }>
               <SaveIcon />
             </button>
             <button
-              className="btn-link margin-8"
+              className={`btn-link margin-8 ${
+                isAlreadyLiked && "text-primary"
+              }`}
               onClick={() =>
-                handleVideoPrefenceToogle({
-                  video: videoDetails,
-                  toogleType: prefrence === "LIKE" ? "REMOVE" : "LIKE",
-                })
+                handleToogleVideoFromPlaylist(likeVideosPlaylistId)
               }>
-              <LikeIcon isActive={prefrence === "LIKE"} />
-              <h6 className="text-grey bold margin-l-4 ">{likes}</h6>
-            </button>
-            <button
-              className="btn-link margin-8"
-              onClick={(e) =>
-                handleVideoPrefenceToogle({
-                  video: videoDetails,
-                  toogleType: prefrence === "DISLIKE" ? "REMOVE" : "DISLIKE",
-                })
-              }>
-              <DislikeIcon isActive={prefrence === "DISLIKE"} />
-              <h6 className="text-grey bold margin-l-4 ">{dislikes}</h6>
+              <LikeIcon />
             </button>
           </div>
         </div>

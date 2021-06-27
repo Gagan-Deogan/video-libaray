@@ -5,7 +5,6 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
-  console.log("Hi form snakbar", action);
   switch (action.type) {
     case "SHOW_SNAKBAR":
       return {
