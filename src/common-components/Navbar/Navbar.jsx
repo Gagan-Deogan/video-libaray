@@ -1,5 +1,5 @@
 import "./navbar.css";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "context/AuthProvider";
 import { usePlaylist } from "context/PlaylistProvider";
 import { useTheme } from "context/ThemeProvider";
@@ -15,8 +15,18 @@ import {
   Logo,
   Moon,
   Sun,
+  NoteIcon,
 } from "assests/icons";
 import useDefaultImage from "assests/images/dp.png";
+import { commonPlaylist } from "constants/index";
+
+const options = {
+  Home: { icon: <HomeIcon />, link: "/" },
+  "Saved Videos": { icon: <SaveIcon />, link: "playlist/Saved Videos" },
+  "Liked Videos": { icon: <LikeIcon />, link: "playlist/Liked Videos" },
+  "My Notes": { icon: <NoteIcon />, link: "playlist/My Notes" },
+  "My Playlist": { icon: <PlaylistIcon />, link: "playlist/My Playlist" },
+};
 const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
   return (
     <NavLink
@@ -25,7 +35,7 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
         "btn-link " +
         (isNavbarOpen
           ? "justify-start margin-l-16 margin-r-16 margin-b-16"
-          : " column justify-center algin-center")
+          : " column justify-center algin-center ")
       }>
       {icon}
       <h6
@@ -37,18 +47,11 @@ const NavOption = ({ isNavbarOpen, name, navTo, icon }) => {
     </NavLink>
   );
 };
-
-const optionsIcons = {
-  "Saved Videos": <SaveIcon />,
-  "Liked Videos": <LikeIcon />,
-};
-
 export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
-  const location = useLocation();
   const navigate = useNavigate();
   const { playlists } = usePlaylist();
   const { theme, toggleTheme } = useTheme();
-  const { user } = useAuth();
+  const { user, logoutUser } = useAuth();
   return (
     <>
       <nav className="row align-center padding-16 w12 justify-between">
@@ -76,7 +79,14 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
               Login
             </button>
           )}
-          {user && <Avatar image={useDefaultImage} name={user.name} />}
+          {user && (
+            <>
+              <Avatar image={useDefaultImage} name={user.name} />
+              <button className="sm-btn-pry margin-l-16" onClick={logoutUser}>
+                Logout
+              </button>
+            </>
+          )}
         </div>
       </nav>
       <Hidden hideAt="sm-up">
@@ -90,38 +100,27 @@ export const Navbar = ({ isNavbarOpen, setNavbarToggle }) => {
             <Logo />
           </div>
         </Hidden>
-        <NavOption
-          isNavbarOpen={isNavbarOpen}
-          name="Explore"
-          navTo="/"
-          icon={<HomeIcon />}
-        />
-        {/* <NavOption
-          isNavbarOpen={isNavbarOpen}
-          name="Saved Videos"
-          navTo="/savedvideos"
-          icon={<SaveIcon isActive={location.pathname === "/savedvideos"} />}
-        />
-        <NavOption
-          isNavbarOpen={isNavbarOpen}
-          name="Liked Videos"
-          navTo="/likedvideos"
-          icon={<LikeIcon isActive={location.pathname === "/likedvideos"} />}
-        /> */}
-        {playlists.map((playlist) => (
+        {Object.entries(options).map(([name, option]) => (
           <NavOption
-            key={playlist._id}
             isNavbarOpen={isNavbarOpen}
-            name={playlist.name}
-            navTo={`/playlist/${playlist.name}`}
-            icon={
-              optionsIcons[playlist.name] ?? <PlaylistIcon />
-              // <PlaylistIcon
-              //   isActive={location.pathname === `/playlist/${playlist._id}`}
-              // />
-            }
+            name={name}
+            navTo={option.link}
+            icon={option.icon}
+            key={name}
           />
         ))}
+        {playlists.map(
+          (playlist) =>
+            !commonPlaylist.includes(playlist.name) && (
+              <NavOption
+                isNavbarOpen={isNavbarOpen}
+                name={playlist.name}
+                navTo={`playlist/${playlist.name}`}
+                icon={<PlaylistIcon />}
+                key={playlist.name}
+              />
+            )
+        )}
       </aside>
     </>
   );

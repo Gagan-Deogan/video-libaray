@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./card.css";
 import { ThreeDotsIcon, SaveIcon, PlaylistAddIcon } from "assests/icons";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "context/AuthProvider";
 export const Card = ({ video, setVideoToPlaylist, cardFor }) => {
   const navigate = useNavigate();
   const [expandDropDown, setExpandDropDown] = useState(false);
+  const { user } = useAuth();
   const handleVideoWatch = () => {
     navigate(`/watch/${video._id}`);
   };
@@ -30,28 +32,11 @@ export const Card = ({ video, setVideoToPlaylist, cardFor }) => {
               {description.slice(0, 65)} {description.length > 75 ? "..." : ""}
             </h6>
           </div>
-          {cardFor === "EXPLORE_PAGE" && (
+          {cardFor === "EXPLORE_PAGE" && user && (
             <button
               className="btn-link"
-              onClick={() => setExpandDropDown(!expandDropDown)}>
+              onClick={() => setVideoToPlaylist(video)}>
               <ThreeDotsIcon />
-              {expandDropDown && (
-                <ul className="drop-down">
-                  <li
-                    className="row align-center"
-                    onClick={() => setVideoToPlaylist(video)}>
-                    <PlaylistAddIcon />
-                    <h6 className="bold margin-l-8">Add to Playlist</h6>
-                  </li>
-                  <li
-                    className="row align-center"
-                    // onClick={() => callSave(video)}
-                  >
-                    <SaveIcon />
-                    <h6 className="bold margin-l-8">Save to Watch Later</h6>
-                  </li>
-                </ul>
-              )}
             </button>
           )}
         </div>

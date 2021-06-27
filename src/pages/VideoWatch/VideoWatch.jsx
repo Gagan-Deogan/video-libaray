@@ -1,36 +1,35 @@
 import "./watch.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useStatus } from "context/LoaderProvider";
-import { NotesBox } from "common-components/NotesBox";
+import { NotesBox } from "./NotesBox";
 import { Loader } from "common-components/Loader";
-import { useRequest } from "utils";
-import { VideoDetailsContainer } from "common-components/VideoDetailsContainer";
-
+import { VideoDetailsContainer } from "./VideoDetailsContainer";
+import { getVideoDetails } from "./videoWatch.service";
+import { Error } from "common-components/Error";
 export const VideoWatch = () => {
   const { videoId } = useParams();
-  const { request } = useRequest();
-  const { status, setStatus } = useStatus();
+  const [status, setStatus] = useState("IDLE");
   const [videoDetails, setVideoDetails] = useState();
   const [videoPlayed, setVideoPlayed] = useState("00:00:00");
 
   useEffect(() => {
-    setStatus("PENDING");
-    (async () => {
-      const { success, data } = await request({
-        endpoint: `videos/${videoId}`,
-        method: "GET",
-      });
-      if (success) {
-        setStatus("IDLE");
-        setVideoDetails(data);
-      }
-    })();
+    if (status === "IDLE") {
+      (async () => {
+        setStatus("PENDING");
+        const res = await getVideoDetails(videoId);
+        if ("data" in res) {
+          setStatus("FULFILLED");
+          setVideoDetails(res.data);
+        } else {
+          setStatus("ERROR");
+        }
+      })();
+    }
   }, []);
   return (
     <>
-      {status !== "IDLE" && <Loader />}
-      {status === "IDLE" && (
+      {status === "PENDING" && <Loader />}
+      {status === "FULFILLED" && (
         <div className="row sm-warp">
           {videoDetails && (
             <>
@@ -45,6 +44,7 @@ export const VideoWatch = () => {
           )}
         </div>
       )}
+      {status === "ERROR" && <Error setStatus={setStatus} />}
     </>
   );
 };

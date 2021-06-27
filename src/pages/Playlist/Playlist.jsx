@@ -4,6 +4,7 @@ import { usePlaylist } from "context/PlaylistProvider";
 import { Card } from "common-components/Card";
 import { EditIcon } from "assests/icons";
 import { EditDescription } from "./EditDescription";
+import { commonPlaylist } from "constants/index";
 export const Playlist = () => {
   const { playlistName } = useParams();
   const { playlists } = usePlaylist();
@@ -20,7 +21,7 @@ export const Playlist = () => {
     <section>
       <div className="card padding-16 bor-rad-8">
         <h2 className="bold margin-b-16">{name}</h2>
-        {!showEditdescription && (
+        {!showEditdescription && !commonPlaylist.includes(name) && (
           <div className="row align-center margin-b-16">
             {!!description && <h5>{description}</h5>}
             {!!!description && <h5 className="gry ">No description</h5>}
@@ -32,7 +33,7 @@ export const Playlist = () => {
             </button>
           </div>
         )}
-        {showEditdescription && (
+        {showEditdescription && !commonPlaylist.includes(name) && (
           <EditDescription
             setShowEditdescription={setShowEditdescription}
             playlistId={_id}

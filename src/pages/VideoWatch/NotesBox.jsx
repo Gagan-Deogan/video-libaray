@@ -1,7 +1,6 @@
-import "./index.css";
 import { useState } from "react";
 import { usePlaylist } from "context/PlaylistProvider";
-import { Note } from "../Note";
+import { Note } from "./Note";
 import {
   addNoteToPlaylist,
   getPlaylistById,

@@ -3,7 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { PlaylistProvider } from "context/PlaylistProvider";
 import { SnakbarContextProvider } from "context/SnakbarProvider";
-import { LoaderContextProvider } from "context/LoaderProvider";
 import { AuthProvider } from "context/AuthProvider";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -15,9 +14,7 @@ ReactDOM.render(
         <SnakbarContextProvider>
           <AuthProvider>
             <PlaylistProvider>
-              <LoaderContextProvider>
-                <App />
-              </LoaderContextProvider>
+              <App />
             </PlaylistProvider>
           </AuthProvider>
         </SnakbarContextProvider>

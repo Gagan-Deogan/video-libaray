@@ -1,13 +1,13 @@
-const DefaultPlaylists = ["Saved Videos", "Liked Videos"];
+import { playlistNamesNotShowInAddTo } from "constants/index";
 
-export const getAllPlaylistNameAndIsVideoAlreadyIncluded = (
-  playlists,
-  videoToPlaylist
-) => {
+export const removeCommonPlaylist = (playlists) => {
+  return playlists.filter(
+    (playlist) => !playlistNamesNotShowInAddTo.includes(playlist.name)
+  );
+};
+
+export const getPlaylistsWithIsIncludedFlag = (playlists, videoToPlaylist) => {
   const reducer = (acc, val) => {
-    if (DefaultPlaylists.includes(val.name)) {
-      return acc;
-    }
     const isAlreadyIncluded = !!val.videos.find(
       (video) => video._id === videoToPlaylist._id
     );

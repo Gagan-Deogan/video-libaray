@@ -1,18 +1,16 @@
-export { useDebouncing } from "./Debouncing";
-export { useRequest } from "./request";
+export { debounce } from "./debounce";
 export { ddmmmyyyy, hhmmss } from "./date";
-export { uuidv4 } from "./uuidv4";
-export { getUserfeels } from "./getUserfeels";
 export { checkPasswordStrength } from "./checkPasswordStrength";
 export { catchAxiosErr } from "./catchAxiosError";
 export { setupAxiosDefaultHeaders } from "./setupAxiosDefaultHeaders";
 export {
-  getAllPlaylistNameAndIsVideoAlreadyIncluded,
+  getPlaylistsWithIsIncludedFlag,
   getPlaylistIdByName,
   selectPlaylistandFindVideoPresent,
   checkVideoPresentInPlaylist,
   getPlaylistById,
   getVideoNotesByVideoId,
+  removeCommonPlaylist,
 } from "./playlists.utils";
 export {
   updatePlaylist,

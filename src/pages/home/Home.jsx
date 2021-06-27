@@ -1,38 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useStatus } from "context/LoaderProvider";
 import { Card } from "common-components/Card";
 import { Loader } from "common-components/Loader";
-import { AddToPlaylistModel } from "common-components/AddToPlaylistModel";
-import { useRequest } from "utils";
+import { AddToPlaylistModal } from "common-components/AddToPlaylistModal";
+import { gethomeVideo } from "./home.service";
+import { Error } from "common-components/Error";
 import "./home.css";
-
 export const Home = () => {
-  const { request, getCancelToken } = useRequest();
-  const { status, setStatus } = useStatus();
+  const [status, setStatus] = useState("IDLE");
   const [videosList, setVideosList] = useState();
   const [videoToPlaylist, setVideoToPlaylist] = useState();
 
   useEffect(() => {
-    const cancelToken = getCancelToken();
-    setStatus("PENDING");
-    (async () => {
-      const { success, data } = await request({
-        method: "GET",
-        endpoint: "/videos",
-      });
-      if (success) {
-        setVideosList(data);
-        setStatus("IDLE");
-      }
-    })();
-    return () => {
-      cancelToken.cancel();
-    };
-  }, []);
+    if (status === "IDLE") {
+      (async () => {
+        setStatus("PENDING");
+        const res = await gethomeVideo();
+        if ("data" in res) {
+          setStatus("FUllFILLED");
+          setVideosList(res.data);
+        } else {
+          setStatus("ERROR");
+        }
+      })();
+    }
+  }, [setStatus, status]);
   return (
     <>
-      {status !== "IDLE" && <Loader />}
-      {status === "IDLE" && (
+      {status === "PENDING" && <Loader />}
+      {status === "FUllFILLED" && (
         <section>
           <ul className="dis-grid videos-container">
             {videosList &&
@@ -46,13 +41,14 @@ export const Home = () => {
               ))}
           </ul>
           {videoToPlaylist && (
-            <AddToPlaylistModel
+            <AddToPlaylistModal
               videoToPlaylist={videoToPlaylist}
               setVideoToPlaylist={setVideoToPlaylist}
             />
           )}
         </section>
       )}
+      {status === "ERROR" && <Error setStatus={setStatus} />}
     </>
   );
 };

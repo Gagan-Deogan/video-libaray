@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { AddToPlaylistModel } from "../AddToPlaylistModel";
+import { AddToPlaylistModal } from "common-components/AddToPlaylistModal";
 import {
   hhmmss,
   updatePlaylist,
@@ -8,7 +8,7 @@ import {
 } from "utils";
 import { SaveIcon, PlaylistAddIcon, LikeIcon } from "assests/icons";
 import { usePlaylist } from "context/PlaylistProvider";
-
+import { debounce } from "utils";
 export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
   const {
     _id,
@@ -56,6 +56,10 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
       });
     }
   };
+  const betterHandleToogleVideoFromPlaylist = debounce(
+    handleToogleVideoFromPlaylist,
+    500
+  );
 
   return (
     <>
@@ -89,7 +93,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
                 isAlreadySaved && "text-primary"
               }`}
               onClick={() =>
-                handleToogleVideoFromPlaylist(savedVideosPlaylistId)
+                betterHandleToogleVideoFromPlaylist(savedVideosPlaylistId)
               }>
               <SaveIcon />
             </button>
@@ -98,7 +102,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
                 isAlreadyLiked && "text-primary"
               }`}
               onClick={() =>
-                handleToogleVideoFromPlaylist(likeVideosPlaylistId)
+                betterHandleToogleVideoFromPlaylist(likeVideosPlaylistId)
               }>
               <LikeIcon />
             </button>
@@ -107,7 +111,7 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
         <h6 className="padding-8 padding-b-16">{description}</h6>
       </div>
       {videoToPlaylist && (
-        <AddToPlaylistModel
+        <AddToPlaylistModal
           videoToPlaylist={videoToPlaylist}
           setVideoToPlaylist={setVideoToPlaylist}
         />

@@ -10,7 +10,11 @@ export const Navigation = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/watch/:videoId" element={<VideoWatch />} />
+      <BetterRoute
+        type="PROTECTED"
+        path="/watch/:videoId"
+        element={<VideoWatch />}
+      />
       <BetterRoute
         type="PROTECTED"
         path="/playlist/:playlistName"
