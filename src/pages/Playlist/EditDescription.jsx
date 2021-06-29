@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updateDescriptions } from "./playlist.service";
-import { usePlaylist } from "context/PlaylistProvider";
+import { usePlaylist } from "context/PlaylistsProvider";
 export const EditDescription = ({ setShowEditdescription, playlistId }) => {
   const { playlistDispatch } = usePlaylist();
 
@@ -13,7 +13,6 @@ export const EditDescription = ({ setShowEditdescription, playlistId }) => {
   };
   const handleDescriptionSave = async () => {
     const res = await updateDescriptions(description, playlistId);
-    console.log(res);
     if ("data" in res) {
       playlistDispatch({
         type: "EDIT_DESCRIPTION",

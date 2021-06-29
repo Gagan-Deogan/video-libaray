@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     localStorage?.removeItem("token");
     setUser(null);
     setToken(null);
-    navigate("/");
+    navigate("/login");
   };
 
   const loginUser = ({ user, token }) => {
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       setToken(token);
       localStorage.setItem("token", token);
-      navigate("/home");
+      navigate("/");
     }
   };
 

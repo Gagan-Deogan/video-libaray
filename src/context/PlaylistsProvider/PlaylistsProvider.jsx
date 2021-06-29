@@ -6,15 +6,14 @@ import React, {
   useState,
 } from "react";
 import { useAuth } from "../AuthProvider";
-import { reducer, initialPlaylist } from "./reducer";
+import { reducer, initialPlaylist } from "./playlist.reducer";
 import { getUserPlaylist } from "./playlistProvider.services";
 import { getPlaylistIdByName } from "utils";
-import { Loader } from "common-components/Loader";
 const PlaylistContext = createContext();
 
-export const PlaylistProvider = ({ children }) => {
+export const PlaylistsProvider = ({ children }) => {
   const [playlists, playlistDispatch] = useReducer(reducer, initialPlaylist);
-  const [showLoader, setShowLoader] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { user, token } = useAuth();
 
   const savedVideosPlaylistId = getPlaylistIdByName(playlists, "Saved Videos");
@@ -24,21 +23,19 @@ export const PlaylistProvider = ({ children }) => {
   useEffect(() => {
     if (user && token) {
       (async () => {
-        setShowLoader(true);
+        setLoading(true);
         const res = await getUserPlaylist();
         if ("data" in res) {
           playlistDispatch({
             type: "LOAD_USER_PLAYLIST",
             payload: res.data,
           });
-          setShowLoader(false);
         }
+        setLoading(false);
       })();
     }
   }, [user, token]);
-  if (showLoader) {
-    return <Loader />;
-  }
+
   return (
     <PlaylistContext.Provider
       value={{
@@ -47,6 +44,7 @@ export const PlaylistProvider = ({ children }) => {
         likeVideosPlaylistId,
         notesVidoesPlaylistId,
         playlistDispatch,
+        loading,
       }}>
       {children}
     </PlaylistContext.Provider>

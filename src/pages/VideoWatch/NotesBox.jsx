@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePlaylist } from "context/PlaylistProvider";
+import { usePlaylist } from "context/PlaylistsProvider";
 import { Note } from "./Note";
 import {
   addNoteToPlaylist,

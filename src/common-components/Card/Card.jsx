@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import "./card.css";
-import { ThreeDotsIcon, SaveIcon, PlaylistAddIcon } from "assests/icons";
+import { ThreeDotsIcon } from "assests/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/AuthProvider";
 export const Card = ({ video, setVideoToPlaylist, cardFor }) => {
   const navigate = useNavigate();
-  const [expandDropDown, setExpandDropDown] = useState(false);
   const { user } = useAuth();
   const handleVideoWatch = () => {
     navigate(`/watch/${video._id}`);

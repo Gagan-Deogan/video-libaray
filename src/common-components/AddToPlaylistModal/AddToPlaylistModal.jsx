@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./addPlaylist.css";
 import { CloseIcon, DeleteIcon } from "assests/icons";
-import { usePlaylist } from "context/PlaylistProvider";
+import { usePlaylist } from "context/PlaylistsProvider";
 import { getPlaylistsWithIsIncludedFlag, removeCommonPlaylist } from "utils";
 import { updatePlaylist, createNewPlaylist, removePlaylist } from "utils";
 import { debounce } from "utils";

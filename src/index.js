@@ -1,7 +1,7 @@
 import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { PlaylistProvider } from "context/PlaylistProvider";
+import { PlaylistsProvider } from "context/PlaylistsProvider";
 import { SnakbarContextProvider } from "context/SnakbarProvider";
 import { AuthProvider } from "context/AuthProvider";
 import App from "./App";
@@ -13,9 +13,9 @@ ReactDOM.render(
       <ThemeProvider>
         <SnakbarContextProvider>
           <AuthProvider>
-            <PlaylistProvider>
+            <PlaylistsProvider>
               <App />
-            </PlaylistProvider>
+            </PlaylistsProvider>
           </AuthProvider>
         </SnakbarContextProvider>
       </ThemeProvider>

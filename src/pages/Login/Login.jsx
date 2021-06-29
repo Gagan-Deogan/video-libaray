@@ -62,7 +62,9 @@ export const Login = () => {
           <h6 className="font-xs text-center text-error bold margin-b-8">
             {error}
           </h6>
-          <button className="btn-pry-fil w12">Login</button>
+          <button className="btn-pry-fil w12" disabled={status === "PENDING"}>
+            Login
+          </button>
           <Link to="/signup" className="font-xs text-center margin-t-16 bold">
             Don't have an account?
             <span className="text-primary">Signup now!</span>

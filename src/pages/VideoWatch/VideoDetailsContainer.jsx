@@ -7,7 +7,7 @@ import {
   selectPlaylistandFindVideoPresent,
 } from "utils";
 import { SaveIcon, PlaylistAddIcon, LikeIcon } from "assests/icons";
-import { usePlaylist } from "context/PlaylistProvider";
+import { usePlaylist } from "context/PlaylistsProvider";
 import { debounce } from "utils";
 export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
   const {
