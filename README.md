@@ -20,6 +20,7 @@ Live Demo [https://greenifyplay.netlify.app/]
    - Video Listing
    - Add to Playlist
    - Create Playlist
+   - Dark Mode(Users Preference and user can also toogle it )
 2. Playlists
    - Add description
    - Video Listing
@@ -34,3 +35,5 @@ Live Demo [https://greenifyplay.netlify.app/]
    - JWT based login
    - Auto-fill form
 5. Sign up
+
+Backend Repository - https://github.com/GagandeepSingh0115/video-library-backend/tree/develop
