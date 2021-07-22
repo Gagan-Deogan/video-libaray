@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "common-components/Loader";
 import { setupAxiosDefaultHeaders } from "utils";
@@ -14,12 +20,12 @@ export const AuthProvider = ({ children }) => {
 
   setupAxiosDefaultHeaders(token);
 
-  const logoutUser = () => {
+  const logoutUser = useCallback(() => {
     localStorage?.removeItem("token");
     setUser(null);
     setToken(null);
     navigate("/login");
-  };
+  }, [navigate]);
 
   const loginUser = ({ user, token }) => {
     if (user && token) {
@@ -42,7 +48,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
     })();
-  }, []);
+  }, [logoutUser, token]);
 
   if (loading) {
     return <Loader />;

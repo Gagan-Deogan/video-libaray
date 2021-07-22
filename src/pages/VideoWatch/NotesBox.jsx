@@ -25,6 +25,7 @@ export const NotesBox = ({ videoPlayed, videoDetails }) => {
             note: res.data,
           },
         });
+        setNote("");
       }
     }
   };
