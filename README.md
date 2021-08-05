@@ -5,13 +5,11 @@ Github Repository [https://github.com/GagandeepSingh0115/video-libaray].
 Live Demo [https://greenifyplay.netlify.app/]
 
 > Techonology Stack
-
 - React
-- React Player
 - React-Router-v6
 - axios
 - Jest
-- Node & express for backenf
+- Node & express for backend
 - Mongoose for Database
 
 > Pages/Functionalities
