@@ -15,11 +15,8 @@ export const Interceptor = () => {
       (res) => {
         if (res.status === 201) {
           snakbarDispatch({
-            type: "SHOW_SNAKBAR",
-            payload: {
-              type: "SUCCESS",
-              message: res.data.data,
-            },
+            type: "SUCCESS",
+            payload: res.data.message,
           });
         }
         return res;

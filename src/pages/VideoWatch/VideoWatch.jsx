@@ -1,9 +1,9 @@
 import "./watch.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { NotesBox } from "./NotesBox";
-import { VideoDetailsContainer } from "./VideoDetailsContainer";
-import { useVideo } from "./videoDetails.hook";
+import { NotesBox } from "./components/NotesBox";
+import { VideoDetailsContainer } from "./components/VideoDetailsContainer";
+import { useVideo } from "hooks/videoDetails.hook";
 import { GenricSection } from "common-components/GenricSection";
 
 export const VideoWatch = () => {

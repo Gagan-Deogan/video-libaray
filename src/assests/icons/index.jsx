@@ -1,9 +1,12 @@
+const style = { height: "auto", width: "24px" };
+const logoStyle = { height: "auto", width: "3rem" };
+const notFound = { height: "auto", width: "280px" };
 export const HomeIcon = () => {
   return (
     <svg
       id="home_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_18" data-name="Path 18" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -21,7 +24,7 @@ export const PlaylistIcon = () => {
     <svg
       id="queue_music_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <g id="Group_1" data-name="Group 1">
         <rect
@@ -49,7 +52,7 @@ export const HistoryIcon = () => {
     <svg
       id="history_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_16" data-name="Path 16" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -67,7 +70,7 @@ export const SaveIcon = () => {
     <svg
       id="bookmark_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -84,7 +87,7 @@ export const LikeIcon = () => {
     <svg
       id="thumb_up_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_21" data-name="Path 21" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -102,7 +105,7 @@ export const DislikeIcon = () => {
     <svg
       id="thumb_down_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_24" data-name="Path 24" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -118,7 +121,7 @@ export const CloseIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24"
       fill="none"
       stroke="var(--foreground)"
@@ -136,7 +139,7 @@ export const ThreeDotsIcon = () => {
     <svg
       id="more_vert_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_26" data-name="Path 26" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -153,7 +156,7 @@ export const PlaylistAddIcon = () => {
     <svg
       id="playlist_add_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <g id="Group_3" data-name="Group 3">
         <rect
@@ -177,10 +180,7 @@ export const PlaylistAddIcon = () => {
 };
 export const HamBurger = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
-      viewBox="0 0 20 14">
+    <svg xmlns="http://www.w3.org/2000/svg" style={style} viewBox="0 0 20 14">
       <g id="menu_1_" data-name="menu (1)" transform="translate(-2 -5)">
         <line
           id="Line_1"
@@ -224,7 +224,7 @@ export const EditIcon = () => {
     <svg
       id="edit_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_28" data-name="Path 28" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -285,7 +285,7 @@ export const LogoIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "3rem" }}
+      style={logoStyle}
       viewBox="0 0 66.92 96.805">
       <g
         id="Group_6"
@@ -331,7 +331,7 @@ export const VisibleIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       fill="currentColor">
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z" />
@@ -343,7 +343,7 @@ export const VisibleOffIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       fill="currentColor">
       <path
         d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
@@ -357,7 +357,7 @@ export const CheckIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24"
       fill="none"
       stroke="#fff"
@@ -374,7 +374,7 @@ export const Moon = () => {
     <svg
       id="moon"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <rect
         id="Rectangle_1"
@@ -397,7 +397,7 @@ export const Sun = () => {
     <svg
       id="wb_sunny_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_2" data-name="Path 2" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -412,7 +412,7 @@ export const Sun = () => {
 export const NotFound = () => {
   return (
     <svg
-      style={{ height: "auto", width: "280px" }}
+      style={notFound}
       viewBox="0 0 1075 418"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
@@ -523,7 +523,7 @@ export const DeleteIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       fill="currentColor">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
@@ -535,7 +535,7 @@ export const ErrorIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       fill="#FFFFFF">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
     </svg>
@@ -544,7 +544,7 @@ export const ErrorIcon = () => {
 
 export const NoteIcon = () => {
   return (
-    <svg style={{ height: "auto", width: "24px" }} viewBox="0 0 24 24">
+    <svg style={style} viewBox="0 0 24 24">
       <path
         d="M19 22H5a3 3 0 0 1-3-3V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v7h4v9a3 3 0 0 1-3 3zm-1-10v7a1 1 0 0 0 2 0v-7h-2zM5 6v6h6V6H5zm0 7v2h10v-2H5zm0 3v2h10v-2H5zm2-8h2v2H7V8z"
         fill="currentColor"></path>

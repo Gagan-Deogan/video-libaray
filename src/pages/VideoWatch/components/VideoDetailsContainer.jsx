@@ -70,8 +70,9 @@ export const VideoDetailsContainer = ({ videoDetails, setVideoPlayed }) => {
             controls={true}
             width="100%"
             height="100%"
+            playing={true}
             onProgress={(progress) => {
-              setVideoPlayed(hhmmss(progress.played));
+              setVideoPlayed(hhmmss(progress.playedSeconds));
             }}
           />
         </div>

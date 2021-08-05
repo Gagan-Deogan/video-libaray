@@ -6,11 +6,17 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "SHOW_SNAKBAR":
+    case "ERROR":
       return {
         isShow: true,
-        type: action.payload.type,
-        message: action.payload.message,
+        type: "ERROR",
+        message: action.payload,
+      };
+    case "SUCCESS":
+      return {
+        isShow: true,
+        type: "SUCCESS",
+        message: action.payload,
       };
     case "HIDE_SNAKBAR":
       return {
