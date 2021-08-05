@@ -8,13 +8,16 @@ import { commonPlaylist } from "constants/index";
 import { Loader } from "common-components/Loader";
 
 import { getPlaylistIdByName, getPlaylistById } from "utils";
+
 export const Playlist = () => {
   const { playlistName } = useParams();
-  const { playlists, loading } = usePlaylist();
+  const { playlists } = usePlaylist();
   const [showEditdescription, setShowEditdescription] = useState(false);
-  if (loading) {
+
+  if (!playlists.length) {
     return <Loader />;
   }
+
   const playlistId = getPlaylistIdByName(playlists, playlistName);
   const { name, _id, videos, description } = getPlaylistById(
     playlists,

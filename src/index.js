@@ -7,6 +7,10 @@ import { AuthProvider } from "context/AuthProvider";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "context/ThemeProvider";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -14,7 +18,9 @@ ReactDOM.render(
         <SnakbarContextProvider>
           <AuthProvider>
             <PlaylistsProvider>
-              <App />
+              <QueryClientProvider client={queryClient}>
+                <App />
+              </QueryClientProvider>
             </PlaylistsProvider>
           </AuthProvider>
         </SnakbarContextProvider>

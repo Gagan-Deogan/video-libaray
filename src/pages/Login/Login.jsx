@@ -21,8 +21,8 @@ export const Login = () => {
         loginUser(res.data);
       } else {
         setError(res.error);
+        setStatus("IDLE");
       }
-      setStatus("IDLE");
     }
   };
 

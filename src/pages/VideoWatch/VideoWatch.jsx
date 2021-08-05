@@ -1,50 +1,32 @@
 import "./watch.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { NotesBox } from "./NotesBox";
-import { Loader } from "common-components/Loader";
 import { VideoDetailsContainer } from "./VideoDetailsContainer";
-import { getVideoDetails } from "./videoWatch.service";
-import { Error } from "common-components/Error";
+import { useVideo } from "./videoDetails.hook";
+import { GenricSection } from "common-components/GenricSection";
+
 export const VideoWatch = () => {
   const { videoId } = useParams();
-  const [status, setStatus] = useState("IDLE");
-  const [videoDetails, setVideoDetails] = useState();
   const [videoPlayed, setVideoPlayed] = useState("00:00:00");
-
-  useEffect(() => {
-    if (status === "IDLE") {
-      (async () => {
-        setStatus("PENDING");
-        const res = await getVideoDetails(videoId);
-        if ("data" in res) {
-          setStatus("FULFILLED");
-          setVideoDetails(res.data);
-        } else {
-          setStatus("ERROR");
-        }
-      })();
-    }
-  }, [status, setStatus, videoId]);
+  const { data, isLoading, isSuccess } = useVideo(videoId);
   return (
     <>
-      {status === "PENDING" && <Loader />}
-      {status === "FULFILLED" && (
+      <GenricSection isLoading={isLoading} isSuccess={isSuccess}>
         <div className="row sm-warp">
-          {videoDetails && (
+          {data && (
             <>
               <section className="padding-8 w8 sm-w12">
                 <VideoDetailsContainer
-                  videoDetails={videoDetails}
+                  videoDetails={data}
                   setVideoPlayed={setVideoPlayed}
                 />
               </section>
-              <NotesBox videoPlayed={videoPlayed} videoDetails={videoDetails} />
+              <NotesBox videoPlayed={videoPlayed} videoDetails={data} />
             </>
           )}
         </div>
-      )}
-      {status === "ERROR" && <Error setStatus={setStatus} />}
+      </GenricSection>
     </>
   );
 };
