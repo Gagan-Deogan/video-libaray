@@ -58,7 +58,7 @@ body.dark-theme {
     --primary-dark: #166534;
     --primary-default: #61973f;
     --primary-light: #76af53;
-    --grey-opac: #3330309a;
+    --grey-opac: #d1d5db7e;
 
     --black: #111827;
     --inner-text: #f7fafc;
@@ -105,7 +105,7 @@ button,
   max-width: none;
 }
 .font-xs {
-  font-size: 0.625rem;
+  font-size: 0.75rem;
 }
 section {
   width: 100%;
@@ -304,4 +304,7 @@ main {
   .aside-expand {
     grid-template-columns: 15rem auto;
   }
+}
+.container {
+  background-color: var(--inner-background);
 }

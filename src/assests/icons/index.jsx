@@ -1,27 +1,30 @@
-export const HomeIcon = ({ isActive }) => {
+const style = { height: "auto", width: "24px" };
+const logoStyle = { height: "auto", width: "3rem" };
+const notFound = { height: "auto", width: "280px" };
+export const HomeIcon = () => {
   return (
     <svg
       id="home_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_18" data-name="Path 18" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_19"
         data-name="Path 19"
         d="M10,20V14h4v6h5V12h3L12,3,2,12H5v8Z"
-        fill={isActive ? "#61973f" : "#606060"}
+        fill="currentColor"
       />
     </svg>
   );
 };
 
-export const PlaylistIcon = ({ isActive }) => {
+export const PlaylistIcon = () => {
   return (
     <svg
       id="queue_music_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <g id="Group_1" data-name="Group 1">
         <rect
@@ -37,79 +40,79 @@ export const PlaylistIcon = ({ isActive }) => {
           id="Path_20"
           data-name="Path 20"
           d="M15,6H3V8H15Zm0,4H3v2H15ZM3,16h8V14H3ZM17,6v8.18A3,3,0,1,0,19,17V8h3V6Z"
-          fill={isActive ? "#61973f" : "#606060"}
+          fill="currentColor"
         />
       </g>
     </svg>
   );
 };
 
-export const HistoryIcon = ({ isActive }) => {
+export const HistoryIcon = () => {
   return (
     <svg
       id="history_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_16" data-name="Path 16" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_17"
         data-name="Path 17"
         d="M13,3a9,9,0,0,0-9,9H1l3.89,3.89.07.14L9,12H6a7.034,7.034,0,1,1,2.06,4.94L6.64,18.36A9,9,0,1,0,13,3ZM12,8v5l4.28,2.54L17,14.33l-3.5-2.08V8Z"
-        fill={isActive ? "#61973f" : "#606060"}
+        fill="currentColor"
       />
     </svg>
   );
 };
 
-export const SaveIcon = ({ isActive }) => {
+export const SaveIcon = () => {
   return (
     <svg
       id="bookmark_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_15"
         data-name="Path 15"
         d="M17,3H7A2.006,2.006,0,0,0,5,5V21l7-3,7,3V5A2.006,2.006,0,0,0,17,3Z"
-        fill={isActive ? "#61973f" : "#606060"}
+        fill="currentColor"
       />
     </svg>
   );
 };
-export const LikeIcon = ({ isActive }) => {
+export const LikeIcon = () => {
   return (
     <svg
       id="thumb_up_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_21" data-name="Path 21" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_22"
         data-name="Path 22"
         d="M1,21H5V9H1ZM23,10a2.006,2.006,0,0,0-2-2H14.69l.95-4.57.03-.32a1.505,1.505,0,0,0-.44-1.06L14.17,1,7.59,7.59A1.955,1.955,0,0,0,7,9V19a2.006,2.006,0,0,0,2,2h9a1.987,1.987,0,0,0,1.84-1.22l3.02-7.05A1.976,1.976,0,0,0,23,12Z"
-        fill={isActive ? "#61973f" : "#606060"}
+        fill="currentColor"
       />
     </svg>
   );
 };
 
-export const DislikeIcon = ({ isActive }) => {
+export const DislikeIcon = () => {
   return (
     <svg
       id="thumb_down_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_24" data-name="Path 24" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_25"
         data-name="Path 25"
         d="M15,3H6A1.987,1.987,0,0,0,4.16,4.22L1.14,11.27A1.976,1.976,0,0,0,1,12v2a2.006,2.006,0,0,0,2,2H9.31l-.95,4.57-.03.32a1.505,1.505,0,0,0,.44,1.06L9.83,23l6.59-6.59A1.987,1.987,0,0,0,17,15V5A2.006,2.006,0,0,0,15,3Zm4,0V15h4V3Z"
-        fill={isActive ? "#61973f" : "#606060"}
+        fill="currentColor"
       />
     </svg>
   );
@@ -118,13 +121,13 @@ export const CloseIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24"
       fill="none"
       stroke="var(--foreground)"
       strokeWidth="2"
       strokeLinecap="round"
-      stroke-Linejoin="round"
+      strokeLinejoin="round"
       className="feather feather-x">
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -136,14 +139,14 @@ export const ThreeDotsIcon = () => {
     <svg
       id="more_vert_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_26" data-name="Path 26" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_27"
         data-name="Path 27"
         d="M12,8a2,2,0,1,0-2-2A2.006,2.006,0,0,0,12,8Zm0,2a2,2,0,1,0,2,2A2.006,2.006,0,0,0,12,10Zm0,6a2,2,0,1,0,2,2A2.006,2.006,0,0,0,12,16Z"
-        fill="#606060"
+        fill="currentColor"
       />
     </svg>
   );
@@ -153,7 +156,7 @@ export const PlaylistAddIcon = () => {
     <svg
       id="playlist_add_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <g id="Group_3" data-name="Group 3">
         <rect
@@ -169,7 +172,7 @@ export const PlaylistAddIcon = () => {
           id="Path_23"
           data-name="Path 23"
           d="M14,10H3v2H14Zm0-4H3V8H14Zm4,8V10H16v4H12v2h4v4h2V16h4V14ZM3,16h7V14H3Z"
-          fill="#606060"
+          fill="currentColor"
         />
       </g>
     </svg>
@@ -177,10 +180,7 @@ export const PlaylistAddIcon = () => {
 };
 export const HamBurger = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
-      viewBox="0 0 20 14">
+    <svg xmlns="http://www.w3.org/2000/svg" style={style} viewBox="0 0 20 14">
       <g id="menu_1_" data-name="menu (1)" transform="translate(-2 -5)">
         <line
           id="Line_1"
@@ -188,7 +188,7 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 12)"
           fill="none"
-          stroke="#606060"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
@@ -199,7 +199,7 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 6)"
           fill="none"
-          stroke="#606060"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
@@ -210,7 +210,7 @@ export const HamBurger = () => {
           x2="18"
           transform="translate(3 18)"
           fill="none"
-          stroke="#606060"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
@@ -224,14 +224,14 @@ export const EditIcon = () => {
     <svg
       id="edit_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_28" data-name="Path 28" d="M0,0H24V24H0Z" fill="none" />
       <path
         id="Path_29"
         data-name="Path 29"
         d="M14.06,9.02l.92.92L5.92,19H5v-.92l9.06-9.06M17.66,3a1,1,0,0,0-.7.29L15.13,5.12l3.75,3.75,1.83-1.83a1,1,0,0,0,0-1.41L18.37,3.29A.982.982,0,0,0,17.66,3Zm-3.6,3.19L3,17.25V21H6.75L17.81,9.94,14.06,6.19Z"
-        fill="#606060"
+        fill="currentColor"
       />
     </svg>
   );
@@ -243,7 +243,7 @@ export const Logo = () => {
       style={{ height: "auto", width: "12rem" }}
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0)">
+      <g clipPath="url(#clip0)">
         <path
           d="M5.98064 25.3534C5.78603 25.1925 5.53576 25.1148 5.28422 25.1374C5.03269 25.1599 4.80021 25.2808 4.63732 25.4738C4.47443 25.6668 4.3943 25.9163 4.41433 26.168C4.43436 26.4198 4.55294 26.6535 4.74429 26.8183L12.7581 33.5876V37.5415C11.2301 37.4613 9.73279 37.0806 8.35206 36.421C6.97133 35.7615 5.73424 34.8361 4.71165 33.6978C0.0763498 28.2954 2.2267 20.5345 4.85038 14.977C6.19282 12.133 8.49007 8.8524 10.5425 6.24096C10.6934 6.04028 10.7596 5.78841 10.7269 5.53945C10.6942 5.29048 10.5652 5.06426 10.3676 4.90936C10.17 4.75445 9.91946 4.68322 9.66989 4.71095C9.42032 4.73867 9.19157 4.86315 9.03276 5.05766C6.91913 7.74662 4.53211 11.1537 3.11622 14.1569C-0.992706 22.8644 -0.943742 30.054 3.25496 34.9464C5.70318 37.7985 9.47752 39.4592 13.6068 39.5H13.615C13.8884 39.4916 14.1487 39.3808 14.3444 39.1896C14.5401 38.9985 14.6569 38.7409 14.6718 38.4677V33.1469C14.6724 33.0078 14.6424 32.8702 14.5838 32.744C14.5253 32.6178 14.4397 32.506 14.3332 32.4165L5.98064 25.3534Z"
           fill="#4D822B"
@@ -285,7 +285,7 @@ export const LogoIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "3rem" }}
+      style={logoStyle}
       viewBox="0 0 66.92 96.805">
       <g
         id="Group_6"
@@ -331,8 +331,8 @@ export const VisibleIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
-      fill="#606060">
+      style={style}
+      fill="currentColor">
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z" />
     </svg>
@@ -343,8 +343,8 @@ export const VisibleOffIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      style={{ height: "auto", width: "24px" }}
-      fill="#606060">
+      style={style}
+      fill="currentColor">
       <path
         d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
         fill="none"
@@ -357,7 +357,7 @@ export const CheckIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24"
       fill="none"
       stroke="#fff"
@@ -374,7 +374,7 @@ export const Moon = () => {
     <svg
       id="moon"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <rect
         id="Rectangle_1"
@@ -397,7 +397,7 @@ export const Sun = () => {
     <svg
       id="wb_sunny_black_24dp"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: "auto", width: "24px" }}
+      style={style}
       viewBox="0 0 24 24">
       <path id="Path_2" data-name="Path 2" d="M0,0H24V24H0Z" fill="none" />
       <path
@@ -412,7 +412,7 @@ export const Sun = () => {
 export const NotFound = () => {
   return (
     <svg
-      style={{ height: "auto", width: "280px" }}
+      style={notFound}
       viewBox="0 0 1075 418"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
@@ -514,6 +514,40 @@ export const NotFound = () => {
         stroke="#3F3D56"
         stroke-miterlimit="10"
       />
+    </svg>
+  );
+};
+
+export const DeleteIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      style={style}
+      fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+    </svg>
+  );
+};
+export const ErrorIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      style={style}
+      fill="#FFFFFF">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+    </svg>
+  );
+};
+
+export const NoteIcon = () => {
+  return (
+    <svg style={style} viewBox="0 0 24 24">
+      <path
+        d="M19 22H5a3 3 0 0 1-3-3V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v7h4v9a3 3 0 0 1-3 3zm-1-10v7a1 1 0 0 0 2 0v-7h-2zM5 6v6h6V6H5zm0 7v2h10v-2H5zm0 3v2h10v-2H5zm2-8h2v2H7V8z"
+        fill="currentColor"></path>
     </svg>
   );
 };

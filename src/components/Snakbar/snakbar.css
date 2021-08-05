@@ -1,7 +1,0 @@
-.snakbar-suc, .snakbar, .snakbar-err, .snakbar-war {
-    position: fixed;
-    z-index: 9999;
-    top: 1.5rem;
-    right: 2rem;
-    display: flex;
-}

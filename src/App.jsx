@@ -1,32 +1,22 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { useSnakbarContext } from "./Context/SnakbarContext";
-import { Navbar } from "./Components/Navbar";
-import { Snakbar } from "./Components/Snakbar";
-import { Home } from "./Pages/Home";
-import { LikeVideos } from "./Pages/LikeVideos";
-import { VideoWatch } from "./Pages/VideoWatch";
-import { Playlist } from "./Pages/Playlist";
-import { SaveVideos } from "./Pages/SaveVideos";
-import { PageNotFound } from "./Pages/PageNotFound";
+import { useSnakbar } from "./context/SnakbarProvider";
+import { Navbar } from "./common-components/Navbar";
+import { Snakbar } from "./common-components/Snakbar";
+import { Navigation } from "./common-components/Navigation";
+import { Interceptor } from "./common-components/Interceptor";
+
 function App() {
   const [isNavbarOpen, setNavbarToggle] = useState();
-  const { snakbarStatus } = useSnakbarContext();
+  const { snakbarStatus } = useSnakbar();
   return (
     <div
       className={` dis-grid body-layout  ${
         isNavbarOpen ? "aside-expand " : "aside-shrink"
       } `}>
+      <Interceptor />
       <Navbar isNavbarOpen={isNavbarOpen} setNavbarToggle={setNavbarToggle} />
       <main className="column padding-16 w12">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/watch/:videoId" element={<VideoWatch />} />
-          <Route path="/playlist/:id" element={<Playlist />} />
-          <Route path="/savedvideos" element={<SaveVideos />} />
-          <Route path="/likedVideos" element={<LikeVideos />} />
-          <Route path="/*" element={<PageNotFound />} />
-        </Routes>
+        <Navigation />
       </main>
       {snakbarStatus["isShow"] === true && <Snakbar></Snakbar>}
     </div>

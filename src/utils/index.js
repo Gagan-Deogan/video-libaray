@@ -1,4 +1,20 @@
-export { useDebouncing } from "./Debouncing";
-export { useRequest } from "./request";
+export { debounce } from "./debounce";
 export { ddmmmyyyy, hhmmss } from "./date";
-export { uuidv4 } from "./uuidv4";
+export { checkPasswordStrength } from "./checkPasswordStrength";
+export { catchAxiosErr } from "./catchAxiosError";
+export { setupAxiosDefaultHeaders } from "./setupAxiosDefaultHeaders";
+export {
+  getPlaylistsWithIsIncludedFlag,
+  getPlaylistIdByName,
+  selectPlaylistandFindVideoPresent,
+  checkVideoPresentInPlaylist,
+  getPlaylistById,
+  getVideoNotesByVideoId,
+  removeCommonPlaylist,
+} from "./playlists.utils";
+export {
+  updatePlaylist,
+  createNewPlaylist,
+  removePlaylist,
+  addNoteToPlaylist,
+} from "./playlist.services";

@@ -1,31 +1,28 @@
 import "./assests/css/index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { PlaylistProvider } from "./Context/PlaylistContext";
-import { SaveVideosProvider } from "./Context/SaveVideosContext";
-import { LikedAndDisLikedVideosProvider } from "./Context/LikedAndDislikeVideosContext";
-import { SnakbarContextProvider } from "./Context/SnakbarContext";
-import { LoaderContextProvider } from "./Context/LoaderContext";
+import { PlaylistsProvider } from "context/PlaylistsProvider";
+import { SnakbarContextProvider } from "context/SnakbarProvider";
+import { AuthProvider } from "context/AuthProvider";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "./Context/ThemeContext";
-import { NotesProvider } from "./Context/NotesContext";
+import { ThemeProvider } from "context/ThemeProvider";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ThemeProvider>
         <SnakbarContextProvider>
-          <PlaylistProvider>
-            <SaveVideosProvider>
-              <LoaderContextProvider>
-                <NotesProvider>
-                  <LikedAndDisLikedVideosProvider>
-                    <App />
-                  </LikedAndDisLikedVideosProvider>
-                </NotesProvider>
-              </LoaderContextProvider>
-            </SaveVideosProvider>
-          </PlaylistProvider>
+          <AuthProvider>
+            <PlaylistsProvider>
+              <QueryClientProvider client={queryClient}>
+                <App />
+              </QueryClientProvider>
+            </PlaylistsProvider>
+          </AuthProvider>
         </SnakbarContextProvider>
       </ThemeProvider>
     </Router>

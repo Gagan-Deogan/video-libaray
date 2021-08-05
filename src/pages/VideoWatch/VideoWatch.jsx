@@ -1,49 +1,32 @@
 import "./watch.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useStatus } from "../../Context/LoaderContext";
-import { NotesBox } from "../../Components/NotesBox";
-import { Loader } from "../../Components/Loader";
-import { useRequest } from "../../utils";
-import { VidoeDetailsContainer } from "../../Components/VidoeDetailsContainer";
+import { NotesBox } from "./components/NotesBox";
+import { VideoDetailsContainer } from "./components/VideoDetailsContainer";
+import { useVideo } from "hooks/videoDetails.hook";
+import { GenricSection } from "common-components/GenricSection";
 
 export const VideoWatch = () => {
   const { videoId } = useParams();
-  const { request } = useRequest();
-  const { status, setStatus } = useStatus();
-  const [videoDetails, setVideoDetails] = useState();
   const [videoPlayed, setVideoPlayed] = useState("00:00:00");
-
-  useEffect(() => {
-    setStatus("PENDING");
-    (async () => {
-      const { items } = await request({
-        endpoint: "videos?part=snippet&part=statistics&id=" + videoId,
-        method: "GET",
-      });
-      if (items) {
-        setStatus("IDLE");
-        setVideoDetails(items[0]);
-      }
-    })();
-  }, []);
+  const { data, isLoading, isSuccess } = useVideo(videoId);
   return (
     <>
-      {status !== "IDLE" && <Loader />}
-      {status === "IDLE" && (
+      <GenricSection isLoading={isLoading} isSuccess={isSuccess}>
         <div className="row sm-warp">
-          <section className="padding-8 w8 sm-w12">
-            {videoDetails && (
-              <VidoeDetailsContainer
-                videoId={videoId}
-                videoDetails={videoDetails}
-                setVideoPlayed={setVideoPlayed}
-              />
-            )}
-          </section>
-          <NotesBox videoPlayed={videoPlayed} />
+          {data && (
+            <>
+              <section className="padding-8 w8 sm-w12">
+                <VideoDetailsContainer
+                  videoDetails={data}
+                  setVideoPlayed={setVideoPlayed}
+                />
+              </section>
+              <NotesBox videoPlayed={videoPlayed} videoDetails={data} />
+            </>
+          )}
         </div>
-      )}
+      </GenricSection>
     </>
   );
 };

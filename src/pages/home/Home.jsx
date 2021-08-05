@@ -1,63 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { useSaveVideosContext } from "../../Context/SaveVideosContext";
-import { useStatus } from "../../Context/LoaderContext";
-import { Card } from "../../Components/Card";
-import { Loader } from "../../Components/Loader";
-import { AddToPlaylistModel } from "../../Components/AddToPlaylistModel";
-import { useRequest } from "../../utils";
+import React, { useState } from "react";
+import { Card } from "common-components/Card";
 import "./home.css";
+import { useRequest } from "hooks/request.hook";
+import { GenricSection } from "common-components/GenricSection";
+import { AddToPlaylistModal } from "common-components/AddToPlaylistModal";
 
 export const Home = () => {
-  const { request, getCancelToken } = useRequest();
-  const { handleSaveVideoToggle } = useSaveVideosContext();
-  const { status, setStatus } = useStatus();
-  const [videosList, setVideosList] = useState();
-  const [vidoeToPlaylist, setVideoToPlaylist] = useState();
-
-  useEffect(() => {
-    const cancelToken = getCancelToken();
-    setStatus("PENDING");
-    (async () => {
-      const { items } = await request({
-        method: "GET",
-        endpoint:
-          "/videos?part=snippet&part=statistics&chart=mostPopular&maxResults=50",
-      });
-      if (items.length) {
-        setVideosList(items);
-        setStatus("IDLE");
-      }
-    })();
-    return () => {
-      cancelToken.cancel();
-    };
-  }, []);
+  const { data, isLoading, isSuccess } = useRequest("videos");
+  const [videoToPlaylist, setVideoToPlaylist] = useState();
 
   return (
     <>
-      {status !== "IDLE" && <Loader />}
-      {status === "IDLE" && (
+      <GenricSection isLoading={isLoading} isSuccess={isSuccess}>
         <section>
           <ul className="dis-grid videos-container">
-            {videosList &&
-              videosList.map((video) => (
+            {data &&
+              data.map((video) => (
                 <Card
                   video={video}
                   setVideoToPlaylist={setVideoToPlaylist}
                   cardFor="EXPLORE_PAGE"
-                  handleSaveVideoToggle={handleSaveVideoToggle}
-                  key={video.id}
+                  key={video._id}
                 />
               ))}
           </ul>
-          {vidoeToPlaylist && (
-            <AddToPlaylistModel
-              vidoeToPlaylist={vidoeToPlaylist}
+          {videoToPlaylist && (
+            <AddToPlaylistModal
+              videoToPlaylist={videoToPlaylist}
               setVideoToPlaylist={setVideoToPlaylist}
             />
           )}
         </section>
-      )}
+      </GenricSection>
     </>
   );
 };
