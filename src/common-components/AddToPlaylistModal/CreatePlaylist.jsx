@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 export const CreatePlaylist = ({
   isError,
   newPlaylistName,
@@ -5,6 +6,14 @@ export const CreatePlaylist = ({
   setShowCreatePlaylist,
   handleCreatePlaylist,
 }) => {
+  const handleNewName = (e) => {
+    if (e.target.name > 30) {
+      setNewPlaylistName(e.target.value);
+    }
+  };
+  useEffect(() => {
+    return setNewPlaylistName("");
+  }, [setNewPlaylistName]);
   return (
     <>
       <fieldset className="column margin-t-8 padding-t-8 padding-b-16">
@@ -14,7 +23,7 @@ export const CreatePlaylist = ({
           name="new Playlist"
           className={isError ? "text-err-area margin-t-8" : "margin-t-8"}
           value={newPlaylistName}
-          onChange={(e) => setNewPlaylistName(e.target.value)}></input>
+          onChange={handleNewName}></input>
         <div className={isError && "text-err"}>
           {isError && "This Name already Exists"}
         </div>
