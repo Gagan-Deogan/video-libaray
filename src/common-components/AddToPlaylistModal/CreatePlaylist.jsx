@@ -7,7 +7,7 @@ export const CreatePlaylist = ({
   handleCreatePlaylist,
 }) => {
   const handleNewName = (e) => {
-    if (e.target.name > 30) {
+    if (e.target.value.length < 30) {
       setNewPlaylistName(e.target.value);
     }
   };
